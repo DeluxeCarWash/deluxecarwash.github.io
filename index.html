@@ -315,6 +315,8 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible,
 .settings-svc.off{opacity:.55}
 .mini.danger{border-color:rgba(255,107,107,.4);color:var(--danger)}
 .mini.ok{background:rgba(87,211,140,.14);border-color:rgba(87,211,140,.45);color:var(--ok)}
+.showcancel{display:inline-flex;align-items:center;gap:7px;color:var(--mut);font-size:12.5px;cursor:pointer}
+.showcancel input{width:16px;height:16px;accent-color:var(--acc);cursor:pointer}
 .modechip{font-size:11px;font-weight:700;padding:5px 10px;border-radius:20px;letter-spacing:.03em}
 .modechip.live{background:rgba(87,211,140,.15);color:var(--ok);border:1px solid rgba(87,211,140,.4)}
 .modechip.local{background:rgba(231,181,82,.12);color:var(--gold);border:1px solid rgba(231,181,82,.4)}
@@ -447,6 +449,8 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible,
       <button class="btn primary" onclick="adNewBooking()">+ New booking</button>
       <input id="adSearch" placeholder="Search name, phone, car, ref…" oninput="renderAdmin()">
       <button class="mini" onclick="adExportCsv()">⬇ Export CSV</button>
+      <label class="showcancel"><input type="checkbox" id="adShowCancelled" onchange="renderAdmin()">
+        <span data-t="showCancelled">Show cancelled</span></label>
     </div>
     <div class="astat" id="adStats"></div>
     <div class="card" style="padding:6px 6px 0"><div style="overflow-x:auto">
@@ -507,6 +511,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible,
         <div><label>Opens</label><input id="hOpen"></div>
         <div><label>Closes</label><input id="hClose"></div>
         <div><label>Slot step (min)</label><input id="hSlot"></div>
+        <div><label>Cars at the same time</label><input id="hBays"></div>
       </div>
       <div class="g3" style="margin-top:8px">
         <div><label>Drop-off from</label><input id="hDropA"></div>
@@ -575,7 +580,7 @@ const I18N={
   ex_s:"Hatchback · Saloon · Coupe",ex_m:"Med SUV · MPV · Estate",ex_l:"Large SUV · Van · 7-seat",
   full:"Pay in full",deposit:"Deposit",remain:"Rest on arrival",payBtn:"Pay",confirmBtn:"Confirm booking",payOnSite:"Pay at the wash",slotTaken:"Sorry — that time was just booked. Please pick another.",saveFailed:"Could not send the request. Please check your connection and try again.",payNote:"No prepayment needed — pay when you arrive.",
   duration:"Duration",statPend:"Confirmed",statRev:"Revenue",statDep:"Deposits",statUnpaid:"To collect",statDone:"Completed",statNew:"New requests",stPending:"New request",stProposed:"Time offered",stConfirmed:"Confirmed",actConfirm:"Confirm",actPropose:"Offer another time",actSendProposal:"Send offer",wasAsking:"Asked for",waConfirmMsg:"Hello {name}! Your booking for {service} on {date} at {time} is confirmed. See you at Deluxe Car Wash & SPA!",waProposeMsg:"Hello {name}! Sorry, {old} is not available for {service}. We can offer {date} at {time} instead — does that work for you?",
-  markDone:"Done",del:"Cancel",paidFull:"Full",paidDep:"Deposit",waMsg:"WhatsApp",remind:"Remind",
+  markDone:"Done",del:"Cancel",delPerm:"Delete permanently",delWarn:"This removes the booking from the database for good. Use Cancel instead if you just want to free the slot but keep the history.",deleted:"Deleted",showCancelled:"Show cancelled",paidFull:"Full",paidDep:"Deposit",waMsg:"WhatsApp",remind:"Remind",
   service:"Service",vehicle:"Vehicle",date:"Date",time:"Time",total:"Total",ready:"Ready",days:"days",
   visits:"Visits",spent:"Spent",lastv:"Last visit",nextdue:"Next due",from:"from",priceNote:"final price confirmed at inspection",
   cfRemindTxt:"We'll remind you on WhatsApp when it's time for your next {s}.",
@@ -604,7 +609,7 @@ const I18N={
   ex_s:"Хэтчбек · Седан · Купе",ex_m:"Ср. SUV · MPV · Универсал",ex_l:"Большой SUV · Ван · 7 мест",
   full:"Оплатить полностью",deposit:"Депозит",remain:"Остаток на месте",payBtn:"Оплатить",confirmBtn:"Подтвердить запись",payOnSite:"Оплата на мойке",slotTaken:"Это время только что заняли. Выберите другое, пожалуйста.",saveFailed:"Не удалось отправить заявку. Проверьте связь и попробуйте ещё раз.",payNote:"Предоплата не нужна — оплатите на месте.",
   duration:"Длительность",statPend:"Подтверждено",statRev:"Выручка",statDep:"Депозиты",statUnpaid:"К оплате",statDone:"Выполнено",statNew:"Новые заявки",stPending:"Новая заявка",stProposed:"Время предложено",stConfirmed:"Подтверждено",actConfirm:"Подтвердить",actPropose:"Предложить другое время",actSendProposal:"Отправить предложение",wasAsking:"Просил(а)",waConfirmMsg:"Здравствуйте, {name}! Ваша запись на «{service}» {date} в {time} подтверждена. Ждём вас в Deluxe Car Wash & SPA!",waProposeMsg:"Здравствуйте, {name}! К сожалению, {old} занято для услуги «{service}». Можем предложить {date} в {time} — вам подходит?",
-  markDone:"Готово",del:"Отменить",paidFull:"Полн.",paidDep:"Депозит",waMsg:"WhatsApp",remind:"Напомнить",
+  markDone:"Готово",del:"Отменить",delPerm:"Удалить навсегда",delWarn:"Запись будет стёрта из базы безвозвратно. Если нужно просто освободить время, но сохранить историю — используйте «Отменить».",deleted:"Удалено",showCancelled:"Показать отменённые",paidFull:"Полн.",paidDep:"Депозит",waMsg:"WhatsApp",remind:"Напомнить",
   service:"Услуга",vehicle:"Авто",date:"Дата",time:"Время",total:"Итого",ready:"Готово",days:"дн.",
   visits:"Визитов",spent:"Потрачено",lastv:"Последний визит",nextdue:"Следующая",from:"от",priceNote:"финальная цена — после осмотра",
   cfRemindTxt:"Напомним в WhatsApp, когда придёт время для следующей услуги «{s}».",
@@ -633,7 +638,7 @@ const I18N={
   ex_s:"Hatchback · Sedan · Coupe",ex_m:"Med SUV · MPV",ex_l:"Large SUV · Van · 7θ",
   full:"Πλήρης πληρωμή",deposit:"Προκαταβολή",remain:"Υπόλοιπο στον χώρο",payBtn:"Πληρωμή",confirmBtn:"Επιβεβαίωση κράτησης",payOnSite:"Πληρωμή στο πλυντήριο",slotTaken:"Αυτή η ώρα μόλις κλείστηκε. Επιλέξτε άλλη.",saveFailed:"Δεν στάλθηκε το αίτημα. Ελέγξτε τη σύνδεση και δοκιμάστε ξανά.",payNote:"Χωρίς προκαταβολή — πληρώνετε στον χώρο.",
   duration:"Διάρκεια",statPend:"Επιβεβαιωμένα",statRev:"Έσοδα",statDep:"Προκαταβολές",statUnpaid:"Προς είσπραξη",statDone:"Ολοκληρωμένα",statNew:"Νέα αιτήματα",stPending:"Νέο αίτημα",stProposed:"Προτάθηκε ώρα",stConfirmed:"Επιβεβαιωμένο",actConfirm:"Επιβεβαίωση",actPropose:"Προτείνετε άλλη ώρα",actSendProposal:"Αποστολή πρότασης",wasAsking:"Ζήτησε",waConfirmMsg:"Γεια σας {name}! Η κράτησή σας για {service} στις {date} στις {time} επιβεβαιώθηκε. Σας περιμένουμε!",waProposeMsg:"Γεια σας {name}! Δυστυχώς η ώρα {old} δεν είναι διαθέσιμη για {service}. Μπορούμε να προτείνουμε {date} στις {time} — σας βολεύει;",
-  markDone:"Έτοιμο",del:"Ακύρωση",paidFull:"Πλήρης",paidDep:"Προκατ.",waMsg:"WhatsApp",remind:"Υπενθύμιση",
+  markDone:"Έτοιμο",del:"Ακύρωση",delPerm:"Οριστική διαγραφή",delWarn:"Η κράτηση θα διαγραφεί οριστικά από τη βάση.",deleted:"Διαγράφηκε",showCancelled:"Εμφάνιση ακυρωμένων",paidFull:"Πλήρης",paidDep:"Προκατ.",waMsg:"WhatsApp",remind:"Υπενθύμιση",
   service:"Υπηρεσία",vehicle:"Όχημα",date:"Ημ/νία",time:"Ώρα",total:"Σύνολο",ready:"Έτοιμο",days:"ημ.",
   visits:"Επισκέψεις",spent:"Σύνολο",lastv:"Τελευταία",nextdue:"Επόμενη",from:"από",priceNote:"τελική τιμή μετά από έλεγχο",
   cfRemindTxt:"Θα σας υπενθυμίσουμε στο WhatsApp όταν έρθει η ώρα για την επόμενη {s}.",
@@ -691,7 +696,7 @@ const ADDONS=[
  {id:"ozone",icon:"💨",price:[40,40,40],en:"Ozone Odour Treatment",ru:"Озонирование (запахи)",el:"Επεξεργασία όζοντος"}
 ];
 const DEPOSIT_PCT=CONFIG.DEPOSIT_PCT;
-const HOURS={open:8,close:18,slotMin:30,dropStart:8,dropEnd:11,closedDow:[4,5,6]}; // 0=Mon..6=Sun — detailing runs Mon-Thu
+const HOURS={open:8,close:18,slotMin:30,dropStart:8,dropEnd:11,bays:1, closedDow:[4,5,6]}; // 0=Mon..6=Sun — detailing runs Mon-Thu
 let BLOCKED=[];   // ISO dates the wash is closed (holidays etc.)
 
 /* ===================== safe storage ===================== */
@@ -796,6 +801,13 @@ const DB={
   saveCatalog(v){REMOTE.catalog=v;DB._setting("catalog",v);},
   loadHours(){return (REMOTE.hours!==undefined?REMOTE.hours:store.get("dlx2_hours"))||null;},
   saveHours(v){REMOTE.hours=v;DB._setting("hours",v);},
+  deleteBooking(ref){
+    if(!sb){const i=bookings.findIndex(b=>b.ref===ref);if(i>=0)bookings.splice(i,1);
+      store.set("dlx2_bookings",bookings);return Promise.resolve({ok:true});}
+    return sb.from("bookings").delete().eq("ref",ref)
+      .then(r=>r.error?{ok:false,msg:r.error.message}:{ok:true})
+      .catch(e=>({ok:false,msg:String(e)}));
+  },
   loadNotify(){return (REMOTE.notify!==undefined?REMOTE.notify:store.get("dlx2_notify"))||null;},
   saveNotify(v){REMOTE.notify=v;DB._setting("notify",v);},
   loadBlocked(){return (REMOTE.blocked!==undefined?REMOTE.blocked:store.get("dlx2_blocked"))||[];},
@@ -888,11 +900,31 @@ function renderAddons(){
    renderAddons();renderSummary();};list.appendChild(d);});}
 
 /* ===================== calendar ===================== */
-function busyMultiDays(){ // set of ISO days fully occupied by active multi-day bookings
- const set=new Set();
- bookings.filter(b=>b.unit==="day"&&b.status!=="cancelled").forEach(b=>{
-   spanDays(b.date,b.days).forEach(d=>set.add(d));});
- return set;}
+/* ===== capacity =====
+   HOURS.bays = how many cars can be worked on at the same time.
+   1 = one detailing bay (default). Raise it if several cars run in parallel. */
+const BAYS=()=>Math.max(1,parseInt(HOURS.bays)||1);
+/* A pending request does NOT reserve anything: several customers may ask for the
+   same time and Amrit decides. Only confirmed (or finished) work occupies a bay. */
+const BLOCKS=b=>b.status==="upcoming"||b.status==="done";
+function busyMultiDays(){ // ISO day -> how many multi-day jobs occupy it
+ const m=new Map();
+ bookings.filter(b=>b.unit==="day"&&BLOCKS(b)).forEach(b=>{
+   spanDays(b.date,b.days).forEach(d=>m.set(d,(m.get(d)||0)+1));});
+ return m;}
+function sameDayJobs(iso,excludeRef){
+ return bookings.filter(b=>b.date===iso&&b.unit!=="day"&&BLOCKS(b)&&b.ref!==excludeRef)
+   .map(b=>[toMin(b.time),toMin(b.time)+(b.mins||0)]);}
+function busyAt(iso,start,end,excludeRef,mdMap){
+ const md=(mdMap||busyMultiDays()).get(iso)||0;
+ return md+sameDayJobs(iso,excludeRef).filter(([s,e])=>start<e&&end>s).length;}
+function peakSameDay(iso,excludeRef){          // most cars in the bay at once that day
+ const iv=sameDayJobs(iso,excludeRef); let peak=0;
+ iv.forEach(([s])=>{const c=iv.filter(([a,b])=>s>=a&&s<b).length; if(c>peak)peak=c;});
+ return peak;}
+function canTakeMultiDay(iso,days,excludeRef,mdMap){   // needs a bay for whole days
+ const m=mdMap||busyMultiDays();
+ return spanDays(iso,days).every(d=>((m.get(d)||0)+peakSameDay(d,excludeRef))<BAYS());}
 function buildCalendar(){
  $("#dow").innerHTML=I18N[L].dows.map(d=>`<span>${d}</span>`).join("");
  $("#calLabel").textContent=`${I18N[L].months[calMonth.getMonth()]} ${calMonth.getFullYear()}`;
@@ -911,11 +943,10 @@ function buildCalendar(){
   let free=false;
   if(past){el.classList.add("off")}
   else if(closed){el.classList.add("closed")}
-  else if(svc&&svc.unit==="day"){ // multi-day: whole span must be free of other multi-day jobs
-    const span=spanDays(iso,svc.days);const clash=span.some(x=>blocked.has(x));
-    if(clash){el.classList.add("busy")}else{free=true}
-  } else { // same-day: blocked if a multi-day job occupies that day
-    if(blocked.has(iso)){el.classList.add("busy")}else{free=true}
+  else if(svc&&svc.unit==="day"){ // multi-day: every day of the span needs a free bay
+    if(!canTakeMultiDay(iso,svc.days,null,blocked)){el.classList.add("busy")}else{free=true}
+  } else { // same-day: blocked only when every bay is taken all day
+    if(((blocked.get(iso)||0)>=BAYS())){el.classList.add("busy")}else{free=true}
   }
   if(free){el.classList.add("free");if(S.date===iso)el.classList.add("sel");
    el.onclick=()=>{S.date=iso;S.time=null;buildCalendar();renderSlots();renderSummary();gate();};}
@@ -942,11 +973,10 @@ function renderSlots(){
   return;}
  // same-day
  $("#slotLabel").textContent=t("dropoff");
- const dayBk=bookings.filter(b=>b.date===S.date&&b.unit!=="day"&&b.status!=="cancelled");
- const busy=dayBk.map(b=>{const st=toMin(b.time);return[st,st+b.mins]});
+ const mdMap=busyMultiDays();
  let any=false;
  for(let m=HOURS.open*60;m+svc.mins<=HOURS.close*60;m+=HOURS.slotMin){
-  const end=m+svc.mins;const overlap=busy.some(([bs,be])=>m<be&&end>bs);
+  const end=m+svc.mins;const overlap=busyAt(S.date,m,end,null,mdMap)>=BAYS();
   const late=isToday&&m<=now.getHours()*60+now.getMinutes();const ok=!overlap&&!late;
   const b=document.createElement("button");b.className="slot"+(!ok?" taken":"")+(S.time===minToStr(m)?" sel":"");
   b.textContent=minToStr(m);if(ok){any=true;b.onclick=()=>{S.time=minToStr(m);renderSlots();renderSummary();gate();};}
@@ -1022,11 +1052,9 @@ function lookupCustomer(){
    call the provider here before finishBooking() and store its id on the booking. */
 function slotStillFree(){
  const svc=svcById(S.service); if(!svc||!S.date||!S.time)return false;
- if(svc.unit==="day"){const blocked=busyMultiDays();
-   return !spanDays(S.date,svc.days).some(d=>blocked.has(d));}
+ if(svc.unit==="day")return canTakeMultiDay(S.date,svc.days);
  const start=toMin(S.time), end=start+svc.mins;
- return !bookings.filter(b=>b.date===S.date&&b.unit!=="day"&&b.status!=="cancelled")
-   .some(b=>{const bs=toMin(b.time);return start<bs+(b.mins||0)&&end>bs;});}
+ return busyAt(S.date,start,end)<BAYS();}
 
 async function confirmBooking(){
  const btn=$("#nextBtn");btn.disabled=true;btn.textContent="…";
@@ -1128,6 +1156,8 @@ function renderAdmin(){
  const q=($("#adSearch")&&$("#adSearch").value||"").toLowerCase().trim();
  let list=[...bookings].sort((a,b)=>(a.date+(a.time||"")).localeCompare(b.date+(b.time||"")));
  if(q)list=list.filter(b=>[b.ref,b.cname,b.cphone,b.vmodel,b.vplate,b.service].join(" ").toLowerCase().includes(q));
+ const showCan=$("#adShowCancelled")&&$("#adShowCancelled").checked;
+ if(!showCan)list=list.filter(b=>b.status!=="cancelled");
  $("#adEmpty").classList.toggle("hidden",list.length>0);
  list.forEach(b=>{const idx=bookings.indexOf(b);const svc=svcById(b.serviceId);
   const paidPill=(b.paid===0||b.payType==="unpaid")?`<span class="pill unpaid">Unpaid</span>`:b.payType==="deposit"?`<span class="pill deposit">${t("paidDep")} ${money(b.paid)}</span>`:`<span class="pill paid">${t("paidFull")} ${money(b.paid)}</span>`;
@@ -1141,7 +1171,8 @@ function renderAdmin(){
    <td><div class="aactions">
      ${(b.status==="pending"||b.status==="proposed")?`<button class="mini ok" onclick="adConfirm(${idx})">✓ ${t("actConfirm")}</button><button class="mini" onclick="adPropose(${idx})">${t("actPropose")}</button>`:""}
      ${b.status==="upcoming"?`<button class="mini" onclick="adReschedule(${idx})">↻</button><button class="mini" onclick="adDone(${idx})">${t("markDone")}</button>`:""}
-     ${b.status!=="cancelled"?`<button class="mini" onclick="adCancel(${idx})">${t("del")}</button>`:""}</div></td>`;
+     ${b.status!=="cancelled"?`<button class="mini" onclick="adCancel(${idx})">${t("del")}</button>`:""}
+     <button class="mini danger" onclick="adDelete(${idx})">🗑</button></div></td>`;
   body.appendChild(tr);});
 
  // customers tab
@@ -1209,6 +1240,20 @@ window.adProposeGo=i=>{const b=bookings[i];const d=$("#pDate").value,tm=$("#pTim
  b.date=d;b.time=tm;b.status="proposed";b.nextDue=isoDate(new Date(parseISO(d).getTime()+b.remind*864e5));
  DB.saveBookings(bookings,b);closeModal();renderAdmin();waSend(b,"waProposeMsg",{old:oldWhen});};
 window.adCancel=i=>{bookings[i].status="cancelled";DB.saveBookings(bookings,bookings[i]);renderAdmin();};
+window.adDelete=i=>{const b=bookings[i];const svc=svcById(b.serviceId);
+ openModal(`<h3>${t("delPerm")}</h3>
+  <p style="color:var(--mut);font-size:13.5px;line-height:1.6">${t("delWarn")}<br><br>
+   <b>${b.ref}</b> · ${b.cname||""}<br>${svc?svc[L][0]:b.service} · ${fmtDate(b.date)} ${b.time||""}</p>
+  <div class="mrow"><button class="btn ghost" onclick="closeModal()">${t("back")}</button>
+   <button class="btn primary" onclick="adDeleteGo('${b.ref}')">${t("delPerm")}</button></div>`);};
+window.adDeleteGo=async ref=>{
+ const res=await DB.deleteBooking(ref);
+ if(!res.ok){toast(res.msg||"error");return;}
+ const i=bookings.findIndex(b=>b.ref===ref);
+ if(i>=0){const b=bookings[i];bookings.splice(i,1);
+   const c=customers[b.cphoneN];
+   if(c&&Array.isArray(c.history)){c.history=c.history.filter(x=>x.ref!==ref);DB.saveCustomers(customers,c);}}
+ closeModal();renderAdmin();toast(t("deleted"));};
 window.markReminded=(ph,sid,due)=>{reminded[ph+"|"+sid+"|"+due]=1;DB.saveReminded(reminded);renderAdmin();toast("✓");};
 window.waCustomer=(ph,sid,date)=>{const svc=svcById(sid);const c=customers[ph]||{};
  const msg=t("waTemplate").replace("{name}",(c.name||"").split(" ")[0]||"")
@@ -1289,10 +1334,9 @@ $("#modalBg").addEventListener("click",e=>{if(e.target.id==="modalBg")closeModal
 function adSlots(sid,date,excludeRef){const svc=svcById(sid);if(!svc||!date)return [];
  const out=[];
  if(svc.unit==="day"){for(let m=HOURS.dropStart*60;m<=HOURS.dropEnd*60;m+=HOURS.slotMin)out.push(minToStr(m));return out;}
- const dayBk=bookings.filter(b=>b.date===date&&b.unit!=="day"&&b.status!=="cancelled"&&b.ref!==excludeRef);
- const busy=dayBk.map(b=>{const st=toMin(b.time);return[st,st+b.mins];});
+ const mdMap=busyMultiDays();
  for(let m=HOURS.open*60;m+svc.mins<=HOURS.close*60;m+=HOURS.slotMin){const end=m+svc.mins;
-   if(!busy.some(([bs,be])=>m<be&&end>bs))out.push(minToStr(m));}
+   if(busyAt(date,m,end,excludeRef,mdMap)<BAYS())out.push(minToStr(m));}
  return out;}
 
 window.adNewBooking=()=>{
@@ -1608,6 +1652,7 @@ window.adTestNotify=async()=>{
 function renderHoursUI(){
   if(!$("#hOpen"))return;
   $("#hOpen").value=HOURS.open;$("#hClose").value=HOURS.close;$("#hSlot").value=HOURS.slotMin;
+ if($("#hBays"))$("#hBays").value=BAYS();
   $("#hDropA").value=HOURS.dropStart;$("#hDropB").value=HOURS.dropEnd;
   const box=$("#dowBox");box.innerHTML="";
   I18N[L].dows.forEach((d,i)=>{const b=document.createElement("button");
@@ -1624,9 +1669,10 @@ window.adAddBlocked=()=>{const v=$("#blockDate").value;if(!v)return;
 window.adSaveHours=()=>{
   const n=(id,d)=>{const v=+$(id).value;return isNaN(v)?d:v;};
   HOURS.open=n("#hOpen",8);HOURS.close=n("#hClose",18);HOURS.slotMin=n("#hSlot",30);
+ HOURS.bays=Math.max(1,n("#hBays",1));
   HOURS.dropStart=n("#hDropA",8);HOURS.dropEnd=n("#hDropB",11);
   DB.saveHours({open:HOURS.open,close:HOURS.close,slotMin:HOURS.slotMin,dropStart:HOURS.dropStart,
-    dropEnd:HOURS.dropEnd,closedDow:[...HOURS.closedDow]});
+    dropEnd:HOURS.dropEnd,bays:HOURS.bays,closedDow:[...HOURS.closedDow]});
   DB.saveBlocked([...BLOCKED]);
   buildCalendar();renderSlots();toast("Hours saved");};
 
