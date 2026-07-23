@@ -314,9 +314,14 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible,
 .svc-actions{display:flex;gap:6px}
 .settings-svc.off{opacity:.55}
 .mini.danger{border-color:rgba(255,107,107,.4);color:var(--danger)}
+.mini.ok{background:rgba(87,211,140,.14);border-color:rgba(87,211,140,.45);color:var(--ok)}
 .modechip{font-size:11px;font-weight:700;padding:5px 10px;border-radius:20px;letter-spacing:.03em}
 .modechip.live{background:rgba(87,211,140,.15);color:var(--ok);border:1px solid rgba(87,211,140,.4)}
 .modechip.local{background:rgba(231,181,82,.12);color:var(--gold);border:1px solid rgba(231,181,82,.4)}
+.consent{display:flex;gap:10px;align-items:flex-start;background:var(--surf);border:1px solid var(--line);
+  border-radius:11px;padding:13px 14px;cursor:pointer;font-size:13px;color:var(--mut);line-height:1.5;max-width:560px}
+.consent input{width:18px;height:18px;flex:0 0 auto;margin:1px 0 0;accent-color:var(--acc);cursor:pointer}
+.consent:hover{border-color:var(--line2)}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -393,6 +398,8 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible,
         </div>
         <div class="field"><label data-t="femail">Email</label><input id="cemail" type="email"><div class="err" data-t="eemail">Enter a valid email</div></div>
         <div class="field"><label data-t="fnotes">Notes for the team (optional)</label><textarea id="cnotes" placeholder="Pet hair, heavy stains, drop-off time…"></textarea></div>
+        <label class="consent"><input type="checkbox" id="cconsent">
+          <span data-t="consentTxt">Remind me on WhatsApp when my car is due for its next service. You can opt out any time.</span></label>
       </div>
     </section>
 
@@ -536,20 +543,20 @@ const I18N={
   s2title:"Your vehicle",s2hint:"Sets the exact price",vmake:"Make & model",vplate:"Plate (optional)",
   s3title:"Pick date & time",pickday:"Select a day",noslots:"No free slots this day. Try another.",dropoff:"Drop-off time",
   s4title:"Your details",s4hint:"We'll send confirmation & reminders here",fname:"Full name",fphone:"Phone (WhatsApp)",
-  femail:"Email",fnotes:"Notes for the team (optional)",ereq:"Required",ephone:"Enter a valid phone",eemail:"Enter a valid email",
+  femail:"Email",fnotes:"Notes for the team (optional)",consentTxt:"Remind me on WhatsApp when my car is due for its next service. You can opt out any time.",consentCol:"Reminders",ereq:"Required",ephone:"Enter a valid phone",eemail:"Enter a valid email",
   s5title:"Payment",s5hint:"Secure your slot",demoPay:"Demo mode — no real charge. Wire Stripe to go live.",
   fcard:"Card number",fexp:"Expiry",ecard:"Enter 16 digits",eexp:"MM/YY",ecvc:"3 digits",
   secure:"Card handling runs server-side via Stripe. This screen never stores card data.",
   back:"Back",next:"Continue",sumTitle:"Your booking",sumEmpty:"Nothing selected yet.",
-  cfTitle:"Booking confirmed",cfSub:"We've sent the details to your email. See you soon!",cfNew:"Book another",
+  cfTitle:"Request sent",cfSub:"We'll confirm your slot on WhatsApp shortly.",cfNew:"New booking",
   toSite:"Back to booking page",tabBook:"Bookings",tabCust:"Customers",tabRem:"Reminders",
   thRef:"Ref",thWhen:"When",thSvc:"Service",thCust:"Customer",thVeh:"Vehicle",thPaid:"Paid",thStatus:"Status",
   thLast:"Last service",thDue:"Due",adEmpty:"No bookings yet.",custEmpty:"No customers yet.",remEmpty:"Nobody's due right now. 🎉",
   remIntro:"Customers due for a repeat service. One tap opens WhatsApp with a ready message.",foot:"booking prototype",waHi:"Chat with us on WhatsApp",cfCal:"Add to calendar",cfDir:"Directions",cfWa:"WhatsApp us",
   size_s:"Small / Medium",size_m:"Large / SUV",size_l:"X-Large / 7-seat",
   ex_s:"Hatchback · Saloon · Coupe",ex_m:"Med SUV · MPV · Estate",ex_l:"Large SUV · Van · 7-seat",
-  full:"Pay in full",deposit:"Deposit",remain:"Rest on arrival",payBtn:"Pay",confirmBtn:"Confirm booking",payOnSite:"Pay at the wash",payNote:"No prepayment needed — pay when you arrive.",
-  duration:"Duration",statPend:"Upcoming",statRev:"Revenue",statDep:"Deposits",statUnpaid:"To collect",statDone:"Completed",
+  full:"Pay in full",deposit:"Deposit",remain:"Rest on arrival",payBtn:"Pay",confirmBtn:"Confirm booking",payOnSite:"Pay at the wash",slotTaken:"Sorry — that time was just booked. Please pick another.",payNote:"No prepayment needed — pay when you arrive.",
+  duration:"Duration",statPend:"Confirmed",statRev:"Revenue",statDep:"Deposits",statUnpaid:"To collect",statDone:"Completed",statNew:"New requests",stPending:"New request",stProposed:"Time offered",stConfirmed:"Confirmed",actConfirm:"Confirm",actPropose:"Offer another time",actSendProposal:"Send offer",wasAsking:"Asked for",waConfirmMsg:"Hello {name}! Your booking for {service} on {date} at {time} is confirmed. See you at Deluxe Car Wash & SPA!",waProposeMsg:"Hello {name}! Sorry, {old} is not available for {service}. We can offer {date} at {time} instead — does that work for you?",
   markDone:"Done",del:"Cancel",paidFull:"Full",paidDep:"Deposit",waMsg:"WhatsApp",remind:"Remind",
   service:"Service",vehicle:"Vehicle",date:"Date",time:"Time",total:"Total",ready:"Ready",days:"days",
   visits:"Visits",spent:"Spent",lastv:"Last visit",nextdue:"Next due",from:"from",priceNote:"final price confirmed at inspection",
@@ -565,20 +572,20 @@ const I18N={
   s2title:"Ваш автомобиль",s2hint:"Определяет точную цену",vmake:"Марка и модель",vplate:"Номер (не обяз.)",
   s3title:"Дата и время",pickday:"Выберите день",noslots:"Нет свободных слотов. Выберите другой день.",dropoff:"Время сдачи авто",
   s4title:"Ваши данные",s4hint:"Сюда пришлём подтверждение и напоминания",fname:"Имя и фамилия",fphone:"Телефон (WhatsApp)",
-  femail:"Email",fnotes:"Примечание для команды (не обяз.)",ereq:"Обязательно",ephone:"Введите корректный телефон",eemail:"Введите корректный email",
+  femail:"Email",fnotes:"Примечание для команды (не обяз.)",consentTxt:"Напомнить в WhatsApp, когда придёт время следующей услуги. Отписаться можно в любой момент.",consentCol:"Напоминания",ereq:"Обязательно",ephone:"Введите корректный телефон",eemail:"Введите корректный email",
   s5title:"Оплата",s5hint:"Забронируйте слот",demoPay:"Демо-режим — без реального списания. Подключите Stripe для боевого режима.",
   fcard:"Номер карты",fexp:"Срок",ecard:"Введите 16 цифр",eexp:"ММ/ГГ",ecvc:"3 цифры",
   secure:"Обработка карт — на сервере через Stripe. Этот экран не хранит данные карты.",
   back:"Назад",next:"Далее",sumTitle:"Ваша запись",sumEmpty:"Пока ничего не выбрано.",
-  cfTitle:"Запись подтверждена",cfSub:"Детали отправлены на email. Ждём вас!",cfNew:"Записаться ещё",
+  cfTitle:"Заявка отправлена",cfSub:"Мы подтвердим время в WhatsApp в ближайшее время.",cfNew:"Новая запись",
   toSite:"К странице записи",tabBook:"Записи",tabCust:"Клиенты",tabRem:"Напоминания",
   thRef:"Номер",thWhen:"Когда",thSvc:"Услуга",thCust:"Клиент",thVeh:"Авто",thPaid:"Оплата",thStatus:"Статус",
   thLast:"Прошлая услуга",thDue:"Срок",adEmpty:"Пока нет записей.",custEmpty:"Пока нет клиентов.",remEmpty:"Сейчас никого напоминать не нужно. 🎉",
   remIntro:"Клиенты, которым пора на повторную услугу. Одно нажатие — WhatsApp с готовым сообщением.",foot:"прототип записи",waHi:"Написать нам в WhatsApp",cfCal:"В календарь",cfDir:"Маршрут",cfWa:"Написать в WhatsApp",
   size_s:"Малый / Средний",size_m:"Большой / SUV",size_l:"X-Large / 7 мест",
   ex_s:"Хэтчбек · Седан · Купе",ex_m:"Ср. SUV · MPV · Универсал",ex_l:"Большой SUV · Ван · 7 мест",
-  full:"Оплатить полностью",deposit:"Депозит",remain:"Остаток на месте",payBtn:"Оплатить",confirmBtn:"Подтвердить запись",payOnSite:"Оплата на мойке",payNote:"Предоплата не нужна — оплатите на месте.",
-  duration:"Длительность",statPend:"Предстоящие",statRev:"Выручка",statDep:"Депозиты",statUnpaid:"К оплате",statDone:"Выполнено",
+  full:"Оплатить полностью",deposit:"Депозит",remain:"Остаток на месте",payBtn:"Оплатить",confirmBtn:"Подтвердить запись",payOnSite:"Оплата на мойке",slotTaken:"Это время только что заняли. Выберите другое, пожалуйста.",payNote:"Предоплата не нужна — оплатите на месте.",
+  duration:"Длительность",statPend:"Подтверждено",statRev:"Выручка",statDep:"Депозиты",statUnpaid:"К оплате",statDone:"Выполнено",statNew:"Новые заявки",stPending:"Новая заявка",stProposed:"Время предложено",stConfirmed:"Подтверждено",actConfirm:"Подтвердить",actPropose:"Предложить другое время",actSendProposal:"Отправить предложение",wasAsking:"Просил(а)",waConfirmMsg:"Здравствуйте, {name}! Ваша запись на «{service}» {date} в {time} подтверждена. Ждём вас в Deluxe Car Wash & SPA!",waProposeMsg:"Здравствуйте, {name}! К сожалению, {old} занято для услуги «{service}». Можем предложить {date} в {time} — вам подходит?",
   markDone:"Готово",del:"Отменить",paidFull:"Полн.",paidDep:"Депозит",waMsg:"WhatsApp",remind:"Напомнить",
   service:"Услуга",vehicle:"Авто",date:"Дата",time:"Время",total:"Итого",ready:"Готово",days:"дн.",
   visits:"Визитов",spent:"Потрачено",lastv:"Последний визит",nextdue:"Следующая",from:"от",priceNote:"финальная цена — после осмотра",
@@ -594,20 +601,20 @@ const I18N={
   s2title:"Το όχημά σας",s2hint:"Καθορίζει την τιμή",vmake:"Μάρκα & μοντέλο",vplate:"Πινακίδα (προαιρ.)",
   s3title:"Ημερομηνία & ώρα",pickday:"Επιλέξτε ημέρα",noslots:"Καμία διαθέσιμη ώρα. Δοκιμάστε άλλη μέρα.",dropoff:"Ώρα παράδοσης",
   s4title:"Τα στοιχεία σας",s4hint:"Θα στείλουμε επιβεβαίωση & υπενθυμίσεις εδώ",fname:"Ονοματεπώνυμο",fphone:"Τηλέφωνο (WhatsApp)",
-  femail:"Email",fnotes:"Σημειώσεις (προαιρ.)",ereq:"Υποχρεωτικό",ephone:"Μη έγκυρο τηλέφωνο",eemail:"Μη έγκυρο email",
+  femail:"Email",fnotes:"Σημειώσεις (προαιρ.)",consentTxt:"Να μου θυμίσετε στο WhatsApp όταν έρθει η ώρα για την επόμενη υπηρεσία. Μπορείτε να διαγραφείτε ανά πάσα στιγμή.",consentCol:"Υπενθυμίσεις",ereq:"Υποχρεωτικό",ephone:"Μη έγκυρο τηλέφωνο",eemail:"Μη έγκυρο email",
   s5title:"Πληρωμή",s5hint:"Κατοχυρώστε τη θέση σας",demoPay:"Demo — καμία χρέωση. Συνδέστε Stripe για live.",
   fcard:"Αριθμός κάρτας",fexp:"Λήξη",ecard:"16 ψηφία",eexp:"ΜΜ/ΕΕ",ecvc:"3 ψηφία",
   secure:"Η επεξεργασία κάρτας γίνεται server-side μέσω Stripe.",
   back:"Πίσω",next:"Συνέχεια",sumTitle:"Η κράτησή σας",sumEmpty:"Δεν έχει επιλεγεί τίποτα.",
-  cfTitle:"Η κράτηση επιβεβαιώθηκε",cfSub:"Στείλαμε τις λεπτομέρειες στο email σας!",cfNew:"Νέα κράτηση",
+  cfTitle:"Το αίτημα στάλθηκε",cfSub:"Θα επιβεβαιώσουμε την ώρα σας στο WhatsApp σύντομα.",cfNew:"Νέα κράτηση",
   toSite:"Πίσω στην κράτηση",tabBook:"Κρατήσεις",tabCust:"Πελάτες",tabRem:"Υπενθυμίσεις",
   thRef:"Κωδ.",thWhen:"Πότε",thSvc:"Υπηρεσία",thCust:"Πελάτης",thVeh:"Όχημα",thPaid:"Πληρωμή",thStatus:"Κατάσταση",
   thLast:"Τελευταία",thDue:"Λήξη",adEmpty:"Καμία κράτηση.",custEmpty:"Κανένας πελάτης.",remEmpty:"Κανείς προς το παρόν. 🎉",
   remIntro:"Πελάτες για επαναληπτική υπηρεσία. Ένα πάτημα ανοίγει WhatsApp με έτοιμο μήνυμα.",foot:"prototype",waHi:"Γράψτε μας στο WhatsApp",cfCal:"Στο ημερολόγιο",cfDir:"Οδηγίες",cfWa:"WhatsApp",
   size_s:"Μικρό / Μεσαίο",size_m:"Μεγάλο / SUV",size_l:"X-Large / 7 θέσεων",
   ex_s:"Hatchback · Sedan · Coupe",ex_m:"Med SUV · MPV",ex_l:"Large SUV · Van · 7θ",
-  full:"Πλήρης πληρωμή",deposit:"Προκαταβολή",remain:"Υπόλοιπο στον χώρο",payBtn:"Πληρωμή",confirmBtn:"Επιβεβαίωση κράτησης",payOnSite:"Πληρωμή στο πλυντήριο",payNote:"Χωρίς προκαταβολή — πληρώνετε στον χώρο.",
-  duration:"Διάρκεια",statPend:"Επερχόμενα",statRev:"Έσοδα",statDep:"Προκαταβολές",statUnpaid:"Προς είσπραξη",statDone:"Ολοκληρωμένα",
+  full:"Πλήρης πληρωμή",deposit:"Προκαταβολή",remain:"Υπόλοιπο στον χώρο",payBtn:"Πληρωμή",confirmBtn:"Επιβεβαίωση κράτησης",payOnSite:"Πληρωμή στο πλυντήριο",slotTaken:"Αυτή η ώρα μόλις κλείστηκε. Επιλέξτε άλλη.",payNote:"Χωρίς προκαταβολή — πληρώνετε στον χώρο.",
+  duration:"Διάρκεια",statPend:"Επιβεβαιωμένα",statRev:"Έσοδα",statDep:"Προκαταβολές",statUnpaid:"Προς είσπραξη",statDone:"Ολοκληρωμένα",statNew:"Νέα αιτήματα",stPending:"Νέο αίτημα",stProposed:"Προτάθηκε ώρα",stConfirmed:"Επιβεβαιωμένο",actConfirm:"Επιβεβαίωση",actPropose:"Προτείνετε άλλη ώρα",actSendProposal:"Αποστολή πρότασης",wasAsking:"Ζήτησε",waConfirmMsg:"Γεια σας {name}! Η κράτησή σας για {service} στις {date} στις {time} επιβεβαιώθηκε. Σας περιμένουμε!",waProposeMsg:"Γεια σας {name}! Δυστυχώς η ώρα {old} δεν είναι διαθέσιμη για {service}. Μπορούμε να προτείνουμε {date} στις {time} — σας βολεύει;",
   markDone:"Έτοιμο",del:"Ακύρωση",paidFull:"Πλήρης",paidDep:"Προκατ.",waMsg:"WhatsApp",remind:"Υπενθύμιση",
   service:"Υπηρεσία",vehicle:"Όχημα",date:"Ημ/νία",time:"Ώρα",total:"Σύνολο",ready:"Έτοιμο",days:"ημ.",
   visits:"Επισκέψεις",spent:"Σύνολο",lastv:"Τελευταία",nextdue:"Επόμενη",from:"από",priceNote:"τελική τιμή μετά από έλεγχο",
@@ -657,16 +664,16 @@ const CATS=["DETAIL","PROTECT"];
 const SIZES=[{k:"s",icon:"🚗",idx:0},{k:"m",icon:"🚙",idx:1},{k:"l",icon:"🚐",idx:2}];
 /* optional premium add-ons; price per size [s,m,l] */
 const ADDONS=[
- {id:"engine",icon:"⚙️",price:[40,50,60],en:"Engine Bay Deep Clean",ru:"Химчистка двигателя",el:"Καθαρισμός μηχανής"},
- {id:"headlight",icon:"🔆",price:[80,80,90],en:"Headlight Restoration",ru:"Восстановление фар",el:"Αποκατάσταση φαναριών"},
+ {id:"engine",icon:"⚙️",price:[10,12,15],en:"Engine Bay Deep Clean",ru:"Химчистка двигателя",el:"Καθαρισμός μηχανής"},
+ {id:"headlight",icon:"🔆",price:[40,40,40],en:"Headlight Restoration",ru:"Восстановление фар",el:"Αποκατάσταση φαναριών"},
  {id:"glass",icon:"🪟",price:[50,50,60],en:"Glass Ceramic Coating",ru:"Керамика на стёкла",el:"Ceramic στα τζάμια"},
- {id:"wheels",icon:"⭕",price:[120,120,140],en:"Wheels-Off Ceramic",ru:"Керамика дисков (снятие)",el:"Ceramic ζαντών (αφαίρεση)"},
+ {id:"wheels",icon:"⭕",price:[50,55,60],en:"Wheels-Off Ceramic",ru:"Керамика дисков (снятие)",el:"Ceramic ζαντών (αφαίρεση)"},
  {id:"intceramic",icon:"🛋️",price:[80,90,100],en:"Interior Ceramic Protection",ru:"Керамика салона",el:"Ceramic εσωτερικού"},
  {id:"pet",icon:"🐾",price:[30,30,40],en:"Pet Hair Removal",ru:"Удаление шерсти животных",el:"Αφαίρεση τριχών κατοικιδίων"},
  {id:"ozone",icon:"💨",price:[40,40,40],en:"Ozone Odour Treatment",ru:"Озонирование (запахи)",el:"Επεξεργασία όζοντος"}
 ];
 const DEPOSIT_PCT=CONFIG.DEPOSIT_PCT;
-const HOURS={open:8,close:18,slotMin:30,dropStart:8,dropEnd:11,closedDow:[6]}; // 0=Mon..6=Sun
+const HOURS={open:8,close:18,slotMin:30,dropStart:8,dropEnd:11,closedDow:[4,5,6]}; // 0=Mon..6=Sun — detailing runs Mon-Thu
 let BLOCKED=[];   // ISO dates the wash is closed (holidays etc.)
 
 /* ===================== safe storage ===================== */
@@ -679,12 +686,12 @@ const store=(()=>{let ok=true;try{localStorage.setItem("_t","1");localStorage.re
    All persistence goes through DB. Today it uses local storage so the app runs
    offline / in preview. For production, replace these methods with Supabase calls
    (see supabase_schema.sql + INTEGRATION.md). Keep the same return shapes. */
-const b2row=b=>({ref:b.ref,service_id:b.serviceId,service_name:b.service,size:b.size,
+const b2row=b=>({ref:b.ref,consent:!!b.consent,service_id:b.serviceId,service_name:b.service,size:b.size,
   addons:b.addons||[],addon_names:b.addonNames||[],unit:b.unit,mins:b.mins||0,days:b.days||0,
   date:b.date,time:b.time,price:b.price,paid:b.paid,pay_type:b.payType,remind:b.remind,
   next_due:b.nextDue,status:b.status,cname:b.cname,cphone:b.cphone,cphone_n:b.cphoneN,
   cemail:b.cemail,cnotes:b.cnotes,vmodel:b.vmodel,vplate:b.vplate,created:b.created});
-const row2b=r=>({ref:r.ref,serviceId:r.service_id,service:r.service_name,size:r.size,
+const row2b=r=>({ref:r.ref,consent:!!r.consent,serviceId:r.service_id,service:r.service_name,size:r.size,
   addons:r.addons||[],addonNames:r.addon_names||[],unit:r.unit,mins:r.mins,days:r.days,
   date:r.date,time:r.time,price:+r.price,paid:+r.paid,payType:r.pay_type,remind:r.remind,
   nextDue:r.next_due,status:r.status,cname:r.cname,cphone:r.cphone,cphoneN:r.cphone_n,
@@ -984,9 +991,24 @@ function lookupCustomer(){
 /* ===================== confirm (no online payment yet) =====================
    Payment is taken at the wash. When you're ready to add online payment,
    call the provider here before finishBooking() and store its id on the booking. */
-function confirmBooking(){
+function slotStillFree(){
+ const svc=svcById(S.service); if(!svc||!S.date||!S.time)return false;
+ if(svc.unit==="day"){const blocked=busyMultiDays();
+   return !spanDays(S.date,svc.days).some(d=>blocked.has(d));}
+ const start=toMin(S.time), end=start+svc.mins;
+ return !bookings.filter(b=>b.date===S.date&&b.unit!=="day"&&b.status!=="cancelled")
+   .some(b=>{const bs=toMin(b.time);return start<bs+(b.mins||0)&&end>bs;});}
+
+async function confirmBooking(){
  const btn=$("#nextBtn");btn.disabled=true;btn.textContent="…";
- setTimeout(()=>{finishBooking();btn.disabled=false;},450);}
+ /* Someone may have taken this slot while the form was being filled —
+    refresh the busy list and re-check before creating the booking. */
+ if(sb){try{await DB.hydrate();}catch(e){}}
+ if(!slotStillFree()){
+   btn.disabled=false;btn.textContent=t("confirmBtn");
+   S.time=null;showStep(3);buildCalendar();renderSlots();renderSummary();
+   toast(t("slotTaken"));return;}
+ finishBooking();btn.disabled=false;}
 let lastBk=null;
 function finishBooking(){
  const svc=svcById(S.service);const p=priceNow();
@@ -998,12 +1020,13 @@ function finishBooking(){
  const bk={ref,date:S.date,time:S.time,unit:svc.unit,mins:svc.mins||0,days:svc.days||0,
    serviceId:svc.id,service:svc.en[0],size:S.size,vmodel:S.vmodel,vplate:S.vplate,addons:[...S.addons],addonNames,
    cname:$("#cname").value.trim(),cphone:phone,cphoneN:ph,cemail:$("#cemail").value.trim(),cnotes:$("#cnotes").value.trim(),
-   price:p,paid,payType:"unpaid",remind:svc.remind,nextDue,status:"upcoming",created:Date.now()};
+   consent:!!($("#cconsent")&&$("#cconsent").checked),
+   price:p,paid,payType:"unpaid",remind:svc.remind,nextDue,status:"pending",created:Date.now()};
  bookings.push(bk);DB.saveBookings(bookings,bk);lastBk=bk;
  // upsert customer
  const c=customers[ph]||{phone:phone,phoneN:ph,name:bk.cname,email:bk.cemail,vmodel:bk.vmodel,vplate:bk.vplate,history:[]};
  c.name=bk.cname||c.name;c.email=bk.cemail||c.email;c.vmodel=bk.vmodel||c.vmodel;c.vplate=bk.vplate||c.vplate;
- c.history.push({ref,date:S.date,serviceId:svc.id,service:svc.en[0],paid,nextDue,remind:svc.remind});
+ c.history.push({ref,date:S.date,serviceId:svc.id,service:svc.en[0],paid,nextDue,remind:svc.remind,consent:bk.consent});
  customers[ph]=c;DB.saveCustomers(customers,c);
 
  $("#customer").querySelector(".hero").classList.add("hidden");
@@ -1021,6 +1044,7 @@ function finishBooking(){
  window.scrollTo({top:0,behavior:"smooth"});}
 $("#cfNew").onclick=()=>{S={service:null,size:null,vmodel:"",vplate:"",date:null,time:null,pay:"full",addons:[]};
  ["cname","cphone","cemail","cnotes","vmodel","vplate"].forEach(id=>{const e=$("#"+id);if(e)e.value=""});
+ if($("#cconsent"))$("#cconsent").checked=false;
  $("#confirmWrap").classList.add("hidden");$("#customer").querySelector(".hero").classList.remove("hidden");
  $(".layout").classList.remove("hidden");$("#stepper").classList.remove("hidden");showStep(1);};
 
@@ -1043,7 +1067,9 @@ function computeReminders(){ // latest booking per (customer,service); due if ne
  bookings.filter(b=>b.status!=="cancelled").forEach(b=>{const k=b.cphoneN+"|"+b.serviceId;
   if(!latest[k]||b.date>latest[k].date)latest[k]=b;});
  const out=[];
- Object.values(latest).forEach(b=>{const due=parseISO(b.nextDue);
+ Object.values(latest).forEach(b=>{ if(b.consent===false)return;   // no consent -> never remind
+  if(b.status==="pending"||b.status==="proposed")return;   // not an actual visit yet
+  const due=parseISO(b.nextDue);
   const key=b.cphoneN+"|"+b.serviceId+"|"+b.nextDue;
   if(due<=horizon&&!reminded[key])out.push(b);});
  out.sort((a,b)=>a.nextDue.localeCompare(b.nextDue));return out;}
@@ -1054,14 +1080,14 @@ function renderAdmin(){
    mc.textContent=live?"● Live database — shared with all staff":"● Local mode — data stays on this device";
    const lo=$("#logoutBtn");if(lo)lo.style.display=(live&&staffSignedIn)?"":"none";}
  // bookings tab
- const up=bookings.filter(b=>b.status==="upcoming").length;
+ const up=bookings.filter(b=>b.status==="upcoming").length; const newReq=bookings.filter(b=>b.status==="pending"||b.status==="proposed").length;
  const done=bookings.filter(b=>b.status==="done").length;
  const rev=bookings.filter(b=>b.status!=="cancelled").reduce((a,b)=>a+(b.price||0),0);
  const deps=bookings.filter(b=>(b.paid===0||b.payType==="unpaid")&&b.status!=="cancelled").length;
  $("#adStats").innerHTML=`
-  <div class="b"><span>${t("statPend")}</span><b>${up}</b></div>
+  <div class="b ${newReq?"acc":""}"><span>${t("statNew")}</span><b>${newReq}</b></div>
   <div class="b acc"><span>${t("statRev")}</span><b>${money(rev)}</b></div>
-  <div class="b"><span>${t("statUnpaid")}</span><b>${deps}</b></div>
+  <div class="b"><span>${t("statPend")}</span><b>${up}</b></div>
   <div class="b"><span>${t("statDone")}</span><b>${done}</b></div>`;
  const body=$("#adBody");body.innerHTML="";
  const q=($("#adSearch")&&$("#adSearch").value||"").toLowerCase().trim();
@@ -1070,7 +1096,7 @@ function renderAdmin(){
  $("#adEmpty").classList.toggle("hidden",list.length>0);
  list.forEach(b=>{const idx=bookings.indexOf(b);const svc=svcById(b.serviceId);
   const paidPill=(b.paid===0||b.payType==="unpaid")?`<span class="pill unpaid">Unpaid</span>`:b.payType==="deposit"?`<span class="pill deposit">${t("paidDep")} ${money(b.paid)}</span>`:`<span class="pill paid">${t("paidFull")} ${money(b.paid)}</span>`;
-  const stPill=b.status==="done"?`<span class="pill done">${t("statDone")}</span>`:b.status==="cancelled"?`<span class="pill pend">✕</span>`:`<span class="pill pend">${t("statPend")}</span>`;
+  const stPill=b.status==="done"?`<span class="pill done">${t("statDone")}</span>`:b.status==="cancelled"?`<span class="pill pend">✕</span>`:b.status==="pending"?`<span class="pill due">${t("stPending")}</span>`:b.status==="proposed"?`<span class="pill deposit">${t("stProposed")}</span>`:`<span class="pill paid">${t("stConfirmed")}</span>`;
   const when=`${fmtDate(b.date)} <span class="mono" style="color:var(--mut)">${b.time||""}</span>`+(b.unit==="day"?`<br><span style="color:var(--mut);font-size:11px">${b.days} ${t("days")} → ${fmtDate(addWorkingDays(b.date,b.days))}</span>`:"");
   const tr=document.createElement("tr");
   tr.innerHTML=`<td class="mono">${b.ref}</td><td>${when}</td><td>${svc?svc[L][0]:b.service}</td>
@@ -1078,6 +1104,7 @@ function renderAdmin(){
    <td>${b.vmodel||"—"}${b.vplate?`<br><span class="mono" style="color:var(--mut);font-size:11px">${b.vplate}</span>`:""}</td>
    <td>${paidPill}</td><td>${stPill}</td>
    <td><div class="aactions">
+     ${(b.status==="pending"||b.status==="proposed")?`<button class="mini ok" onclick="adConfirm(${idx})">✓ ${t("actConfirm")}</button><button class="mini" onclick="adPropose(${idx})">${t("actPropose")}</button>`:""}
      ${b.status==="upcoming"?`<button class="mini" onclick="adReschedule(${idx})">↻</button><button class="mini" onclick="adDone(${idx})">${t("markDone")}</button>`:""}
      ${b.status!=="cancelled"?`<button class="mini" onclick="adCancel(${idx})">${t("del")}</button>`:""}</div></td>`;
   body.appendChild(tr);});
@@ -1093,7 +1120,8 @@ function renderAdmin(){
     return `<div class="hr"><span>${fmtDate(h.date)} · ${sv?sv[L][0]:h.service}</span><span class="hv mono">${money(h.paid||0)}</span></div>`;}).join("");
   const div=document.createElement("div");div.className="custcard";
   div.innerHTML=`<div class="ch"><div><div class="nm">${c.name}</div>
-     <div class="meta">${c.phone}${c.email?" · "+c.email:""}${c.vmodel?" · 🚗 "+c.vmodel:""}</div></div>
+     <div class="meta">${c.phone}${c.email?" · "+c.email:""}${c.vmodel?" · 🚗 "+c.vmodel:""}</div>
+     <div class="meta" style="margin-top:3px">${(hist.some(x=>x.consent))?"✅ "+t("consentCol"):"🚫 "+t("consentCol")}</div></div>
      <button class="mini wa" onclick="waCustomer('${c.phoneN}','${last?last.serviceId:''}','${last?last.date:''}')">${t("waMsg")}</button></div>
     <div class="stats">
      <div><b>${hist.length}</b>${t("visits")}</div>
@@ -1123,6 +1151,28 @@ function renderAdmin(){
   rbody.appendChild(tr);});}
 
 window.adDone=i=>{bookings[i].status="done";DB.saveBookings(bookings,bookings[i]);renderAdmin();toast(t("markDone"));};
+function waSend(b,key,extra){const svc=svcById(b.serviceId);const first=(b.cname||"").split(" ")[0]||"";
+ let m=t(key).replace("{name}",first).replace("{service}",svc?svc[L][0]:b.service).replace("{date}",fmtDate(b.date)).replace("{time}",b.time||"");
+ if(extra)Object.entries(extra).forEach(([k,v])=>{m=m.replace("{"+k+"}",v);});
+ window.open("https://wa.me/"+b.cphoneN+"?text="+encodeURIComponent(m),"_blank");}
+window.adConfirm=i=>{const b=bookings[i];b.status="upcoming";DB.saveBookings(bookings,b);renderAdmin();
+ toast(t("actConfirm"));waSend(b,"waConfirmMsg");};
+window.adPropose=i=>{const b=bookings[i];
+ openModal(`<h3>${t("actPropose")}</h3>
+  <p style="color:var(--mut);font-size:12.5px;margin:0 0 14px">${b.cname} · ${b.cphone}<br>${t("wasAsking")}: ${fmtDate(b.date)} ${b.time||""}</p>
+  <div class="two"><div class="field"><label>${t("date")}</label><input type="date" id="pDate" value="${b.date}"></div>
+    <div class="field"><label>${t("time")}</label><select id="pTime"></select></div></div>
+  <div class="mrow"><button class="btn ghost" onclick="closeModal()">${t("back")}</button>
+    <button class="btn primary" onclick="adProposeGo(${i})">${t("actSendProposal")}</button></div>`);
+ $("#pDate").min=isoDate(new Date());
+ const fill=()=>{const opts=adSlots(b.serviceId,$("#pDate").value,b.ref);
+   $("#pTime").innerHTML=(opts.length?opts:[b.time]).map(x=>`<option ${x===b.time?"selected":""}>${x}</option>`).join("");};
+ $("#pDate").onchange=fill;fill();};
+window.adProposeGo=i=>{const b=bookings[i];const d=$("#pDate").value,tm=$("#pTime").value;
+ if(!d||!tm){toast("?");return;}
+ const oldWhen=fmtDate(b.date)+" "+(b.time||"");
+ b.date=d;b.time=tm;b.status="proposed";b.nextDue=isoDate(new Date(parseISO(d).getTime()+b.remind*864e5));
+ DB.saveBookings(bookings,b);closeModal();renderAdmin();waSend(b,"waProposeMsg",{old:oldWhen});};
 window.adCancel=i=>{bookings[i].status="cancelled";DB.saveBookings(bookings,bookings[i]);renderAdmin();};
 window.markReminded=(ph,sid,due)=>{reminded[ph+"|"+sid+"|"+due]=1;DB.saveReminded(reminded);renderAdmin();toast("✓");};
 window.waCustomer=(ph,sid,date)=>{const svc=svcById(sid);const c=customers[ph]||{};
@@ -1134,7 +1184,9 @@ window.waCustomer=(ph,sid,date)=>{const svc=svcById(sid);const c=customers[ph]||
 $$(".tab").forEach(tb=>tb.onclick=()=>{$$(".tab").forEach(x=>x.classList.remove("on"));tb.classList.add("on");
  const tab=tb.dataset.tab;["book","cust","rem","set"].forEach(k=>$("#tab-"+k).classList.toggle("hidden",k!==tab));if(tab==="set")renderSettings();});
 $("#adminBtn").onclick=async()=>{
- if(DB.live()){
+ /* Live login needs the Supabase client. If it failed to load (offline / CDN blocked),
+    fall back to the PIN so staff are never locked out. */
+ if(DB.live()&&sb){
    if(staffSignedIn){openAdmin();return;}
    const s=await DB.session();
    if(s){staffSignedIn=true;await DB.hydrateStaff();openAdmin();return;}
