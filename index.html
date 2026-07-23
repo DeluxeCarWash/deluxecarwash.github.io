@@ -484,6 +484,24 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible,
       </div>
     </div>
     <div class="settings-svc" style="margin-bottom:18px">
+      <h4>Email notifications for new requests</h4>
+      <p style="color:var(--mut);font-size:12.5px;margin:0 0 12px;line-height:1.5">
+        Every new booking request is emailed to the addresses below. Separate several
+        addresses with a comma. Requires a free EmailJS account (see instructions).</p>
+      <div style="margin-bottom:8px"><label>Send to (comma separated)</label>
+        <input id="nfEmails" placeholder="amrit@example.com, office@example.com"></div>
+      <div class="g3">
+        <div><label>EmailJS Service ID</label><input id="nfSvc" placeholder="service_xxx"></div>
+        <div><label>EmailJS Template ID</label><input id="nfTpl" placeholder="template_xxx"></div>
+        <div><label>EmailJS Public Key</label><input id="nfKey" placeholder="XXXXXXXXXXXX"></div>
+      </div>
+      <div id="nfMsg" style="font-size:12.5px;margin:10px 0;min-height:18px"></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn primary" onclick="adSaveNotify()">Save notifications</button>
+        <button class="mini" onclick="adTestNotify()">Send test email</button>
+      </div>
+    </div>
+    <div class="settings-svc" style="margin-bottom:18px">
       <h4>Opening hours</h4>
       <div class="g3">
         <div><label>Opens</label><input id="hOpen"></div>
@@ -769,6 +787,8 @@ const DB={
   saveCatalog(v){REMOTE.catalog=v;DB._setting("catalog",v);},
   loadHours(){return (REMOTE.hours!==undefined?REMOTE.hours:store.get("dlx2_hours"))||null;},
   saveHours(v){REMOTE.hours=v;DB._setting("hours",v);},
+  loadNotify(){return (REMOTE.notify!==undefined?REMOTE.notify:store.get("dlx2_notify"))||null;},
+  saveNotify(v){REMOTE.notify=v;DB._setting("notify",v);},
   loadBlocked(){return (REMOTE.blocked!==undefined?REMOTE.blocked:store.get("dlx2_blocked"))||[];},
   saveBlocked(v){REMOTE.blocked=v;DB._setting("blocked",v);}
 };
@@ -1023,6 +1043,7 @@ function finishBooking(){
    consent:!!($("#cconsent")&&$("#cconsent").checked),
    price:p,paid,payType:"unpaid",remind:svc.remind,nextDue,status:"pending",created:Date.now()};
  bookings.push(bk);DB.saveBookings(bookings,bk);lastBk=bk;
+ try{sendNotifications(bk);}catch(e){console.warn("notify",e);}
  // upsert customer
  const c=customers[ph]||{phone:phone,phoneN:ph,name:bk.cname,email:bk.cemail,vmodel:bk.vmodel,vplate:bk.vplate,history:[]};
  c.name=bk.cname||c.name;c.email=bk.cemail||c.email;c.vmodel=bk.vmodel||c.vmodel;c.vplate=bk.vplate||c.vplate;
@@ -1386,7 +1407,7 @@ function renderSettings(){const box=$("#setList");if(!box)return;box.innerHTML="
      <div><label>€ X-Large</label><input data-aid="${a.id}" data-f="p2" value="${a.price[2]}"></div>
    </div>`;
   box.appendChild(d);});
- renderHoursUI();renderConnUI();}
+ renderHoursUI();renderConnUI();renderNotifyUI();}
 window.adSaveSettings=()=>{const by={},ad={};
  $$('#setList [data-sid]').forEach(inp=>{const k=inp.dataset.sid;(by[k]=by[k]||{})[inp.dataset.f]=inp.value.trim();});
  $$('#setList [data-aid]').forEach(inp=>{const k=inp.dataset.aid;(ad[k]=ad[k]||{})[inp.dataset.f]=inp.value.trim();});
@@ -1503,6 +1524,71 @@ function renderConnUI(){const c=conn();
   if($("#cfgKey"))$("#cfgKey").value=c.key;
   const m=$("#connMsg");
   if(m&&DB.live()&&sb){m.style.color="var(--ok)";m.textContent="✓ Live — data is shared with all staff.";}}
+
+/* ============ email notifications (new requests) ============ */
+function notifyCfg(){return DB.loadNotify()||{emails:"",svc:"",tpl:"",key:""};}
+function notifyList(c){return (c.emails||"").split(/[,;\s]+/)
+  .filter(x=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(x));}
+function bookingText(b){const svc=svcById(b.serviceId);
+ const add=(b.addonNames||[]).length?"\nAdd-ons: "+b.addonNames.join(", "):"";
+ const ready=b.unit==="day"?"\nReady: "+fmtDate(addWorkingDays(b.date,b.days)):"";
+ return `NEW BOOKING REQUEST  ${b.ref}
+Service: ${svc?svc.en[0]:b.service}${add}
+When: ${fmtDate(b.date)} at ${b.time||""}${ready}
+Customer: ${b.cname}
+Phone: ${b.cphone}
+Email: ${b.cemail||"-"}
+Vehicle: ${b.vmodel||"-"} ${b.vplate||""}
+Price: ${money(b.price)} (pay at the wash)${b.cnotes?"\nNotes: "+b.cnotes:""}
+
+Confirm or offer another time in the staff panel:
+https://deluxecarwash.github.io`;}
+async function sendNotifications(b){
+ const c=notifyCfg(); const list=notifyList(c);
+ if(!list.length||!c.svc||!c.tpl||!c.key)return {sent:0,skipped:true};
+ const svc=svcById(b.serviceId);
+ const subject=`New request ${b.ref} - ${svc?svc.en[0]:b.service} - ${fmtDate(b.date)} ${b.time||""}`;
+ const message=bookingText(b); let sent=0,err="";
+ for(const to of list){
+  try{
+   const r=await fetch("https://api.emailjs.com/api/v1.0/email/send",{method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({service_id:c.svc,template_id:c.tpl,user_id:c.key,
+     template_params:{to_email:to,email:to,subject,message,
+      ref:b.ref,customer:b.cname,phone:b.cphone,service:svc?svc.en[0]:b.service,
+      date:fmtDate(b.date),time:b.time||"",vehicle:b.vmodel||"",price:money(b.price)}})});
+   if(r.ok)sent++; else err=await r.text();
+  }catch(e){err=String(e);}
+ }
+ return {sent,total:list.length,err};}
+function renderNotifyUI(){const c=notifyCfg();
+ if(!$("#nfEmails"))return;
+ $("#nfEmails").value=c.emails||"";$("#nfSvc").value=c.svc||"";
+ $("#nfTpl").value=c.tpl||"";$("#nfKey").value=c.key||"";}
+window.adSaveNotify=()=>{
+ const cfg={emails:$("#nfEmails").value.trim(),svc:$("#nfSvc").value.trim(),
+            tpl:$("#nfTpl").value.trim(),key:$("#nfKey").value.trim()};
+ const bad=(cfg.emails||"").split(/[,;\s]+/).filter(x=>x&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(x));
+ const m=$("#nfMsg");
+ if(bad.length){m.style.color="var(--danger)";m.textContent="Not a valid email: "+bad.join(", ");return;}
+ DB.saveNotify(cfg);
+ m.style.color="var(--ok)";
+ m.textContent="Saved. "+notifyList(cfg).length+" recipient(s).";
+ toast("Saved");};
+window.adTestNotify=async()=>{
+ const m=$("#nfMsg");const c={emails:$("#nfEmails").value.trim(),svc:$("#nfSvc").value.trim(),
+   tpl:$("#nfTpl").value.trim(),key:$("#nfKey").value.trim()};
+ const list=notifyList(c);
+ if(!list.length){m.style.color="var(--danger)";m.textContent="Add at least one email first.";return;}
+ if(!c.svc||!c.tpl||!c.key){m.style.color="var(--danger)";m.textContent="Fill Service ID, Template ID and Public Key.";return;}
+ DB.saveNotify(c);
+ m.style.color="var(--mut)";m.textContent="Sending test...";
+ const fake={ref:"TEST-0000",serviceId:SERVICES[0].id,service:SERVICES[0].en[0],date:isoDate(new Date()),
+  time:"10:00",unit:"min",days:0,cname:"Test Customer",cphone:"+357 99 000000",cemail:"test@example.com",
+  vmodel:"BMW X5",vplate:"ABC-123",price:SERVICES[0].price[0],addonNames:[],cnotes:"This is a test message."};
+ const r=await sendNotifications(fake);
+ if(r.sent){m.style.color="var(--ok)";m.textContent="Test sent to "+r.sent+" of "+r.total+" address(es). Check the inbox.";}
+ else{m.style.color="var(--danger)";m.textContent="Failed: "+(r.err||"check the three EmailJS values").slice(0,160);}};
 
 /* ============ hours & closed dates ============ */
 function renderHoursUI(){
