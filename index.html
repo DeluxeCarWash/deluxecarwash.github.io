@@ -252,7 +252,13 @@ section.pane,section.pane>*{min-width:0;max-width:100%}
 .mini.wa{background:rgba(37,211,102,.14);border-color:rgba(37,211,102,.4);color:var(--wa)}
 .astat-empty{color:var(--mut);text-align:center;padding:40px}
 .custcard{background:var(--surf);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin-bottom:12px}
-.custcard{min-width:0;overflow-wrap:anywhere}
+.custcard{min-width:0;overflow-wrap:anywhere;border-left-width:1px;transition:border-color .2s}
+.custcard.due-overdue{border-left:3px solid var(--danger)}
+.custcard.due-soon{border-left:3px solid var(--gold)}
+.duepill{display:inline-block;font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;
+  margin-left:6px;vertical-align:middle;letter-spacing:.02em}
+.duepill.overdue{background:rgba(255,107,107,.16);color:var(--danger);border:1px solid rgba(255,107,107,.4)}
+.duepill.soon{background:rgba(231,181,82,.14);color:var(--gold);border:1px solid rgba(231,181,82,.4)}
 .custcard .ch{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:flex-start;min-width:0}
 .custcard .nm{font-size:16px;font-weight:700} .custcard .meta{color:var(--mut);font-size:12.5px;margin-top:2px}
 .custcard .stats{display:flex;gap:18px;margin:12px 0}
@@ -583,7 +589,7 @@ const I18N={
   duration:"Duration",statPend:"Confirmed",statRev:"Revenue",statDep:"Deposits",statUnpaid:"To collect",statDone:"Completed",statNew:"New requests",stPending:"New request",stProposed:"Time offered",stConfirmed:"Confirmed",actConfirm:"Confirm",actPropose:"Offer another time",actSendProposal:"Send offer",wasAsking:"Asked for",waConfirmMsg:"Hello {name}! Your booking for {service} on {date} at {time} is confirmed. See you at Deluxe Car Wash & SPA!",waProposeMsg:"Hello {name}! Sorry, {old} is not available for {service}. We can offer {date} at {time} instead — does that work for you?",
   markDone:"Done",del:"Cancel",delPerm:"Delete permanently",delWarn:"This removes the booking from the database for good. Use Cancel instead if you just want to free the slot but keep the history.",deleted:"Deleted",showCancelled:"Show cancelled",paidFull:"Full",paidDep:"Deposit",waMsg:"WhatsApp",remind:"Remind",
   service:"Service",vehicle:"Vehicle",date:"Date",time:"Time",total:"Total",ready:"Ready",days:"days",
-  visits:"Visits",spent:"Spent",lastv:"Last visit",nextdue:"Next due",from:"from",priceNote:"final price confirmed at inspection",
+  visits:"Visits",spent:"Spent",lastv:"Last visit",nextdue:"Next due",dueOverdue:"Due {n}d ago",dueToday:"Due today",dueSoon:"Due in {n}d",dueOk:"In {n}d",remindNow:"Remind now",from:"from",priceNote:"final price confirmed at inspection",
   cfRemindTxt:"We'll remind you on WhatsApp when it's time for your next {s}.",
   readyMulti:"This is a <b>{d}-day</b> job. Drop off on the morning of your date — your car is <b>ready {r}</b>.",
   months:["January","February","March","April","May","June","July","August","September","October","November","December"],
@@ -612,7 +618,7 @@ const I18N={
   duration:"Длительность",statPend:"Подтверждено",statRev:"Выручка",statDep:"Депозиты",statUnpaid:"К оплате",statDone:"Выполнено",statNew:"Новые заявки",stPending:"Новая заявка",stProposed:"Время предложено",stConfirmed:"Подтверждено",actConfirm:"Подтвердить",actPropose:"Предложить другое время",actSendProposal:"Отправить предложение",wasAsking:"Просил(а)",waConfirmMsg:"Здравствуйте, {name}! Ваша запись на «{service}» {date} в {time} подтверждена. Ждём вас в Deluxe Car Wash & SPA!",waProposeMsg:"Здравствуйте, {name}! К сожалению, {old} занято для услуги «{service}». Можем предложить {date} в {time} — вам подходит?",
   markDone:"Готово",del:"Отменить",delPerm:"Удалить навсегда",delWarn:"Запись будет стёрта из базы безвозвратно. Если нужно просто освободить время, но сохранить историю — используйте «Отменить».",deleted:"Удалено",showCancelled:"Показать отменённые",paidFull:"Полн.",paidDep:"Депозит",waMsg:"WhatsApp",remind:"Напомнить",
   service:"Услуга",vehicle:"Авто",date:"Дата",time:"Время",total:"Итого",ready:"Готово",days:"дн.",
-  visits:"Визитов",spent:"Потрачено",lastv:"Последний визит",nextdue:"Следующая",from:"от",priceNote:"финальная цена — после осмотра",
+  visits:"Визитов",spent:"Потрачено",lastv:"Последний визит",nextdue:"Следующая",dueOverdue:"Просрочено {n}д",dueToday:"Сегодня",dueSoon:"Через {n}д",dueOk:"Через {n}д",remindNow:"Напомнить",from:"от",priceNote:"финальная цена — после осмотра",
   cfRemindTxt:"Напомним в WhatsApp, когда придёт время для следующей услуги «{s}».",
   readyMulti:"Это работа на <b>{d} дн.</b> Сдайте авто утром в выбранную дату — машина <b>готова {r}</b>.",
   months:["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"],
@@ -641,7 +647,7 @@ const I18N={
   duration:"Διάρκεια",statPend:"Επιβεβαιωμένα",statRev:"Έσοδα",statDep:"Προκαταβολές",statUnpaid:"Προς είσπραξη",statDone:"Ολοκληρωμένα",statNew:"Νέα αιτήματα",stPending:"Νέο αίτημα",stProposed:"Προτάθηκε ώρα",stConfirmed:"Επιβεβαιωμένο",actConfirm:"Επιβεβαίωση",actPropose:"Προτείνετε άλλη ώρα",actSendProposal:"Αποστολή πρότασης",wasAsking:"Ζήτησε",waConfirmMsg:"Γεια σας {name}! Η κράτησή σας για {service} στις {date} στις {time} επιβεβαιώθηκε. Σας περιμένουμε!",waProposeMsg:"Γεια σας {name}! Δυστυχώς η ώρα {old} δεν είναι διαθέσιμη για {service}. Μπορούμε να προτείνουμε {date} στις {time} — σας βολεύει;",
   markDone:"Έτοιμο",del:"Ακύρωση",delPerm:"Οριστική διαγραφή",delWarn:"Η κράτηση θα διαγραφεί οριστικά από τη βάση.",deleted:"Διαγράφηκε",showCancelled:"Εμφάνιση ακυρωμένων",paidFull:"Πλήρης",paidDep:"Προκατ.",waMsg:"WhatsApp",remind:"Υπενθύμιση",
   service:"Υπηρεσία",vehicle:"Όχημα",date:"Ημ/νία",time:"Ώρα",total:"Σύνολο",ready:"Έτοιμο",days:"ημ.",
-  visits:"Επισκέψεις",spent:"Σύνολο",lastv:"Τελευταία",nextdue:"Επόμενη",from:"από",priceNote:"τελική τιμή μετά από έλεγχο",
+  visits:"Επισκέψεις",spent:"Σύνολο",lastv:"Τελευταία",nextdue:"Επόμενη",dueOverdue:"Πριν {n}μ",dueToday:"Σήμερα",dueSoon:"Σε {n}μ",dueOk:"Σε {n}μ",remindNow:"Υπενθύμιση",from:"από",priceNote:"τελική τιμή μετά από έλεγχο",
   cfRemindTxt:"Θα σας υπενθυμίσουμε στο WhatsApp όταν έρθει η ώρα για την επόμενη {s}.",
   readyMulti:"Εργασία <b>{d} ημερών</b>. Παραδώστε το πρωί — έτοιμο <b>{r}</b>.",
   months:["Ιανουάριος","Φεβρουάριος","Μάρτιος","Απρίλιος","Μάιος","Ιούνιος","Ιούλιος","Αύγουστος","Σεπτέμβριος","Οκτώβριος","Νοέμβριος","Δεκέμβριος"],
@@ -1125,6 +1131,23 @@ $("#langs").addEventListener("click",e=>{const b=e.target.closest("button");if(!
  $("#nextBtn").textContent=step===4?t("confirmBtn"):t("next");});
 
 /* ===================== admin ===================== */
+/* Reminder status for a customer's next-due date, used to colour the card.
+   overdue  = past due            -> red
+   soon     = due within 21 days  -> amber
+   ok       = later               -> muted
+   none     = no next-due date  */
+function dueStatus(nextDue){
+ if(!nextDue)return {state:"none",days:null};
+ const today=new Date();today.setHours(0,0,0,0);
+ const d=parseISO(nextDue);const days=Math.round((d-today)/864e5);
+ if(days<0)return {state:"overdue",days};
+ if(days<=21)return {state:"soon",days};
+ return {state:"ok",days};}
+function dueLabel(st){
+ if(st.state==="overdue")return t("dueOverdue").replace("{n}",Math.abs(st.days));
+ if(st.state==="soon")return st.days===0?t("dueToday"):t("dueSoon").replace("{n}",st.days);
+ if(st.state==="ok")return t("dueOk").replace("{n}",st.days);
+ return "";}
 function computeReminders(){ // latest booking per (customer,service); due if nextDue<=today+14 & not reminded & no later booking
  const today=new Date();today.setHours(0,0,0,0);const horizon=new Date(today.getTime()+14*864e5);
  const latest={}; // key phone|service -> booking
@@ -1179,17 +1202,26 @@ function renderAdmin(){
  // customers tab
  const cl=$("#custList");cl.innerHTML="";const cust=Object.values(customers);
  $("#custEmpty").classList.toggle("hidden",cust.length>0);
- cust.sort((a,b)=>(b.history?.length||0)-(a.history?.length||0)).forEach(c=>{
+ const dueRank=c=>{const h=(c.history||[]).slice().sort((x,y)=>y.date.localeCompare(x.date));
+   const nd=h[0]?h[0].nextDue:null;const st=dueStatus(nd);
+   return st.state==="overdue"?0:st.state==="soon"?1:st.state==="ok"?2:3;};
+ cust.sort((a,b)=>{const r=dueRank(a)-dueRank(b);return r!==0?r:(b.history?.length||0)-(a.history?.length||0);}).forEach(c=>{
   const hist=(c.history||[]).slice().sort((a,b)=>b.date.localeCompare(a.date));
   const spent=hist.reduce((s,h)=>s+(h.paid||0),0);
   const last=hist[0];const nextDue=last?last.nextDue:null;
   const rows=hist.map(h=>{const sv=svcById(h.serviceId);
     return `<div class="hr"><span>${fmtDate(h.date)} · ${sv?sv[L][0]:h.service}</span><span class="hv mono">${money(h.paid||0)}</span></div>`;}).join("");
-  const div=document.createElement("div");div.className="custcard";
-  div.innerHTML=`<div class="ch"><div><div class="nm">${c.name}</div>
+  const st=dueStatus(nextDue);
+  const consented=hist.some(x=>x.consent);
+  const div=document.createElement("div");div.className="custcard due-"+st.state;
+  const timer=(st.state==="overdue"||st.state==="soon")
+    ? `<span class="duepill ${st.state}">${st.state==="overdue"?"🔴":"🟠"} ${dueLabel(st)}</span>` : "";
+  const remindBtn=(st.state==="overdue"||st.state==="soon")
+    ? `<button class="mini wa" onclick="waCustomer('${c.phoneN}','${last?last.serviceId:''}','${last?last.date:''}')">${t("remindNow")}</button>` : "";
+  div.innerHTML=`<div class="ch"><div><div class="nm">${c.name} ${timer}</div>
      <div class="meta">${c.phone}${c.email?" · "+c.email:""}${c.vmodel?" · 🚗 "+c.vmodel:""}</div>
-     <div class="meta" style="margin-top:3px">${(hist.some(x=>x.consent))?"✅ "+t("consentCol"):"🚫 "+t("consentCol")}</div></div>
-     <button class="mini wa" onclick="waCustomer('${c.phoneN}','${last?last.serviceId:''}','${last?last.date:''}')">${t("waMsg")}</button></div>
+     <div class="meta" style="margin-top:3px">${consented?"✅ "+t("consentCol"):"🚫 "+t("consentCol")}</div></div>
+     ${remindBtn}</div>
     <div class="stats">
      <div><b>${hist.length}</b>${t("visits")}</div>
      <div><b>${money(spent)}</b>${t("spent")}</div>
