@@ -1722,6 +1722,9 @@ function seedIfNeeded(){ if(DB.live()||DB.seeded())return;
 }
 
 async function boot(){
+  /* мгновенная отрисовка: язык и карточки услуг до загрузки данных */
+  try{ applyLang(); renderCats(); renderServices(); renderStepper(); }catch(e){}
+
   await DB.init();
   if(DB.live()) await DB.hydrate(); else seedIfNeeded();
   applyOverrides();
