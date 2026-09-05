@@ -401,6 +401,16 @@ pre,code{white-space:pre-wrap;word-break:break-word}
         <div class="card">
           <div class="calhead"><b id="slotLabel" data-t="pickday">Select a day</b></div>
           <div class="slots" id="slots"></div>
+      <div style="margin-top:14px">
+        <button id="askTime" type="button"
+          style="width:100%;padding:14px;border:1px solid #C9A24E;background:transparent;
+                 color:#C9A24E;border-radius:10px;font-size:15px;cursor:pointer">
+          <span data-i18n="askTime">Προτείνετέ μου ώρα</span>
+        </button>
+        <div style="font-size:12px;color:#8C8C8C;margin-top:6px" data-i18n="askTimeHint">
+          Δεν επιλέγετε ώρα — θα σας προτείνουμε εμείς.
+        </div>
+      </div>
           <div class="emptyslots hidden" id="noSlots" data-t="noslots">No free slots this day. Try another.</div>
           <div class="readynote hidden" id="readyNote"></div>
         </div>
@@ -1094,7 +1104,7 @@ async function finishBooking(){
  const bk={ref,date:S.date,time:S.time,unit:svc.unit,mins:svc.mins||0,days:svc.days||0,
    serviceId:svc.id,service:svc.en[0],size:S.size,vmodel:S.vmodel,vplate:S.vplate,addons:[...S.addons],addonNames,
    cname:$("#cname").value.trim(),cphone:phone,cphoneN:ph,cemail:$("#cemail").value.trim(),cnotes:$("#cnotes").value.trim(),
-   consent:!!($("#cconsent")&&$("#cconsent").checked),
+   consent:!!($("#cconsent")&&$("#cconsent").checked),lang:(typeof L!=="undefined"?L:"el"),
    price:p,paid,payType:"unpaid",remind:svc.remind,nextDue,status:"pending",created:Date.now()};
  bookings.push(bk);
  const saved=await DB.saveBookings(bookings,bk);
@@ -1730,6 +1740,37 @@ function seedIfNeeded(){ if(DB.live()||DB.seeded())return;
 }
 
 async function boot(){
+  /* тексты кнопки «предложите время» по языку */
+  window.setAskTexts=function(){
+    var T={
+      el:["Προτείνετέ μου ώρα","Δεν επιλέγετε ώρα — θα σας προτείνουμε εμείς."],
+      en:["Suggest a time for me","You don't pick a time — we will offer one."],
+      ru:["Предложите мне время","Вы не выбираете час — мы предложим сами."]
+    };
+    var t=T[(typeof L!=="undefined"?L:"el")]||T.el;
+    var b=document.querySelector('[data-i18n="askTime"]');
+    var h=document.querySelector('[data-i18n="askTimeHint"]');
+    if(b) b.textContent=t[0];
+    if(h) h.textContent=t[1];
+  };
+  try{
+    setAskTexts();
+    document.addEventListener("click",function(e){ setTimeout(window.setAskTexts,60); });
+  }catch(e){}
+
+  /* кнопка «предложите мне время»: заявка без даты и часа */
+  try{
+    document.addEventListener("click",function(e){
+      var b=e.target.closest && e.target.closest("#askTime");
+      if(!b) return;
+      e.preventDefault();
+      if(!S.service){ return; }
+      S.date=null; S.time=null; S.askTime=true;
+      showStep(4);
+      window.scrollTo({top:document.body.scrollHeight*0.45,behavior:"smooth"});
+    });
+  }catch(e){}
+
   /* мгновенная отрисовка: язык и карточки услуг до загрузки данных */
   try{ applyLang(); renderCats(); renderServices(); renderStepper(); }catch(e){}
 
