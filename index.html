@@ -929,6 +929,9 @@ function sameDayJobs(iso,excludeRef){
  return bookings.filter(b=>b.date===iso&&b.unit!=="day"&&BLOCKS(b)&&b.ref!==excludeRef)
    .map(b=>[toMin(b.time),toMin(b.time)+(b.mins||0)]);}
 function busyAt(iso,start,end,excludeRef,mdMap){
+  /* слоты не блокируются: загрузку разруливает менеджер вручную */
+  return false;
+
  const md=(mdMap||busyMultiDays()).get(iso)||0;
  return md+sameDayJobs(iso,excludeRef).filter(([s,e])=>start<e&&end>s).length;}
 function peakSameDay(iso,excludeRef){          // most cars in the bay at once that day
