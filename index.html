@@ -678,9 +678,9 @@ const I18N={
    Calibrated to Cyprus market (Auto Spa Cyprus, K's Pro) + Amrit's corrections. */
 const SERVICES=[
  {id:"signature",cat:"DETAIL",icon:"✨",tag:"SIGNATURE",unit:"min",mins:300,price:[160,210,270],remind:150,addons:true,
-   en:["Signature Full Detail","Exterior decontamination & wax, full interior deep clean, rims and engine bay. Our flagship."],
-   ru:["Signature — полный детейлинг","Очистка и воск кузова, полная химчистка салона, диски и двигатель. Флагман."],
-   el:["Signature Full Detail","Decon & κερί, πλήρες interior, ζάντες και μηχανή. Το flagship μας."]},
+   en:["Signature Full Detail","Three-step paint correction (exterior only), plus rims and engine bay."],
+   ru:["Signature — полный детейлинг","Полировка кузова в три шага (только снаружи), плюс диски и двигатель."],
+   el:["Signature Full Detail","Γυάλισμα τριών σταδίων (μόνο εξωτερικά), ζάντες και χώρος κινητήρα."]},
  {id:"interior",cat:"DETAIL",icon:"🧴",tag:null,unit:"min",mins:120,price:[100,130,160],remind:120,addons:true,
    en:["Interior Deep Clean","Vacuum, steam, plastics, glass and fabric/leather shampoo. Like new inside."],
    ru:["Глубокая химчистка салона","Пылесос, пар, пластик, стёкла и шампунь ткани/кожи. Салон как новый."],
@@ -713,9 +713,8 @@ const ADDONS=[
  {id:"engine",icon:"⚙️",price:[10,12,15],en:"Engine Bay Deep Clean",ru:"Мойка моторного отсека",el:"Καθαρισμός χώρου κινητήρα"},
  {id:"headlight",icon:"🔆",price:[40,40,40],en:"Headlight Restoration",ru:"Восстановление фар",el:"Αποκατάσταση φαναριών"},
  {id:"glass",icon:"🪟",price:[50,50,60],en:"Glass Ceramic Coating",ru:"Керамика на стёкла",el:"Ceramic στα τζάμια"},
- {id:"wheels",icon:"⭕",price:[50,55,60],en:"Wheels-Off Ceramic",ru:"Керамика дисков (снятие)",el:"Ceramic ζαντών (αφαίρεση)"},
  {id:"pet",icon:"🐾",price:[30,30,40],en:"Pet Hair Removal",ru:"Удаление шерсти животных",el:"Αφαίρεση τριχών κατοικιδίων"},
- {id:"ozone",icon:"💨",price:[40,40,40],en:"Ozone Odour Treatment",ru:"Озонирование (запахи)",el:"Επεξεργασία όζοντος"}
+   {id:"leatherceramic",icon:"💺",price:[80,90,100],en:"Ceramic Coating — Leather Seats",ru:"Керамика для кожаных сидений",el:"Κεραμική επίστρωση — δερμάτινα καθίσματα"}]
 ];
 const DEPOSIT_PCT=CONFIG.DEPOSIT_PCT;
 const HOURS={open:8,close:18,slotMin:30,dropStart:8,dropEnd:11,bays:1, closedDow:[4,5,6]}; // 0=Mon..6=Sun — detailing runs Mon-Thu
