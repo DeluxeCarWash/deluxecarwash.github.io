@@ -581,6 +581,7 @@ const CONFIG={
 };
 
 /* ===================== i18n ===================== */
+const MAPS_DIR="https://www.google.com/maps/dir/?api=1&destination=Deluxe+Car+Wash+%26+SPA+Strovolou+196+Strovolos+2048+Nicosia";
 const I18N={
  en:{admin:"Staff",eyebrow:"Detailing & ceramic · Nicosia",heroTitle:"Every car, restored to showroom condition.",
   heroSub:"Choose a service, pick a time, pay online. Two minutes and your slot is locked in — no calls, no waiting.",
@@ -602,7 +603,7 @@ const I18N={
   size_s:"Small / Medium",size_m:"Large / SUV",size_l:"X-Large / 7-seat",
   ex_s:"Hatchback · Saloon · Coupe",ex_m:"Med SUV · MPV · Estate",ex_l:"Large SUV · Van · 7-seat",
   full:"Pay in full",deposit:"Deposit",remain:"Rest on arrival",payBtn:"Pay",confirmBtn:"Confirm booking",payOnSite:"Pay at the wash",slotTaken:"Sorry — that time was just booked. Please pick another.",saveFailed:"Could not send the request. Please check your connection and try again.",payNote:"No prepayment needed — pay when you arrive.",
-  duration:"Duration",statPend:"Confirmed",statRev:"Revenue",statDep:"Deposits",statUnpaid:"To collect",statDone:"Completed",statNew:"New requests",stPending:"New request",stProposed:"Time offered",stConfirmed:"Confirmed",actConfirm:"Confirm",actPropose:"Offer another time",actSendProposal:"Send offer",wasAsking:"Asked for",waConfirmMsg:"Hello {name}! Your booking for {service} on {date} at {time} is confirmed. See you at Deluxe Car Wash & SPA!",waProposeMsg:"Hello {name}! Sorry, {old} is not available for {service}. We can offer {date} at {time} instead — does that work for you?",
+  duration:"Duration",statPend:"Confirmed",statRev:"Revenue",statDep:"Deposits",statUnpaid:"To collect",statDone:"Completed",statNew:"New requests",stPending:"New request",stProposed:"Time offered",stConfirmed:"Confirmed",actConfirm:"Confirm",actPropose:"Offer another time",actSendProposal:"Send offer",wasAsking:"Asked for",waConfirmMsg:"Hello {name}! Your booking for {service} on {date} at {time} is confirmed. See you at Deluxe Car Wash & SPA!\n\n📍 Find us: {map}",waProposeMsg:"Hello {name}! Sorry, {old} is not available for {service}. We can offer {date} at {time} instead — does that work for you?\n\n📍 Find us: {map}",
   markDone:"Done",del:"Cancel",delPerm:"Delete permanently",delWarn:"This removes the booking from the database for good. Use Cancel instead if you just want to free the slot but keep the history.",deleted:"Deleted",showCancelled:"Show cancelled",paidFull:"Full",paidDep:"Deposit",waMsg:"WhatsApp",remind:"Remind",
   service:"Service",vehicle:"Vehicle",date:"Date",time:"Time",total:"Total",ready:"Ready",days:"days",
   visits:"Visits",spent:"Spent",lastv:"Last visit",nextdue:"Next due",dueOverdue:"Due {n}d ago",dueToday:"Due today",dueSoon:"Due in {n}d",dueOk:"In {n}d",remindNow:"Remind now",from:"from",priceNote:"final price confirmed at inspection",
@@ -631,7 +632,7 @@ const I18N={
   size_s:"Малый / Средний",size_m:"Большой / SUV",size_l:"X-Large / 7 мест",
   ex_s:"Хэтчбек · Седан · Купе",ex_m:"Ср. SUV · MPV · Универсал",ex_l:"Большой SUV · Ван · 7 мест",
   full:"Оплатить полностью",deposit:"Депозит",remain:"Остаток на месте",payBtn:"Оплатить",confirmBtn:"Подтвердить запись",payOnSite:"Оплата на мойке",slotTaken:"Это время только что заняли. Выберите другое, пожалуйста.",saveFailed:"Не удалось отправить заявку. Проверьте связь и попробуйте ещё раз.",payNote:"Предоплата не нужна — оплатите на месте.",
-  duration:"Длительность",statPend:"Подтверждено",statRev:"Выручка",statDep:"Депозиты",statUnpaid:"К оплате",statDone:"Выполнено",statNew:"Новые заявки",stPending:"Новая заявка",stProposed:"Время предложено",stConfirmed:"Подтверждено",actConfirm:"Подтвердить",actPropose:"Предложить другое время",actSendProposal:"Отправить предложение",wasAsking:"Просил(а)",waConfirmMsg:"Здравствуйте, {name}! Ваша запись на «{service}» {date} в {time} подтверждена. Ждём вас в Deluxe Car Wash & SPA!",waProposeMsg:"Здравствуйте, {name}! К сожалению, {old} занято для услуги «{service}». Можем предложить {date} в {time} — вам подходит?",
+  duration:"Длительность",statPend:"Подтверждено",statRev:"Выручка",statDep:"Депозиты",statUnpaid:"К оплате",statDone:"Выполнено",statNew:"Новые заявки",stPending:"Новая заявка",stProposed:"Время предложено",stConfirmed:"Подтверждено",actConfirm:"Подтвердить",actPropose:"Предложить другое время",actSendProposal:"Отправить предложение",wasAsking:"Просил(а)",waConfirmMsg:"Здравствуйте, {name}! Ваша запись на «{service}» {date} в {time} подтверждена. Ждём вас в Deluxe Car Wash & SPA!\n\n📍 Как нас найти: {map}",waProposeMsg:"Здравствуйте, {name}! К сожалению, {old} занято для услуги «{service}». Можем предложить {date} в {time} — вам подходит?\n\n📍 Как нас найти: {map}",
   markDone:"Готово",del:"Отменить",delPerm:"Удалить навсегда",delWarn:"Запись будет стёрта из базы безвозвратно. Если нужно просто освободить время, но сохранить историю — используйте «Отменить».",deleted:"Удалено",showCancelled:"Показать отменённые",paidFull:"Полн.",paidDep:"Депозит",waMsg:"WhatsApp",remind:"Напомнить",
   service:"Услуга",vehicle:"Авто",date:"Дата",time:"Время",total:"Итого",ready:"Готово",days:"дн.",
   visits:"Визитов",spent:"Потрачено",lastv:"Последний визит",nextdue:"Следующая",dueOverdue:"Просрочено {n}д",dueToday:"Сегодня",dueSoon:"Через {n}д",dueOk:"Через {n}д",remindNow:"Напомнить",from:"от",priceNote:"финальная цена — после осмотра",
@@ -660,7 +661,7 @@ const I18N={
   size_s:"Μικρό / Μεσαίο",size_m:"Μεγάλο / SUV",size_l:"X-Large / 7 θέσεων",
   ex_s:"Hatchback · Sedan · Coupe",ex_m:"Med SUV · MPV",ex_l:"Large SUV · Van · 7θ",
   full:"Πλήρης πληρωμή",deposit:"Προκαταβολή",remain:"Υπόλοιπο στον χώρο",payBtn:"Πληρωμή",confirmBtn:"Επιβεβαίωση κράτησης",payOnSite:"Πληρωμή στο πλυντήριο",slotTaken:"Αυτή η ώρα μόλις κλείστηκε. Επιλέξτε άλλη.",saveFailed:"Δεν στάλθηκε το αίτημα. Ελέγξτε τη σύνδεση και δοκιμάστε ξανά.",payNote:"Χωρίς προκαταβολή — πληρώνετε στον χώρο.",
-  duration:"Διάρκεια",statPend:"Επιβεβαιωμένα",statRev:"Έσοδα",statDep:"Προκαταβολές",statUnpaid:"Προς είσπραξη",statDone:"Ολοκληρωμένα",statNew:"Νέα αιτήματα",stPending:"Νέο αίτημα",stProposed:"Προτάθηκε ώρα",stConfirmed:"Επιβεβαιωμένο",actConfirm:"Επιβεβαίωση",actPropose:"Προτείνετε άλλη ώρα",actSendProposal:"Αποστολή πρότασης",wasAsking:"Ζήτησε",waConfirmMsg:"Γεια σας {name}! Η κράτησή σας για {service} στις {date} στις {time} επιβεβαιώθηκε. Σας περιμένουμε!",waProposeMsg:"Γεια σας {name}! Δυστυχώς η ώρα {old} δεν είναι διαθέσιμη για {service}. Μπορούμε να προτείνουμε {date} στις {time} — σας βολεύει;",
+  duration:"Διάρκεια",statPend:"Επιβεβαιωμένα",statRev:"Έσοδα",statDep:"Προκαταβολές",statUnpaid:"Προς είσπραξη",statDone:"Ολοκληρωμένα",statNew:"Νέα αιτήματα",stPending:"Νέο αίτημα",stProposed:"Προτάθηκε ώρα",stConfirmed:"Επιβεβαιωμένο",actConfirm:"Επιβεβαίωση",actPropose:"Προτείνετε άλλη ώρα",actSendProposal:"Αποστολή πρότασης",wasAsking:"Ζήτησε",waConfirmMsg:"Γεια σας {name}! Η κράτησή σας για {service} στις {date} στις {time} επιβεβαιώθηκε. Σας περιμένουμε!\n\n📍 Θα μας βρείτε εδώ: {map}",waProposeMsg:"Γεια σας {name}! Δυστυχώς η ώρα {old} δεν είναι διαθέσιμη για {service}. Μπορούμε να προτείνουμε {date} στις {time} — σας βολεύει;\n\n📍 Θα μας βρείτε εδώ: {map}",
   markDone:"Έτοιμο",del:"Ακύρωση",delPerm:"Οριστική διαγραφή",delWarn:"Η κράτηση θα διαγραφεί οριστικά από τη βάση.",deleted:"Διαγράφηκε",showCancelled:"Εμφάνιση ακυρωμένων",paidFull:"Πλήρης",paidDep:"Προκατ.",waMsg:"WhatsApp",remind:"Υπενθύμιση",
   service:"Υπηρεσία",vehicle:"Όχημα",date:"Ημ/νία",time:"Ώρα",total:"Σύνολο",ready:"Έτοιμο",days:"ημ.",
   visits:"Επισκέψεις",spent:"Σύνολο",lastv:"Τελευταία",nextdue:"Επόμενη",dueOverdue:"Πριν {n}μ",dueToday:"Σήμερα",dueSoon:"Σε {n}μ",dueOk:"Σε {n}μ",remindNow:"Υπενθύμιση",from:"από",priceNote:"τελική τιμή μετά από έλεγχο",
@@ -1268,7 +1269,7 @@ function renderAdmin(){
 
 window.adDone=i=>{bookings[i].status="done";DB.saveBookings(bookings,bookings[i]);renderAdmin();toast(t("markDone"));};
 function waSend(b,key,extra){const svc=svcById(b.serviceId);const first=(b.cname||"").split(" ")[0]||"";
- let m=t(key).replace("{name}",first).replace("{service}",svc?svc[L][0]:b.service).replace("{date}",fmtDate(b.date)).replace("{time}",b.time||"");
+ let m=t(key).replace("{map}",MAPS_DIR).replace("{name}",first).replace("{service}",svc?svc[L][0]:b.service).replace("{date}",fmtDate(b.date)).replace("{time}",b.time||"");
  if(extra)Object.entries(extra).forEach(([k,v])=>{m=m.replace("{"+k+"}",v);});
  window.open("https://wa.me/"+b.cphoneN+"?text="+encodeURIComponent(m),"_blank");}
 window.adConfirm=i=>{const b=bookings[i];b.status="upcoming";DB.saveBookings(bookings,b);renderAdmin();
@@ -1306,7 +1307,7 @@ window.adDeleteGo=async ref=>{
  closeModal();renderAdmin();toast(t("deleted"));};
 window.markReminded=(ph,sid,due)=>{reminded[ph+"|"+sid+"|"+due]=1;DB.saveReminded(reminded);renderAdmin();toast("✓");};
 window.waCustomer=(ph,sid,date)=>{const svc=svcById(sid);const c=customers[ph]||{};
- const msg=t("waTemplate").replace("{name}",(c.name||"").split(" ")[0]||"")
+ const msg=t("waTemplate").replace("{map}",MAPS_DIR).replace("{name}",(c.name||"").split(" ")[0]||"")
    .replace("{service}",svc?svc[L][0]:"").replace("{date}",date?fmtDate(date):"");
  window.open("https://wa.me/"+ph+"?text="+encodeURIComponent(msg),"_blank");};
 
@@ -1368,7 +1369,7 @@ function icsFor(b){const svc=svcById(b.serviceId);
    "UID:"+b.ref+"@deluxecarwash.cy","SUMMARY:"+(svc?svc.en[0]:b.service)+" - Deluxe Car Wash",
    "DTSTART:"+f(start),"DTEND:"+f(end),"LOCATION:Strovolou 196, Strovolos 2048, Nicosia",
    "DESCRIPTION:Booking "+b.ref,"END:VEVENT","END:VCALENDAR"].join("\r\n");}
-const MAPS_DIR="https://www.google.com/maps/dir/?api=1&destination=Deluxe+Car+Wash+%26+SPA+Strovolou+196+Strovolos+2048+Nicosia";
+
 function setupConfirmActions(b){
  $("#cfDir").href=MAPS_DIR;
  $("#cfWa").href="https://wa.me/"+CONFIG.WHATSAPP+"?text="+encodeURIComponent("Deluxe Car Wash - booking "+b.ref);
