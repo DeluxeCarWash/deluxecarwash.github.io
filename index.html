@@ -744,6 +744,43 @@ const row2b=r=>({ref:r.ref,consent:!!r.consent,serviceId:r.service_id,service:r.
 const c2row=c=>({phone:c.phoneN,name:c.name,email:c.email,vmodel:c.vmodel,vplate:c.vplate,history:c.history||[]});
 const row2c=r=>({phone:r.phone,phoneN:r.phone,name:r.name,email:r.email,vmodel:r.vmodel,vplate:r.vplate,history:r.history||[]});
 let sb=null;
+/* ===== СЧЁТЧИК ПОСЕЩЕНИЙ =====================================
+   Пишет события в site_events той же базы Supabase.
+   Без внешних сервисов и cookie. Ошибки глотаются. */
+let TRACK_SID = "";
+try {
+  TRACK_SID = sessionStorage.getItem("dlx_sid") || "";
+  if (!TRACK_SID) {
+    TRACK_SID = Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
+    sessionStorage.setItem("dlx_sid", TRACK_SID);
+  }
+} catch (e) { TRACK_SID = "nosid"; }
+
+function track(event, detail) {
+  try {
+    const c = (typeof REMOTE !== "undefined" && REMOTE.creds) ? REMOTE.creds() : null;
+    const url = (c && c.url) || (typeof CONFIG !== "undefined" ? CONFIG.SUPABASE_URL : "");
+    const key = (c && c.key) || (typeof CONFIG !== "undefined" ? CONFIG.SUPABASE_ANON_KEY : "");
+    if (!url || !key) return;
+    const dev = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) ? "mobile" : "desktop";
+    fetch(url.replace(/\/$/, "") + "/rest/v1/site_events", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", apikey: key,
+                 Authorization: "Bearer " + key, Prefer: "return=minimal" },
+      body: JSON.stringify({
+        event: String(event).slice(0, 40),
+        detail: detail ? String(detail).slice(0, 120) : null,
+        lang: (typeof L !== "undefined" ? L : null),
+        session_id: TRACK_SID,
+        referrer: (document.referrer || "").slice(0, 120) || null,
+        device: dev
+      }),
+      keepalive: true
+    }).catch(function () {});
+  } catch (e) { /* молча */ }
+}
+/* ====================================================================== */
+
 const REMOTE={};   // settings fetched from Supabase in live mode
 let staffSignedIn=false;
 let staffDeepRef="";   // booking ref from a #staff/REF link (Telegram notification)
@@ -1788,6 +1825,20 @@ async function boot(){
   }
   if(document.getElementById("admin").classList.contains("on")) renderAdmin();
 }
+/* Точки воронки — оборачиваем функции, не меняя их код */
+(function () {
+  try { const _s = showStep;
+    showStep = function (n) { try { track("step", String(n)); } catch (e) {} return _s.apply(this, arguments); };
+  } catch (e) {}
+  try { const _c = confirmBooking;
+    confirmBooking = function () { try { track("booking_submit"); } catch (e) {} return _c.apply(this, arguments); };
+  } catch (e) {}
+  try { const _w = waSend;
+    waSend = function () { try { track("whatsapp_click"); } catch (e) {} return _w.apply(this, arguments); };
+  } catch (e) {}
+  try { track("page_open"); } catch (e) {}
+})();
+
 boot();
 </script>
 </body>
