@@ -140,6 +140,8 @@ section.pane{padding:14px 0 30px}
 .day.off{background:transparent;color:var(--mut2);cursor:default}
 .day.closed{color:var(--mut2);text-decoration:line-through;cursor:default;background:transparent}
 .day.busy{color:var(--mut2);background:repeating-linear-gradient(45deg,var(--surf2),var(--surf2) 4px,transparent 4px,transparent 8px);cursor:default}
+.day.req{border:1px dashed var(--mut2);color:var(--mut2)} .day.req.sel{color:inherit}
+.reqnote{margin-top:10px;padding:10px 12px;border:1px dashed var(--acc);border-radius:10px;font-size:13px}
 .day.free{cursor:pointer} .day.free:hover{border-color:var(--acc)}
 .day.sel{background:var(--acc);color:#04201e;font-weight:700} .day.today{border-color:var(--line2)}
 .slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(78px,100%),1fr));gap:8px;margin-top:4px;min-width:0}
@@ -397,6 +399,7 @@ pre,code{white-space:pre-wrap;word-break:break-word}
         <div class="card">
           <div class="calhead"><button class="calnav" id="prevM">‹</button><b id="calLabel"></b><button class="calnav" id="nextM">›</button></div>
           <div class="dow" id="dow"></div><div class="days" id="days"></div>
+          <div class="hint" style="margin-top:6px;font-size:11.5px" data-t="reqCal">Dashed days = on request</div>
         </div>
         <div class="card">
           <div class="calhead"><b id="slotLabel" data-t="pickday">Select a day</b></div>
@@ -413,6 +416,7 @@ pre,code{white-space:pre-wrap;word-break:break-word}
       </div>
           <div class="emptyslots hidden" id="noSlots" data-t="noslots">No free slots this day. Try another.</div>
           <div class="readynote hidden" id="readyNote"></div>
+          <div class="reqnote hidden" id="reqNote"></div>
         </div>
       </div>
     </section>
@@ -608,6 +612,7 @@ const I18N={
   service:"Service",vehicle:"Vehicle",date:"Date",time:"Time",total:"Total",ready:"Ready",days:"days",
   visits:"Visits",spent:"Spent",lastv:"Last visit",nextdue:"Next due",dueOverdue:"Due {n}d ago",dueToday:"Due today",dueSoon:"Due in {n}d",dueOk:"In {n}d",remindNow:"Remind now",from:"from",priceNote:"final price confirmed at inspection",
   cfRemindTxt:"We'll remind you on WhatsApp when it's time for your next {s}.",
+  reqNote:"Fri–Sun are available <b>on request</b>. We will confirm on WhatsApp whether this day works.",reqCal:"Dashed days = on request",
   readyMulti:"This is a <b>{d}-day</b> job. Drop off on the morning of your date — your car is <b>ready {r}</b>.",
   months:["January","February","March","April","May","June","July","August","September","October","November","December"],
   dows:["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
@@ -637,6 +642,7 @@ const I18N={
   service:"Услуга",vehicle:"Авто",date:"Дата",time:"Время",total:"Итого",ready:"Готово",days:"дн.",
   visits:"Визитов",spent:"Потрачено",lastv:"Последний визит",nextdue:"Следующая",dueOverdue:"Просрочено {n}д",dueToday:"Сегодня",dueSoon:"Через {n}д",dueOk:"Через {n}д",remindNow:"Напомнить",from:"от",priceNote:"финальная цена — после осмотра",
   cfRemindTxt:"Напомним в WhatsApp, когда придёт время для следующей услуги «{s}».",
+  reqNote:"Пт–Вс — <b>по запросу</b>. Мы подтвердим в WhatsApp, подходит ли этот день.",reqCal:"Пунктирные дни — по запросу",
   readyMulti:"Это работа на <b>{d} дн.</b> Сдайте авто утром в выбранную дату — машина <b>готова {r}</b>.",
   months:["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"],
   dows:["Пн","Вт","Ср","Чт","Пт","Сб","Вс"],
@@ -666,6 +672,7 @@ const I18N={
   service:"Υπηρεσία",vehicle:"Όχημα",date:"Ημ/νία",time:"Ώρα",total:"Σύνολο",ready:"Έτοιμο",days:"ημ.",
   visits:"Επισκέψεις",spent:"Σύνολο",lastv:"Τελευταία",nextdue:"Επόμενη",dueOverdue:"Πριν {n}μ",dueToday:"Σήμερα",dueSoon:"Σε {n}μ",dueOk:"Σε {n}μ",remindNow:"Υπενθύμιση",from:"από",priceNote:"τελική τιμή μετά από έλεγχο",
   cfRemindTxt:"Θα σας υπενθυμίσουμε στο WhatsApp όταν έρθει η ώρα για την επόμενη {s}.",
+  reqNote:"Παρασκευή–Κυριακή <b>κατόπιν αιτήματος</b>. Θα σας επιβεβαιώσουμε στο WhatsApp αν η μέρα είναι διαθέσιμη.",reqCal:"Διακεκομμένες μέρες = κατόπιν αιτήματος",
   readyMulti:"Εργασία <b>{d} ημερών</b>. Παραδώστε το πρωί — έτοιμο <b>{r}</b>.",
   months:["Ιανουάριος","Φεβρουάριος","Μάρτιος","Απρίλιος","Μάιος","Ιούνιος","Ιούλιος","Αύγουστος","Σεπτέμβριος","Οκτώβριος","Νοέμβριος","Δεκέμβριος"],
   dows:["Δευ","Τρι","Τετ","Πεμ","Παρ","Σαβ","Κυρ"],
@@ -1001,7 +1008,7 @@ function buildCalendar(){
  for(let i=0;i<lead;i++){const s=document.createElement("div");s.className="day off";dEl.appendChild(s);}
  for(let d=1;d<=dim;d++){const date=new Date(y,m,d);const dow=(date.getDay()+6)%7;
   const el=document.createElement("div");el.className="day";el.textContent=d;
-  const iso=isoDate(date);const past=date<today;const closed=HOURS.closedDow.includes(dow)||BLOCKED.includes(iso);
+  const iso=isoDate(date);const past=date<today;const closed=BLOCKED.includes(iso);const onReq=HOURS.closedDow.includes(dow);
   if(date.getTime()===today.getTime())el.classList.add("today");
   let free=false;
   if(past){el.classList.add("off")}
@@ -1011,6 +1018,7 @@ function buildCalendar(){
   } else { // same-day: blocked only when every bay is taken all day
     if(((blocked.get(iso)||0)>=BAYS())){el.classList.add("busy")}else{free=true}
   }
+  if(free&&onReq)el.classList.add("req");
   if(free){el.classList.add("free");if(S.date===iso)el.classList.add("sel");
    el.onclick=()=>{S.date=iso;S.time=null;buildCalendar();renderSlots();renderSummary();gate();};}
   dEl.appendChild(el);}
@@ -1019,6 +1027,8 @@ function buildCalendar(){
 function renderSlots(){
  const wrap=$("#slots"),none=$("#noSlots"),ready=$("#readyNote");wrap.innerHTML="";
  ready.classList.add("hidden");
+ const rq=$("#reqNote");const isReq=S.date&&HOURS.closedDow.includes((parseISO(S.date).getDay()+6)%7);
+ rq.innerHTML=t("reqNote");rq.classList.toggle("hidden",!isReq);
  if(!S.date||!S.service){none.classList.add("hidden");$("#slotLabel").textContent=t("pickday");return;}
  const svc=svcById(S.service);
  const now=new Date();const isToday=S.date===isoDate(now);
@@ -1140,7 +1150,7 @@ async function finishBooking(){
  const addonNames=S.addons.map(id=>{const a=ADDONS.find(x=>x.id===id);return a?a.en:null;}).filter(Boolean);
  const bk={ref,date:S.date,time:S.time,unit:svc.unit,mins:svc.mins||0,days:svc.days||0,
    serviceId:svc.id,service:svc.en[0],size:S.size,vmodel:S.vmodel,vplate:S.vplate,addons:[...S.addons],addonNames,
-   cname:$("#cname").value.trim(),cphone:phone,cphoneN:ph,cemail:$("#cemail").value.trim(),cnotes:$("#cnotes").value.trim(),
+   cname:$("#cname").value.trim(),cphone:phone,cphoneN:ph,cemail:$("#cemail").value.trim(),cnotes:(HOURS.closedDow.includes((parseISO(S.date).getDay()+6)%7)?"⚠ ON REQUEST DAY (Fri-Sun) — confirm with customer. ":"")+$("#cnotes").value.trim(),
    consent:!!($("#cconsent")&&$("#cconsent").checked),lang:(typeof L!=="undefined"?L:"el"),
    price:p,paid,payType:"unpaid",remind:svc.remind,nextDue,status:"pending",created:Date.now()};
  bookings.push(bk);
