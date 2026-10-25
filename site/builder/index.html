@@ -108,6 +108,21 @@ iframe#pv{border:none;background:#fff;width:100%;height:100%}
     </fieldset>
 
     <fieldset>
+      <legend>БРЕНД И МЕДИА (ОБЩЕЕ)</legend>
+      <div class="grid2">
+        <div><label>Цвет-акцент</label><input type="color" id="f_accent" value="#C8A96A" style="height:42px;padding:4px"></div>
+        <div><label>Логотип (URL, необяз.)</label><input id="f_logo" placeholder="https://.../logo.png"></div>
+      </div>
+      <label>Фото для героя (URL, необяз.)</label><input id="f_heroImg" placeholder="https://.../photo.jpg">
+      <div class="grid2">
+        <div><label>Фото 1 (URL)</label><input id="f_img1" placeholder="https://..."></div>
+        <div><label>Фото 2 (URL)</label><input id="f_img2" placeholder="https://..."></div>
+      </div>
+      <label>Форма заявки — ссылка Formspree (необяз.)</label><input id="f_formUrl" placeholder="https://formspree.io/f/xxxx">
+      <p class="note" style="margin-top:6px">Фото: прямые ссылки на изображения (из их Google-профиля/Instagram или зальём в их папку). Форма: бесплатный Formspree/Web3Forms — вставь ссылку формы.</p>
+    </fieldset>
+
+    <fieldset>
       <legend>ЧАСЫ РАБОТЫ (ОБЩЕЕ)</legend>
       <div id="hours"></div>
     </fieldset>
@@ -157,22 +172,22 @@ const UI={
       eyWhat:"What we do",h2S:"Our services.",eyWhy:"Why us",h2W:"What you can count on.",
       eyV:"Visit us",h2V:"Find us",dtA:"ADDRESS",dtP:"PHONE",dtSoc:"SOCIAL",mapGo:"Open in Google Maps →",
       eyF:"Questions",h2F:"Good to know.",finalBook:"Book your visit.",finalTouch:"Get in touch.",finalP:"We'd love to help.",
-      ctaBook:"Book a time →",ctaCall:"Call us →",wa:"WhatsApp",call:"Call",since:"Since",serving:"Serving",svcL:"Services",local:"Local",easy:"Easy",easyL:"Book or call ahead"},
+      ctaBook:"Book a time →",ctaCall:"Call us →",wa:"WhatsApp",call:"Call",since:"Since",serving:"Serving",svcL:"Services",local:"Local",easy:"Easy",easyL:"Book or call ahead",navGal:"Gallery",navContact:"Contact",galEy:"Gallery",galH:"A look inside.",formEy:"Contact",formH:"Send us a message.",formName:"Your name",formEmail:"Email or phone",formMsg:"How can we help?",formSend:"Send"},
   el:{navS:"Υπηρεσίες",navW:"Γιατί εμείς",navV:"Επισκεφθείτε",navF:"FAQ",navBook:"Κράτηση",navCall:"Καλέστε μας",
       eyWhat:"Τι κάνουμε",h2S:"Οι υπηρεσίες μας.",eyWhy:"Γιατί εμείς",h2W:"Σε τι μπορείτε να βασιστείτε.",
       eyV:"Επισκεφθείτε μας",h2V:"Βρείτε μας",dtA:"ΔΙΕΥΘΥΝΣΗ",dtP:"ΤΗΛΕΦΩΝΟ",dtSoc:"SOCIAL",mapGo:"Άνοιγμα στο Google Maps →",
       eyF:"Ερωτήσεις",h2F:"Καλό να ξέρετε.",finalBook:"Κλείστε το ραντεβού σας.",finalTouch:"Επικοινωνήστε μαζί μας.",finalP:"Θα χαρούμε να βοηθήσουμε.",
-      ctaBook:"Κράτηση →",ctaCall:"Καλέστε μας →",wa:"WhatsApp",call:"Καλέστε",since:"Από το",serving:"Εξυπηρετούμε",svcL:"Υπηρεσίες",local:"Τοπικά",easy:"Εύκολα",easyL:"Κράτηση ή κλήση"},
+      ctaBook:"Κράτηση →",ctaCall:"Καλέστε μας →",wa:"WhatsApp",call:"Καλέστε",since:"Από το",serving:"Εξυπηρετούμε",svcL:"Υπηρεσίες",local:"Τοπικά",easy:"Εύκολα",easyL:"Κράτηση ή κλήση",navGal:"Φωτογραφίες",navContact:"Επικοινωνία",galEy:"Φωτογραφίες",galH:"Μια ματιά από κοντά.",formEy:"Επικοινωνία",formH:"Στείλτε μας μήνυμα.",formName:"Το όνομά σας",formEmail:"Email ή τηλέφωνο",formMsg:"Πώς μπορούμε να βοηθήσουμε;",formSend:"Αποστολή"},
   ru:{navS:"Услуги",navW:"Почему мы",navV:"Контакты",navF:"Вопросы",navBook:"Записаться",navCall:"Позвонить",
       eyWhat:"Что мы делаем",h2S:"Наши услуги.",eyWhy:"Почему мы",h2W:"На что можно рассчитывать.",
       eyV:"Как нас найти",h2V:"Найдите нас",dtA:"АДРЕС",dtP:"ТЕЛЕФОН",dtSoc:"СОЦСЕТИ",mapGo:"Открыть в Google Maps →",
       eyF:"Вопросы",h2F:"Полезно знать.",finalBook:"Запишитесь на визит.",finalTouch:"Свяжитесь с нами.",finalP:"Будем рады помочь.",
-      ctaBook:"Записаться →",ctaCall:"Позвонить →",wa:"WhatsApp",call:"Позвонить",since:"С",serving:"Работаем в",svcL:"Услуги",local:"Рядом",easy:"Удобно",easyL:"Запись или звонок"}
+      ctaBook:"Записаться →",ctaCall:"Позвонить →",wa:"WhatsApp",call:"Позвонить",since:"С",serving:"Работаем в",svcL:"Услуги",local:"Рядом",easy:"Удобно",easyL:"Запись или звонок",navGal:"Фото",navContact:"Связаться",galEy:"Галерея",galH:"Как это выглядит.",formEy:"Контакты",formH:"Напишите нам.",formName:"Ваше имя",formEmail:"Email или телефон",formMsg:"Чем помочь?",formSend:"Отправить"}
 };
 
 let state={
   lang:"en",
-  shared:{name:"",brand:"",year:"",addr:"",street:"",locality:"",zip:"",country:"",phone:"",wa:"",ig:"",book:""},
+  shared:{name:"",brand:"",year:"",addr:"",street:"",locality:"",zip:"",country:"",phone:"",wa:"",ig:"",book:"",logo:"",accent:"#C8A96A",heroImg:"",img1:"",img2:"",formUrl:""},
   tr:{en:{},el:{},ru:{}}, // city,kicker,h1,accent,lead,svcnote
   services:[], // {price, name:{en,el,ru}, desc:{..}, group:{..}}
   why:[],      // {title:{..}, text:{..}}
@@ -192,6 +207,7 @@ function pull(){
   s.addr=g("f_addr").value.trim();s.street=g("f_street").value.trim();s.locality=g("f_locality").value.trim();
   s.zip=g("f_zip").value.trim();s.country=g("f_country").value.trim().toUpperCase();
   s.phone=g("f_phone").value.trim();s.wa=g("f_wa").value.replace(/\D/g,"");s.ig=g("f_ig").value.trim().replace(/^@/,"");s.book=g("f_book").value.trim();
+  s.logo=g("f_logo").value.trim();s.accent=g("f_accent").value.trim();s.heroImg=g("f_heroImg").value.trim();s.img1=g("f_img1").value.trim();s.img2=g("f_img2").value.trim();s.formUrl=g("f_formUrl").value.trim();
   const t=state.tr[state.lang];
   t.city=g("t_city").value.trim();t.kicker=g("t_kicker").value.trim();t.h1=g("t_h1").value.trim();
   t.accent=g("t_accent").value.trim();t.lead=g("t_lead").value.trim();t.svcnote=g("t_svcnote").value.trim();
@@ -258,6 +274,7 @@ function strings(d,l){
   S.dtA=esc(u.dtA);S.dtP=esc(u.dtP);S.dtSoc=esc(u.dtSoc);S.mapGo=esc(u.mapGo);
   S.eyF=esc(u.eyF);S.h2F=esc(u.h2F);
   S.finalH=esc(d.shared.book?u.finalBook:u.finalTouch);S.finalP=esc(u.finalP);
+  S.navGal=esc(u.navGal);S.navContact=esc(u.navContact);S.galEy=esc(u.galEy);S.galH=esc(u.galH);S.formEy=esc(u.formEy);S.formH=esc(u.formH);S.formName=esc(u.formName);S.formEmail=esc(u.formEmail);S.formMsg=esc(u.formMsg);S.formSend=esc(u.formSend);
   // trust
   S.tSince=esc(d.shared.year?u.since+" "+d.shared.year:"");
   S.tServing=esc(t.city?u.serving+" "+t.city:"");
@@ -285,6 +302,12 @@ function buildSite(d){
   const bookHref=d.shared.book||(d.shared.phone?"tel:"+d.shared.phone.replace(/\s/g,""):"#");
   const telHref=d.shared.phone?"tel:"+d.shared.phone.replace(/\s/g,""):"";
   const waHref=d.shared.wa?"https://wa.me/"+d.shared.wa:"";
+  const acc=(d.shared.accent&&/^#?[0-9a-fA-F]{6}$/.test(d.shared.accent))?(d.shared.accent[0]==="#"?d.shared.accent:"#"+d.shared.accent):"#C8A96A";
+  const _lum=(h=>{const c=h.replace('#','');return (0.299*parseInt(c.substr(0,2),16)+0.587*parseInt(c.substr(2,2),16)+0.114*parseInt(c.substr(4,2),16))/255;})(acc);
+  const accentCSS=`:root{--champagne:${acc};--on-accent:${_lum>0.58?"#1A1407":"#ffffff"};--champ-h:${acc}}`;
+  const brandHtml=d.shared.logo?`<img src="${esc(d.shared.logo)}" alt="${esc(d.shared.name)}" style="height:34px;width:auto">`:`${esc(d.shared.brand||d.shared.name)}<span>.</span>`;
+  const heroStyle=d.shared.heroImg?` style="background-image:linear-gradient(rgba(14,20,23,.5),rgba(14,20,23,.85)),url('${esc(d.shared.heroImg)}');background-size:cover;background-position:center"`:"";
+  const fab=d.shared.wa?`<a class="wafab" href="${esc(waHref)}" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.945C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.517 5.26l-.999 3.648 3.971-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51a12.6 12.6 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg></a>`:"";
   const SS={};LANGS.forEach(l=>SS[l]=strings(d,l));
   const E=SS.en; // default render = english
 
@@ -292,9 +315,14 @@ function buildSite(d){
   const nav=`${d.services.length?`<a href="#services" data-t="navS">${E.navS}</a>`:""}
       ${d.why.length?`<a href="#why" data-t="navW">${E.navW}</a>`:""}
       ${d.shared.addr?`<a href="#visit" data-t="navV">${E.navV}</a>`:""}
+      ${(d.shared.img1||d.shared.img2)?`<a href="#gallery" data-t="navGal">${E.navGal}</a>`:""}
+      ${d.shared.formUrl?`<a href="#contact" data-t="navContact">${E.navContact}</a>`:""}
       <a href="#faq" data-t="navF">${E.navF}</a>
       ${(d.shared.book||d.shared.phone)?`<a class="book" href="${esc(bookHref)}" data-t="navBtn">${E.navBtn}</a>`:""}
       <span class="langsw">${LANGS.map(l=>`<button data-lb="${l}"${l==="en"?' class="on"':""} onclick="setLang('${l}')">${l.toUpperCase()}<\/button>`).join("")}</span>`;
+
+  const galleryHtml=(d.shared.img1||d.shared.img2)?`\n<section class="block wrap" id="gallery">\n  <p class="eyebrow" data-t="galEy">${E.galEy}</p>\n  <h2 class="h2" data-t="galH">${E.galH}</h2>\n  <div class="gallery">${[d.shared.img1,d.shared.img2].filter(Boolean).map(u=>`<img src="${esc(u)}" alt="" loading="lazy">`).join("")}</div>\n</section>`:"";
+  const formHtml=d.shared.formUrl?`\n<section class="block wrap" id="contact">\n  <p class="eyebrow" data-t="formEy">${E.formEy}</p>\n  <h2 class="h2" data-t="formH">${E.formH}</h2>\n  <form class="cform" action="${esc(d.shared.formUrl)}" method="POST">\n    <input type="text" name="name" required data-tp="formName" placeholder="${E.formName}">\n    <input type="text" name="contact" required data-tp="formEmail" placeholder="${E.formEmail}">\n    <textarea name="message" rows="4" required data-tp="formMsg" placeholder="${E.formMsg}"></textarea>\n    <button type="submit" class="btn btn-primary" data-t="formSend">${E.formSend}</button>\n  </form>\n</section>`:"";
 
   // trust
   const trustCells=[
@@ -366,14 +394,15 @@ function buildSite(d){
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <style>${SITE_CSS}</style>
+<style>${accentCSS}</style>
 </head>
 <body>
 <header class="nav"><div class="wrap">
-  <div class="brand">${esc(d.shared.brand||d.shared.name)}<span>.</span></div>
+  <div class="brand">${brandHtml}</div>
   <nav>${nav}</nav>
 </div></header>
 
-<section class="hero"><div class="wrap">
+<section class="hero${d.shared.heroImg?" has-img":""}"${heroStyle}><div class="wrap">
   ${d.tr.en.kicker?`<p class="kicker" data-t="kicker">${E.kicker}</p>`:""}
   <h1 data-t="h1">${E.h1}</h1>
   ${d.tr.en.lead?`<p class="lead" data-t="lead">${E.lead}</p>`:""}
@@ -416,6 +445,8 @@ ${d.shared.addr?`<section class="block visit" id="visit"><div class="wrap grid">
   </div></div></a>
 </div></section>`:""}
 
+${galleryHtml}${formHtml}
+
 <section class="block wrap" id="faq">
   <p class="eyebrow" data-t="eyF">${E.eyF}</p>
   <h2 class="h2" data-t="h2F">${E.h2F}</h2>
@@ -434,6 +465,7 @@ ${d.shared.addr?`<section class="block visit" id="visit"><div class="wrap grid">
   <div><strong style="font-family:'Archivo',system-ui,sans-serif;letter-spacing:.1em;color:var(--text)">${esc((d.shared.name||"").toUpperCase())}</strong>${d.shared.addr?"<br>"+esc(d.shared.addr):""}${d.shared.year?" · "+esc(UI.en.since+" "+d.shared.year):""}</div>
   <div>${d.shared.phone?`<a href="${esc(telHref)}">${esc(d.shared.phone)}</a>`:""}${d.shared.ig?` · <a href="https://instagram.com/${esc(d.shared.ig)}" target="_blank" rel="noopener">Instagram</a>`:""}</div>
 </div></footer>
+${fab}
 
 <script type="application/ld+json">
 {
@@ -449,6 +481,7 @@ ${faqSchema}
 const LD=${JSON.stringify(LD)};
 function setLang(l){if(!LD[l])return;document.documentElement.lang=l;
   document.querySelectorAll('[data-t]').forEach(e=>{const v=LD[l][e.getAttribute('data-t')];if(v!=null)e.innerHTML=v;});
+  document.querySelectorAll('[data-tp]').forEach(e=>{const v=LD[l][e.getAttribute('data-tp')];if(v!=null)e.placeholder=v;});
   document.querySelectorAll('[data-lb]').forEach(b=>b.classList.toggle('on',b.getAttribute('data-lb')===l));
   try{localStorage.setItem('siteLang',l)}catch(e){}}
 (function(){let l='en';try{l=localStorage.getItem('siteLang')||navigator.language.slice(0,2)}catch(e){}if(!LD[l])l='en';setLang(l);})();
@@ -477,7 +510,7 @@ function buildLlms(d){
 
 /* ================= SITE CSS ================= */
 const SITE_CSS=`
-:root{--ink:#0E1417;--panel:#161E22;--panel-2:#1D262B;--line:#2A353B;--champagne:#C8A96A;--aqua:#6FB7C4;--text:#EAEFF0;--muted:#93A1A6;--muted-2:#6E7C81;--maxw:1140px}
+:root{--ink:#0E1417;--panel:#161E22;--panel-2:#1D262B;--line:#2A353B;--champagne:#C8A96A;--on-accent:#1A1407;--champ-h:#d8bd82;--aqua:#6FB7C4;--text:#EAEFF0;--muted:#93A1A6;--muted-2:#6E7C81;--maxw:1140px}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;background:var(--ink);color:var(--text);font-family:"Hanken Grotesk",system-ui,-apple-system,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 h1,h2,h3{font-family:"Archivo",system-ui,sans-serif;line-height:1.04;margin:0;letter-spacing:-0.01em}
@@ -490,11 +523,11 @@ a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
 .nav nav{display:flex;gap:24px;align-items:center}
 .nav nav a{color:var(--muted);font-size:15px;font-weight:500}
 .nav nav a:hover{color:var(--text)}
-.nav .book{display:inline-flex;align-items:center;gap:8px;background:var(--champagne);color:#1A1407;font-weight:700;padding:10px 18px;border-radius:999px;font-size:15px}
-.nav .book:hover{background:#d8bd82}
+.nav .book{display:inline-flex;align-items:center;gap:8px;background:var(--champagne);color:var(--on-accent);font-weight:700;padding:10px 18px;border-radius:999px;font-size:15px}
+.nav .book:hover{background:var(--champ-h)}
 .langsw{display:inline-flex;gap:2px;border:1px solid var(--line);border-radius:999px;padding:3px}
 .langsw button{background:transparent;border:none;color:var(--muted);font:inherit;font-size:12px;font-weight:700;padding:4px 9px;border-radius:999px;cursor:pointer}
-.langsw button.on{background:var(--champagne);color:#1A1407}
+.langsw button.on{background:var(--champagne);color:var(--on-accent)}
 @media(max-width:900px){.nav nav a:not(.book){display:none}.nav .book{display:none}}
 .hero{position:relative;min-height:86vh;display:flex;align-items:flex-end;padding:0 0 66px;overflow:hidden;background:radial-gradient(130% 90% at 72% 18%, #1C2A30 0%, #121A1E 42%, #0B1013 100%)}
 .hero::before{content:"";position:absolute;inset:-20% -40%;pointer-events:none;background:linear-gradient(104deg,transparent 30%,rgba(200,169,106,0) 42%,rgba(227,207,160,.22) 50%,rgba(111,183,196,.10) 56%,transparent 66%);transform:translateX(-30%);animation:rake 2.6s cubic-bezier(.22,.61,.36,1) .25s both}
@@ -508,8 +541,8 @@ a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
 .hero p.lead{color:var(--muted);font-size:clamp(17px,2.2vw,21px);max-width:54ch;margin:22px 0 34px;line-height:1.5}
 .cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
 .btn{display:inline-flex;align-items:center;gap:9px;font-weight:700;padding:15px 26px;border-radius:999px;font-size:16px;transition:.18s}
-.btn-primary{background:var(--champagne);color:#1A1407}
-.btn-primary:hover{background:#d8bd82;transform:translateY(-1px)}
+.btn-primary{background:var(--champagne);color:var(--on-accent)}
+.btn-primary:hover{background:var(--champ-h);transform:translateY(-1px)}
 .btn-ghost{border:1px solid var(--line);color:var(--text)}
 .btn-ghost:hover{border-color:var(--champagne);color:var(--champagne)}
 .trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel)}
@@ -565,6 +598,15 @@ footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted-2);font
 footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center}
 footer a{color:var(--muted)}footer a:hover{color:var(--text)}
 :focus-visible{outline:2px solid var(--aqua);outline-offset:3px;border-radius:4px}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:44px}
+.gallery img{width:100%;height:340px;object-fit:cover;border-radius:16px;border:1px solid var(--line)}
+@media(max-width:720px){.gallery{grid-template-columns:1fr}.gallery img{height:240px}}
+.cform{display:grid;gap:14px;max-width:540px;margin-top:38px}
+.cform input,.cform textarea{background:var(--panel-2);border:1px solid var(--line);color:var(--text);border-radius:12px;padding:14px 16px;font:inherit;font-size:16px;font-family:"Hanken Grotesk",system-ui,sans-serif}
+.cform input:focus,.cform textarea:focus{outline:none;border-color:var(--champagne)}
+.cform button{justify-content:center;border:none;cursor:pointer}
+.wafab{position:fixed;right:20px;bottom:20px;z-index:60;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.35);transition:.18s}
+.wafab:hover{transform:translateY(-2px)}
 @media(prefers-reduced-motion:reduce){.hero::before{animation:none;opacity:.5;transform:translateX(10%)}html{scroll-behavior:auto}}
 `;
 
@@ -631,7 +673,7 @@ g("segMob").onclick=()=>{g("pvWrap").classList.add("mob");g("segMob").classList.
 
 /* ===== Deluxe trilingual example ===== */
 function loadDeluxe(){
-  state.shared={name:"Deluxe Car Wash & SPA",brand:"DELUXE",year:"2021",addr:"Strovolou 196, Strovolos 2048, Nicosia, Cyprus",street:"Strovolou 196",locality:"Strovolos",zip:"2048",country:"CY",phone:"+357 22 08 08 00",wa:"35797424020",ig:"deluxecarwash.cy",book:"https://deluxecarwash.github.io/"};
+  state.shared={name:"Deluxe Car Wash & SPA",brand:"DELUXE",year:"2021",addr:"Strovolou 196, Strovolos 2048, Nicosia, Cyprus",street:"Strovolou 196",locality:"Strovolos",zip:"2048",country:"CY",phone:"+357 22 08 08 00",wa:"35797424020",ig:"deluxecarwash.cy",book:"https://deluxecarwash.github.io/",logo:"",accent:"#C8A96A",heroImg:"",img1:"",img2:"",formUrl:""};
   state.tr={
     en:{city:"Nicosia",kicker:"Car detailing & spa · Strovolos, Nicosia",h1:"The deep, lasting gloss your car came with.",accent:"gloss",lead:"Deluxe Car Wash & SPA has restored and protected cars in Nicosia since 2021 — hand detailing, interior spa treatment, and certified ceramic coating. Book online in two minutes; pay at the wash.",svcnote:"Prices shown start from the Small vehicle size; Large and X-Large are quoted at booking."},
     el:{city:"Λευκωσία",kicker:"Detailing & spa αυτοκινήτου · Στρόβολος, Λευκωσία",h1:"Η βαθιά, διαρκής λάμψη που είχε το αυτοκίνητό σας.",accent:"λάμψη",lead:"Το Deluxe Car Wash & SPA περιποιείται και προστατεύει αυτοκίνητα στη Λευκωσία από το 2021 — detailing στο χέρι, spa εσωτερικού και πιστοποιημένη κεραμική επίστρωση. Κλείστε ραντεβού online σε δύο λεπτά· πληρωμή στο πλυντήριο.",svcnote:"Οι τιμές ξεκινούν από το μέγεθος Small· Large και X-Large υπολογίζονται κατά την κράτηση."},
@@ -655,6 +697,7 @@ function loadDeluxe(){
   state.hours={mon:["07:30","18:00"],tue:["07:30","18:00"],wed:["07:30","18:00"],thu:["07:30","18:00"],fri:["07:30","18:00"],sat:["07:30","17:00"],sun:["07:30","14:30"]};state.closed={};
   // fill shared inputs
   const s=state.shared;g("f_name").value=s.name;g("f_brand").value=s.brand;g("f_year").value=s.year;g("f_addr").value=s.addr;g("f_street").value=s.street;g("f_locality").value=s.locality;g("f_zip").value=s.zip;g("f_country").value=s.country;g("f_phone").value=s.phone;g("f_wa").value=s.wa;g("f_ig").value=s.ig;g("f_book").value=s.book;
+  g("f_logo").value=s.logo;g("f_accent").value=s.accent;g("f_heroImg").value=s.heroImg;g("f_img1").value=s.img1;g("f_img2").value=s.img2;g("f_formUrl").value=s.formUrl;
   loadLangFields();render();
 }
 g("loadDeluxe").onclick=loadDeluxe;
