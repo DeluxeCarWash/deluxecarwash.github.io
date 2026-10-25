@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Deluxe Site Builder — внутренний конвейер</title>
+<title>Deluxe Site Builder — внутренний конвейер (3 языка)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
@@ -13,14 +13,13 @@
 *{box-sizing:border-box}
 body{margin:0;background:var(--ink);color:var(--text);font-family:"Hanken Grotesk",system-ui,sans-serif;font-size:15px}
 h1,h2,h3,.ar{font-family:"Archivo",system-ui,sans-serif}
-.app{display:grid;grid-template-columns:420px 1fr;height:100vh}
+.app{display:grid;grid-template-columns:430px 1fr;height:100vh}
 @media(max-width:900px){.app{grid-template-columns:1fr;height:auto}}
 .panelL{background:var(--panel);border-right:1px solid var(--line);overflow-y:auto;padding:22px}
 .panelR{display:flex;flex-direction:column;min-height:100vh}
-.topbar{display:flex;align-items:center;gap:10px;margin-bottom:6px}
 .topbar .logo{font-family:"Archivo";font-weight:800;letter-spacing:.12em;font-size:18px}
 .topbar .logo b{color:var(--gold)}
-.hint{color:var(--muted);font-size:13px;margin:0 0 18px;line-height:1.5}
+.hint{color:var(--muted);font-size:13px;margin:6px 0 16px;line-height:1.5}
 label{display:block;font-size:12px;color:var(--muted);margin:14px 0 5px;letter-spacing:.02em;text-transform:uppercase}
 input,textarea,select{width:100%;background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:9px;padding:10px 12px;font:inherit}
 input:focus,textarea:focus,select:focus{outline:none;border-color:var(--aqua)}
@@ -29,24 +28,27 @@ textarea{resize:vertical;min-height:52px}
 .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 fieldset{border:1px solid var(--line);border-radius:12px;margin:18px 0 0;padding:14px}
 legend{font-family:"Archivo";font-weight:700;font-size:13px;color:var(--gold);padding:0 8px;letter-spacing:.04em}
+.langtabs{display:flex;gap:6px;position:sticky;top:0;z-index:5;background:var(--panel);padding:10px 0;margin-bottom:4px;border-bottom:1px solid var(--line)}
+.langtabs button{flex:1;background:var(--panel2);border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:8px;cursor:pointer;font:inherit;font-weight:600}
+.langtabs button.on{background:var(--gold);color:#1A1407;border-color:var(--gold)}
+.tr-badge{display:inline-block;background:rgba(111,183,196,.15);color:var(--aqua);font-size:10px;padding:1px 7px;border-radius:999px;margin-left:6px;vertical-align:middle}
 .svc-row,.hr-row{display:grid;gap:7px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px dashed var(--line)}
 .svc-row{grid-template-columns:1fr 78px 30px}
 .svc-row textarea{grid-column:1 / -1;min-height:38px}
-.hr-row{grid-template-columns:96px 1fr 1fr 28px;align-items:center}
+.hr-row{grid-template-columns:70px 1fr 1fr 28px;align-items:center}
 .hr-row span{font-size:12px;color:var(--muted)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:none;cursor:pointer;border-radius:999px;font-weight:700;font-family:"Hanken Grotesk";font-size:14px;padding:9px 16px}
 .btn-gold{background:var(--gold);color:#1A1407}
 .btn-ghost{background:transparent;border:1px solid var(--line);color:var(--text)}
 .btn-sm{padding:5px 10px;font-size:13px;border-radius:8px}
 .del{background:#3a2326;color:#e5a0a0;border:none;border-radius:8px;cursor:pointer;font-size:16px;line-height:1}
-.addbtn{margin-top:4px}
 .actions{position:sticky;bottom:0;background:var(--panel);padding:16px 0 4px;margin-top:20px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px}
 .pv-bar{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--panel)}
-.pv-bar .seg{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
-.pv-bar .seg button{background:transparent;border:none;color:var(--muted);padding:6px 14px;cursor:pointer;font:inherit}
-.pv-bar .seg button.on{background:var(--gold);color:#1A1407;font-weight:700}
-.pv-wrap{flex:1;display:flex;justify-content:center;background:#060a0c;overflow:auto;padding:0}
-iframe#pv{border:none;background:#fff;width:100%;height:100%;transition:width .2s}
+.seg{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.seg button{background:transparent;border:none;color:var(--muted);padding:6px 14px;cursor:pointer;font:inherit}
+.seg button.on{background:var(--gold);color:#1A1407;font-weight:700}
+.pv-wrap{flex:1;display:flex;justify-content:center;background:#060a0c;overflow:auto}
+iframe#pv{border:none;background:#fff;width:100%;height:100%}
 .pv-wrap.mob iframe#pv{width:390px;margin:18px 0;box-shadow:0 10px 40px rgba(0,0,0,.5);border-radius:14px;height:780px}
 .note{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.5}
 .ok{color:var(--aqua)}
@@ -54,32 +56,40 @@ iframe#pv{border:none;background:#fff;width:100%;height:100%;transition:width .2
 </head>
 <body>
 <div class="app">
-  <!-- ============ FORM ============ -->
   <div class="panelL">
     <div class="topbar"><span class="logo">DELUXE<b>.</b> SITES</span></div>
-    <p class="hint">Внутренний конвейер. Заполни данные бизнеса — справа живой предпросмотр. Кнопки внизу скачивают готовые <b>index.html</b> и <b>llms.txt</b> (тот же шаблон, что сайт Deluxe: schema-разметка + FAQ + llms.txt для ИИ).</p>
+    <p class="hint">Заполни данные бизнеса. Текстовые поля — на трёх языках (вкладки ниже). Общие поля (адрес, цены, часы) заполняются один раз. Справа — живой предпросмотр с переключателем языков.</p>
+
+    <div class="langtabs" id="langtabs">
+      <button data-l="en" class="on">English</button>
+      <button data-l="el">Ελληνικά</button>
+      <button data-l="ru">Русский</button>
+    </div>
+    <p class="note" style="margin-top:0">Редактируешь язык: <b id="curLang" class="ok">English</b>. Переключи вкладку — поля ниже с пометкой <span class="tr-badge">язык</span> покажут этот язык.</p>
 
     <fieldset>
       <legend>БИЗНЕС</legend>
-      <label>Название</label>
+      <label>Название (общее)</label>
       <input id="f_name" placeholder="Deluxe Car Wash & SPA">
-      <label>Короткое имя для логотипа</label>
+      <label>Короткое имя для логотипа (общее)</label>
       <input id="f_brand" placeholder="DELUXE">
       <div class="grid2">
-        <div><label>Категория · город (подзаголовок)</label><input id="f_kicker" placeholder="Car detailing & spa · Nicosia"></div>
-        <div><label>Год основания</label><input id="f_year" placeholder="2021"></div>
+        <div><label>Город <span class="tr-badge">язык</span></label><input id="t_city" placeholder="Nicosia"></div>
+        <div><label>Год основания (общее)</label><input id="f_year" placeholder="2021"></div>
       </div>
-      <label>Заголовок героя</label>
-      <input id="f_h1" placeholder="The deep, lasting gloss your car came with.">
-      <label>Слово-акцент в заголовке (золотым)</label>
-      <input id="f_accentword" placeholder="gloss">
-      <label>Абзац под заголовком</label>
-      <textarea id="f_lead" placeholder="Коротко: кто вы, с какого года, что делаете, как записаться."></textarea>
+      <label>Подзаголовок (категория · район) <span class="tr-badge">язык</span></label>
+      <input id="t_kicker" placeholder="Car detailing & spa · Strovolos, Nicosia">
+      <label>Заголовок героя <span class="tr-badge">язык</span></label>
+      <input id="t_h1" placeholder="The deep, lasting gloss your car came with.">
+      <label>Слово-акцент (золотым) <span class="tr-badge">язык</span></label>
+      <input id="t_accent" placeholder="gloss">
+      <label>Абзац под заголовком <span class="tr-badge">язык</span></label>
+      <textarea id="t_lead"></textarea>
     </fieldset>
 
     <fieldset>
-      <legend>КОНТАКТЫ И АДРЕС</legend>
-      <label>Адрес (одной строкой)</label>
+      <legend>КОНТАКТЫ И АДРЕС (ОБЩЕЕ)</legend>
+      <label>Адрес одной строкой</label>
       <input id="f_addr" placeholder="Strovolou 196, Strovolos 2048, Nicosia, Cyprus">
       <div class="grid3">
         <div><label>Улица</label><input id="f_street" placeholder="Strovolou 196"></div>
@@ -87,54 +97,47 @@ iframe#pv{border:none;background:#fff;width:100%;height:100%;transition:width .2
         <div><label>Индекс</label><input id="f_zip" placeholder="2048"></div>
       </div>
       <div class="grid2">
-        <div><label>Город / регион</label><input id="f_city" placeholder="Nicosia"></div>
         <div><label>Страна (код)</label><input id="f_country" placeholder="CY"></div>
-      </div>
-      <div class="grid2">
         <div><label>Телефон</label><input id="f_phone" placeholder="+357 22 08 08 00"></div>
-        <div><label>WhatsApp (цифры)</label><input id="f_wa" placeholder="35797424020"></div>
       </div>
       <div class="grid2">
+        <div><label>WhatsApp (цифры)</label><input id="f_wa" placeholder="35797424020"></div>
         <div><label>Instagram (@handle)</label><input id="f_ig" placeholder="deluxecarwash.cy"></div>
-        <div><label>Ссылка «записаться» (если есть)</label><input id="f_book" placeholder="https://..."></div>
       </div>
+      <label>Ссылка «записаться» (если есть)</label><input id="f_book" placeholder="https://...">
     </fieldset>
 
     <fieldset>
-      <legend>ЧАСЫ РАБОТЫ</legend>
+      <legend>ЧАСЫ РАБОТЫ (ОБЩЕЕ)</legend>
       <div id="hours"></div>
     </fieldset>
 
     <fieldset>
       <legend>УСЛУГИ И ЦЕНЫ</legend>
+      <p class="note" style="margin:0 0 8px">Цена — общая. Название, описание и группу заполняй на каждом языке (вкладки вверху).</p>
       <div id="svcs"></div>
-      <button class="btn btn-ghost btn-sm addbtn" id="addSvc">+ услуга</button>
-      <label style="margin-top:14px">Примечание под услугами (необязательно)</label>
-      <input id="f_svcnote" placeholder="Prices shown start from the Small vehicle size…">
+      <button class="btn btn-ghost btn-sm" id="addSvc">+ услуга</button>
+      <label style="margin-top:14px">Примечание под услугами <span class="tr-badge">язык</span></label>
+      <input id="t_svcnote">
     </fieldset>
 
     <fieldset>
-      <legend>«ПОЧЕМУ МЫ» — 3 ПУНКТА</legend>
+      <legend>«ПОЧЕМУ МЫ» — 3 ПУНКТА <span class="tr-badge">язык</span></legend>
       <div id="why"></div>
     </fieldset>
 
     <div class="actions">
       <button class="btn btn-gold" id="dlHtml">↓ index.html</button>
       <button class="btn btn-gold" id="dlLlms">↓ llms.txt</button>
-      <button class="btn btn-ghost" id="dlBoth">↓ оба файла</button>
       <button class="btn btn-ghost" id="loadDeluxe">Пример: Deluxe</button>
     </div>
-    <p class="note">Папка с файлами загружается в наш бесплатный хостинг под адрес вида <span class="ok">имяклиента.pages.dev</span> или <span class="ok">deluxecarwash.github.io/имя/</span>. Домен клиенту не нужен.</p>
+    <p class="note">Все 3 языка попадают в код страницы — ИИ читает факты на каждом. Файлы грузим на бесплатный хостинг под <span class="ok">имя.pages.dev</span> или <span class="ok">deluxecarwash.github.io/имя/</span>.</p>
   </div>
 
-  <!-- ============ PREVIEW ============ -->
   <div class="panelR">
     <div class="pv-bar">
       <strong class="ar" style="letter-spacing:.04em">Предпросмотр</strong>
-      <div class="seg">
-        <button id="segDesk" class="on">Десктоп</button>
-        <button id="segMob">Телефон</button>
-      </div>
+      <div class="seg"><button id="segDesk" class="on">Десктоп</button><button id="segMob">Телефон</button></div>
       <span class="note" id="pvStatus" style="margin-left:auto"></span>
     </div>
     <div class="pv-wrap" id="pvWrap"><iframe id="pv" title="preview"></iframe></div>
@@ -142,253 +145,338 @@ iframe#pv{border:none;background:#fff;width:100%;height:100%;transition:width .2
 </div>
 
 <script>
-/* ---------- state ---------- */
-const DAYS=[["mon","Monday"],["tue","Tuesday"],["wed","Wednesday"],["thu","Thursday"],["fri","Friday"],["sat","Saturday"],["sun","Sunday"]];
+const LANGS=["en","el","ru"];
+const DAYNAMES={
+  en:{mon:"Monday",tue:"Tuesday",wed:"Wednesday",thu:"Thursday",fri:"Friday",sat:"Saturday",sun:"Sunday",mf:"Monday – Friday",closed:"Closed"},
+  el:{mon:"Δευτέρα",tue:"Τρίτη",wed:"Τετάρτη",thu:"Πέμπτη",fri:"Παρασκευή",sat:"Σάββατο",sun:"Κυριακή",mf:"Δευτέρα – Παρασκευή",closed:"Κλειστά"},
+  ru:{mon:"Понедельник",tue:"Вторник",wed:"Среда",thu:"Четверг",fri:"Пятница",sat:"Суббота",sun:"Воскресенье",mf:"Понедельник – Пятница",closed:"Закрыто"}
+};
+/* UI dictionary for generated site */
+const UI={
+  en:{navS:"Services",navW:"Why us",navV:"Visit",navF:"FAQ",navBook:"Book a time",navCall:"Call us",
+      eyWhat:"What we do",h2S:"Our services.",eyWhy:"Why us",h2W:"What you can count on.",
+      eyV:"Visit us",h2V:"Find us",dtA:"ADDRESS",dtP:"PHONE",dtSoc:"SOCIAL",mapGo:"Open in Google Maps →",
+      eyF:"Questions",h2F:"Good to know.",finalBook:"Book your visit.",finalTouch:"Get in touch.",finalP:"We'd love to help.",
+      ctaBook:"Book a time →",ctaCall:"Call us →",wa:"WhatsApp",call:"Call",since:"Since",serving:"Serving",svcL:"Services",local:"Local",easy:"Easy",easyL:"Book or call ahead"},
+  el:{navS:"Υπηρεσίες",navW:"Γιατί εμείς",navV:"Επισκεφθείτε",navF:"FAQ",navBook:"Κράτηση",navCall:"Καλέστε μας",
+      eyWhat:"Τι κάνουμε",h2S:"Οι υπηρεσίες μας.",eyWhy:"Γιατί εμείς",h2W:"Σε τι μπορείτε να βασιστείτε.",
+      eyV:"Επισκεφθείτε μας",h2V:"Βρείτε μας",dtA:"ΔΙΕΥΘΥΝΣΗ",dtP:"ΤΗΛΕΦΩΝΟ",dtSoc:"SOCIAL",mapGo:"Άνοιγμα στο Google Maps →",
+      eyF:"Ερωτήσεις",h2F:"Καλό να ξέρετε.",finalBook:"Κλείστε το ραντεβού σας.",finalTouch:"Επικοινωνήστε μαζί μας.",finalP:"Θα χαρούμε να βοηθήσουμε.",
+      ctaBook:"Κράτηση →",ctaCall:"Καλέστε μας →",wa:"WhatsApp",call:"Καλέστε",since:"Από το",serving:"Εξυπηρετούμε",svcL:"Υπηρεσίες",local:"Τοπικά",easy:"Εύκολα",easyL:"Κράτηση ή κλήση"},
+  ru:{navS:"Услуги",navW:"Почему мы",navV:"Контакты",navF:"Вопросы",navBook:"Записаться",navCall:"Позвонить",
+      eyWhat:"Что мы делаем",h2S:"Наши услуги.",eyWhy:"Почему мы",h2W:"На что можно рассчитывать.",
+      eyV:"Как нас найти",h2V:"Найдите нас",dtA:"АДРЕС",dtP:"ТЕЛЕФОН",dtSoc:"СОЦСЕТИ",mapGo:"Открыть в Google Maps →",
+      eyF:"Вопросы",h2F:"Полезно знать.",finalBook:"Запишитесь на визит.",finalTouch:"Свяжитесь с нами.",finalP:"Будем рады помочь.",
+      ctaBook:"Записаться →",ctaCall:"Позвонить →",wa:"WhatsApp",call:"Позвонить",since:"С",serving:"Работаем в",svcL:"Услуги",local:"Рядом",easy:"Удобно",easyL:"Запись или звонок"}
+};
+
 let state={
-  services:[], why:[],
+  lang:"en",
+  shared:{name:"",brand:"",year:"",addr:"",street:"",locality:"",zip:"",country:"",phone:"",wa:"",ig:"",book:""},
+  tr:{en:{},el:{},ru:{}}, // city,kicker,h1,accent,lead,svcnote
+  services:[], // {price, name:{en,el,ru}, desc:{..}, group:{..}}
+  why:[],      // {title:{..}, text:{..}}
   hours:{mon:["07:30","18:00"],tue:["07:30","18:00"],wed:["07:30","18:00"],thu:["07:30","18:00"],fri:["07:30","18:00"],sat:["07:30","17:00"],sun:["07:30","14:30"]},
   closed:{}
 };
+LANGS.forEach(l=>{state.tr[l]={city:"",kicker:"",h1:"",accent:"",lead:"",svcnote:""};});
 
-/* ---------- escaping ---------- */
 const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
-const escA=s=>esc(s); // attribute
-const jtxt=s=>String(s==null?"":s).replace(/\\/g,"\\\\").replace(/"/g,'\\"').replace(/\n/g," "); // for JSON-LD strings
+const jtxt=s=>String(s==null?"":s).replace(/\\/g,"\\\\").replace(/"/g,'\\"').replace(/\n/g," ");
+const g=id=>document.getElementById(id);
 
-/* ---------- collect data from form ---------- */
-function data(){
-  const g=id=>document.getElementById(id).value.trim();
-  return {
-    name:g("f_name")||"Your Business",
-    brand:(g("f_brand")||g("f_name")||"BRAND").toUpperCase(),
-    kicker:g("f_kicker")||"",
-    year:g("f_year")||"",
-    h1:g("f_h1")||g("f_name")||"",
-    accent:g("f_accentword")||"",
-    lead:g("f_lead")||"",
-    addr:g("f_addr")||"",
-    street:g("f_street")||"", locality:g("f_locality")||"", zip:g("f_zip")||"",
-    city:g("f_city")||"", country:(g("f_country")||"").toUpperCase(),
-    phone:g("f_phone")||"", wa:g("f_wa").replace(/\D/g,""),
-    ig:g("f_ig").replace(/^@/,""), book:g("f_book")||"",
-    svcnote:g("f_svcnote")||"",
-    services:state.services, why:state.why, hours:state.hours, closed:state.closed
-  };
+/* ---------- read shared + current-lang fields from form into state ---------- */
+function pull(){
+  const s=state.shared;
+  s.name=g("f_name").value.trim();s.brand=g("f_brand").value.trim();s.year=g("f_year").value.trim();
+  s.addr=g("f_addr").value.trim();s.street=g("f_street").value.trim();s.locality=g("f_locality").value.trim();
+  s.zip=g("f_zip").value.trim();s.country=g("f_country").value.trim().toUpperCase();
+  s.phone=g("f_phone").value.trim();s.wa=g("f_wa").value.replace(/\D/g,"");s.ig=g("f_ig").value.trim().replace(/^@/,"");s.book=g("f_book").value.trim();
+  const t=state.tr[state.lang];
+  t.city=g("t_city").value.trim();t.kicker=g("t_kicker").value.trim();t.h1=g("t_h1").value.trim();
+  t.accent=g("t_accent").value.trim();t.lead=g("t_lead").value.trim();t.svcnote=g("t_svcnote").value.trim();
+}
+/* ---------- load current-lang fields into form ---------- */
+function loadLangFields(){
+  const t=state.tr[state.lang];
+  g("t_city").value=t.city||"";g("t_kicker").value=t.kicker||"";g("t_h1").value=t.h1||"";
+  g("t_accent").value=t.accent||"";g("t_lead").value=t.lead||"";g("t_svcnote").value=t.svcnote||"";
+  g("curLang").textContent={en:"English",el:"Ελληνικά",ru:"Русский"}[state.lang];
+  renderSvcs();renderWhy();
 }
 
-/* ---------- build the client site ---------- */
-function hoursRowsVisible(d){
-  // group identical consecutive weekdays Mon-Fri if same
-  const label={mon:"Monday",tue:"Tuesday",wed:"Wednesday",thu:"Thursday",fri:"Friday",sat:"Saturday",sun:"Sunday"};
-  let rows="";
-  // weekdays
+/* ================= BUILD STRINGS PER LANGUAGE ================= */
+function faqList(d,l){
+  const t=d.tr[l], u=UI[l], out=[];
+  const name=d.shared.name||t.city||"";
+  if(d.shared.addr){
+    let a;
+    if(l==="el") a="Βρισκόμαστε στη διεύθυνση "+d.shared.addr+(d.shared.phone?". Καλέστε "+d.shared.phone:"")+(d.shared.wa?" ή στείλτε μήνυμα στο WhatsApp.":".");
+    else if(l==="ru") a="Мы находимся по адресу "+d.shared.addr+(d.shared.phone?". Звоните "+d.shared.phone:"")+(d.shared.wa?" или напишите в WhatsApp.":".");
+    else a="We are at "+d.shared.addr+(d.shared.phone?". Call "+d.shared.phone:"")+(d.shared.wa?" or message us on WhatsApp.":".");
+    const q={en:"Where is "+name+"?",el:"Πού βρίσκεται το "+name+";",ru:"Где находится "+name+"?"}[l];
+    out.push([q,a]);
+  }
+  const priced=d.services.find(s=>/\d/.test(s.price));
+  if(priced){
+    const pn=priced.name[l]||priced.name.en||"";
+    let q,a;
+    if(l==="el"){q="Πόσο κοστίζουν οι υπηρεσίες σας;";a="Οι τιμές ξεκινούν από "+priced.price+" για "+pn+". Δείτε την πλήρη λίστα παραπάνω· οι μεγαλύτερες εργασίες υπολογίζονται κατόπιν αιτήματος.";}
+    else if(l==="ru"){q="Сколько стоят ваши услуги?";a="Цены начинаются от "+priced.price+" за "+pn+". Полный список выше; крупные работы рассчитываются по запросу.";}
+    else {q="How much do your services cost?";a="Prices start from "+priced.price+" for "+pn+". See the full list above; larger jobs are quoted on request.";}
+    out.push([q,a]);
+  }
+  {let q,a;
+    if(l==="el"){q="Χρειάζομαι ραντεβού;";a=d.shared.book?"Η online κράτηση διαρκεί περίπου δύο λεπτά και εξασφαλίζει τη θέση σας. Οι επισκέψεις χωρίς ραντεβού είναι ευπρόσδεκτες όταν υπάρχει χώρος.":"Σας προτείνουμε να επικοινωνήσετε εκ των προτέρων. Οι επισκέψεις χωρίς ραντεβού είναι ευπρόσδεκτες όταν υπάρχει χώρος.";}
+    else if(l==="ru"){q="Нужна ли запись?";a=d.shared.book?"Онлайн-запись занимает около двух минут и гарантирует ваше время. Без записи — когда есть свободное место.":"Рекомендуем связаться заранее, чтобы забронировать время. Без записи — когда есть место.";}
+    else {q="Do I need an appointment?";a=d.shared.book?"Booking online takes about two minutes and guarantees your slot. Walk-ins are welcome when there is space.":"We recommend contacting us ahead to reserve your slot. Walk-ins are welcome when there is space.";}
+    out.push([q,a]);
+  }
+  if(d.shared.phone||d.shared.wa){let q,a;
+    const tail=(d.shared.phone||"")+(d.shared.wa?(l==="ru"?" или WhatsApp +":l==="el"?" ή WhatsApp +":" or WhatsApp +")+d.shared.wa:"");
+    if(l==="el"){q="Πώς μπορώ να επικοινωνήσω;";a="Καλέστε "+tail+".";}
+    else if(l==="ru"){q="Как с вами связаться?";a="Звоните "+tail+".";}
+    else {q="How can I reach you?";a="Call "+tail+".";}
+    out.push([q,a]);
+  }
+  return out;
+}
+
+function strings(d,l){
+  const t=d.tr[l], u=UI[l];
+  const S={};
+  S.kicker=esc(t.kicker);
+  S.h1=(t.accent&&t.h1.includes(t.accent))?esc(t.h1).replace(esc(t.accent),`<em>${esc(t.accent)}</em>`):esc(t.h1);
+  S.lead=esc(t.lead);
+  S.navS=esc(u.navS);S.navW=esc(u.navW);S.navV=esc(u.navV);S.navF=esc(u.navF);
+  S.navBtn=esc(d.shared.book?u.navBook:u.navCall);
+  S.ctaPrimary=esc(d.shared.book?u.ctaBook:u.ctaCall);
+  S.ctaSecondary=d.shared.book&&d.shared.phone?esc(u.call+" "+d.shared.phone):(d.shared.wa?esc(u.wa):"");
+  S.eyWhat=esc(u.eyWhat);S.h2S=esc(u.h2S);S.svcnote=esc(t.svcnote);
+  S.eyWhy=esc(u.eyWhy);S.h2W=esc(u.h2W);
+  S.eyV=esc(u.eyV);S.h2V=esc(u.h2V+(t.city?" "+({en:"in",el:"στη",ru:"в"})[l]+" "+t.city:"")+".");
+  S.dtA=esc(u.dtA);S.dtP=esc(u.dtP);S.dtSoc=esc(u.dtSoc);S.mapGo=esc(u.mapGo);
+  S.eyF=esc(u.eyF);S.h2F=esc(u.h2F);
+  S.finalH=esc(d.shared.book?u.finalBook:u.finalTouch);S.finalP=esc(u.finalP);
+  // trust
+  S.tSince=esc(d.shared.year?u.since+" "+d.shared.year:"");
+  S.tServing=esc(t.city?u.serving+" "+t.city:"");
+  S.tSvcL=esc(u.svcL);S.tLocal=esc(u.local);S.tLocalL=esc(t.city);S.tEasy=esc(u.easy);S.tEasyL=esc(u.easyL);
+  // services
+  d.services.forEach((s,i)=>{S["sv"+i+"n"]=esc(s.name[l]||s.name.en||"");S["sv"+i+"d"]=esc(s.desc[l]||s.desc.en||"");S["sv"+i+"g"]=esc((s.group[l]||s.group.en||"SERVICES").toUpperCase());});
+  // why
+  d.why.forEach((w,i)=>{S["wy"+i+"t"]=esc(w.title[l]||w.title.en||"");S["wy"+i+"x"]=esc(w.text[l]||w.text.en||"");});
+  // hours
+  const dn=DAYNAMES[l];
   const wd=["mon","tue","wed","thu","fri"];
-  const same=wd.every(k=>!d.closed[k] && d.hours[k][0]===d.hours.mon[0] && d.hours[k][1]===d.hours.mon[1]) && !d.closed.mon;
-  if(same){rows+=`<li><span class="d">Monday – Friday</span><span>${esc(d.hours.mon[0])} – ${esc(d.hours.mon[1])}</span></li>`;}
-  else{wd.forEach(k=>{rows+=`<li><span class="d">${label[k]}</span><span>${d.closed[k]?"Closed":esc(d.hours[k][0])+" – "+esc(d.hours[k][1])}</span></li>`;});}
-  ["sat","sun"].forEach(k=>{rows+=`<li><span class="d">${label[k]}</span><span>${d.closed[k]?"Closed":esc(d.hours[k][0])+" – "+esc(d.hours[k][1])}</span></li>`;});
-  return rows;
-}
-function hoursSchema(d){
-  const map={mon:"Monday",tue:"Tuesday",wed:"Wednesday",thu:"Thursday",fri:"Friday",sat:"Saturday",sun:"Sunday"};
-  let out=[];
-  DAYS.forEach(([k])=>{ if(!d.closed[k]) out.push(`{"@type":"OpeningHoursSpecification","dayOfWeek":"${map[k]}","opens":"${d.hours[k][0]}","closes":"${d.hours[k][1]}"}`); });
-  return out.join(",\n    ");
-}
-function servicesHtml(d){
-  if(!d.services.length) return "";
-  // group by group name
-  const groups={};
-  d.services.forEach(s=>{(groups[s.group||"SERVICES"]=groups[s.group||"SERVICES"]||[]).push(s);});
-  let out="";
-  Object.keys(groups).forEach(gname=>{
-    out+=`\n  <div class="svc-group">\n    <h3>${esc(gname.toUpperCase())}</h3>`;
-    groups[gname].forEach(s=>{
-      out+=`\n    <div class="svc">\n      <div><div class="name">${esc(s.name)}</div>${s.desc?`<div class="desc">${esc(s.desc)}</div>`:""}</div>\n      <div class="price">${esc(s.price)}</div>\n    </div>`;
-    });
-    out+=`\n  </div>`;
-  });
-  return out;
-}
-function whyHtml(d){
-  const marks=["◆","❖","✦"];
-  if(!d.why.length) return "";
-  let out="";
-  d.why.forEach((w,i)=>{ out+=`\n    <div class="item"><div class="mark">${marks[i%3]}</div><h3>${esc(w.title)}</h3><p>${esc(w.text)}</p></div>`; });
-  return out;
-}
-function faqData(d){
-  const list=[];
-  if(d.addr) list.push(["Where is "+d.name+"?","We are at "+d.addr+(d.phone?". Call "+d.phone:"")+(d.wa?" or message us on WhatsApp.":".")]);
-  const prices=d.services.filter(s=>/\d/.test(s.price));
-  if(prices.length){const p=prices[0];list.push(["How much do your services cost?","Prices start from "+p.price+" for "+p.name+". See the full list above; larger jobs are quoted on request."]);}
-  list.push(["Do I need an appointment?", d.book?"Booking online takes about two minutes and guarantees your slot. Walk-ins are welcome when there is space.":"We recommend contacting us ahead to reserve your slot. Walk-ins are welcome when there is space."]);
-  if(d.phone||d.wa) list.push(["How can I reach you?","Call "+(d.phone||"")+(d.wa?" or WhatsApp "+("+"+d.wa):"")+"."]);
-  return list;
-}
-function faqHtml(d){
-  const f=faqData(d); if(!f.length) return "";
-  return f.map((q,i)=>`\n    <details${i===0?" open":""}>\n      <summary>${esc(q[0])}</summary>\n      <p>${esc(q[1])}</p>\n    </details>`).join("");
-}
-function faqSchema(d){
-  const f=faqData(d); if(!f.length) return "";
-  return `<script type="application/ld+json">\n{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[${f.map(q=>`{"@type":"Question","name":"${jtxt(q[0])}","acceptedAnswer":{"@type":"Answer","text":"${jtxt(q[1])}"}}`).join(",")}]}\n<\/script>`;
-}
-function offersSchema(d){
-  const offs=d.services.map(s=>{const m=String(s.price).match(/(\d[\d.,]*)/);return m?`{"@type":"Offer","itemOffered":{"@type":"Service","name":"${jtxt(s.name)}"},"price":"${m[1].replace(/[.,]/g,'')}","priceCurrency":"EUR"}`:null;}).filter(Boolean);
-  return offs.length?`,\n  "makesOffer":[${offs.join(",")}]`:"";
-}
-function h1Html(d){
-  if(d.accent && d.h1.includes(d.accent)) return esc(d.h1).replace(esc(d.accent),`<em>${esc(d.accent)}</em>`);
-  return esc(d.h1);
-}
-function bookBtns(d){
-  const primary=d.book?`<a class="btn btn-primary" href="${escA(d.book)}">Book a time →</a>`:(d.phone?`<a class="btn btn-primary" href="tel:${escA(d.phone.replace(/\s/g,''))}">Call us →</a>`:"");
-  const second=d.book&&d.phone?`<a class="btn btn-ghost" href="tel:${escA(d.phone.replace(/\s/g,''))}">Call ${esc(d.phone)}</a>`:(d.wa?`<a class="btn btn-ghost" href="https://wa.me/${escA(d.wa)}" target="_blank" rel="noopener">WhatsApp</a>`:"");
-  return primary+second;
+  const same=!d.closed.mon&&wd.every(k=>!d.closed[k]&&d.hours[k][0]===d.hours.mon[0]&&d.hours[k][1]===d.hours.mon[1]);
+  S._hours=[];
+  if(same){S._hours.push([dn.mf,esc(d.hours.mon[0]+" – "+d.hours.mon[1])]);}
+  else{wd.forEach(k=>S._hours.push([dn[k],d.closed[k]?dn.closed:esc(d.hours[k][0]+" – "+d.hours[k][1])]));}
+  ["sat","sun"].forEach(k=>S._hours.push([dn[k],d.closed[k]?dn.closed:esc(d.hours[k][0]+" – "+d.hours[k][1])]));
+  // faq
+  S._faq=faqList(d,l).map(q=>[esc(q[0]),esc(q[1])]);
+  return S;
 }
 
+/* ================= BUILD SITE ================= */
 function buildSite(d){
-  const CSS = SITE_CSS; // defined below
-  const trust = [
-    d.year?`<div class="cell"><div class="n">Since ${esc(d.year)}</div><div class="l">Serving ${esc(d.city||"our city")}</div></div>`:"",
-    d.services.length?`<div class="cell"><div class="n">${d.services.length}</div><div class="l">Services</div></div>`:"",
-    `<div class="cell"><div class="n">Local</div><div class="l">${esc(d.city||"")}</div></div>`,
-    (d.book||d.phone)?`<div class="cell"><div class="n">Easy</div><div class="l">Book or call ahead</div></div>`:""
+  const maps=d.shared.addr?"https://www.google.com/maps/dir/?api=1&destination="+encodeURIComponent((d.shared.name||"")+" "+d.shared.addr):"";
+  const bookHref=d.shared.book||(d.shared.phone?"tel:"+d.shared.phone.replace(/\s/g,""):"#");
+  const telHref=d.shared.phone?"tel:"+d.shared.phone.replace(/\s/g,""):"";
+  const waHref=d.shared.wa?"https://wa.me/"+d.shared.wa:"";
+  const SS={};LANGS.forEach(l=>SS[l]=strings(d,l));
+  const E=SS.en; // default render = english
+
+  // nav
+  const nav=`${d.services.length?`<a href="#services" data-t="navS">${E.navS}</a>`:""}
+      ${d.why.length?`<a href="#why" data-t="navW">${E.navW}</a>`:""}
+      ${d.shared.addr?`<a href="#visit" data-t="navV">${E.navV}</a>`:""}
+      <a href="#faq" data-t="navF">${E.navF}</a>
+      ${(d.shared.book||d.shared.phone)?`<a class="book" href="${esc(bookHref)}" data-t="navBtn">${E.navBtn}</a>`:""}
+      <span class="langsw">${LANGS.map(l=>`<button data-lb="${l}"${l==="en"?' class="on"':""} onclick="setLang('${l}')">${l.toUpperCase()}<\/button>`).join("")}</span>`;
+
+  // trust
+  const trustCells=[
+    d.shared.year?`<div class="cell"><div class="n" data-t="tSince">${E.tSince}</div><div class="l" data-t="tServing">${E.tServing}</div></div>`:"",
+    d.services.length?`<div class="cell"><div class="n">${d.services.length}</div><div class="l" data-t="tSvcL">${E.tSvcL}</div></div>`:"",
+    E.tLocalL?`<div class="cell"><div class="n" data-t="tLocal">${E.tLocal}</div><div class="l" data-t="tLocalL">${E.tLocalL}</div></div>`:"",
+    (d.shared.book||d.shared.phone)?`<div class="cell"><div class="n" data-t="tEasy">${E.tEasy}</div><div class="l" data-t="tEasyL">${E.tEasyL}</div></div>`:""
   ].filter(Boolean).join("");
 
-  const navLinks = `
-      ${d.services.length?'<a href="#services">Services</a>':""}
-      ${d.why.length?'<a href="#why">Why us</a>':""}
-      ${d.addr?'<a href="#visit">Visit</a>':""}
-      <a href="#faq">FAQ</a>
-      ${(d.book||d.phone)?`<a class="book" href="${escA(d.book||("tel:"+d.phone.replace(/\\s/g,'')))}">${d.book?"Book a time":"Call us"}</a>`:""}`;
+  // services grouped (english default order)
+  let svcHtml="";
+  if(d.services.length){
+    const groups={};
+    d.services.forEach((s,i)=>{const gk=s.group.en||"SERVICES";(groups[gk]=groups[gk]||[]).push(i);});
+    Object.keys(groups).forEach(gk=>{
+      const first=groups[gk][0];
+      svcHtml+=`\n    <div class="svc-group"><h3 data-t="sv${first}g">${E["sv"+first+"g"]}</h3>`;
+      groups[gk].forEach(i=>{
+        svcHtml+=`\n      <div class="svc"><div><div class="name" data-t="sv${i}n">${E["sv"+i+"n"]}</div>${(d.services[i].desc.en||d.services[i].desc.el||d.services[i].desc.ru)?`<div class="desc" data-t="sv${i}d">${E["sv"+i+"d"]}</div>`:""}</div><div class="price">${esc(d.services[i].price)}</div></div>`;
+      });
+      svcHtml+=`\n    </div>`;
+    });
+  }
 
-  const mapHref = d.addr?`https://www.google.com/maps/dir/?api=1&destination=`+encodeURIComponent(d.name+" "+d.addr):"";
+  // why
+  const marks=["◆","❖","✦"];
+  let whyHtml="";
+  d.why.forEach((w,i)=>{ whyHtml+=`\n      <div class="item"><div class="mark">${marks[i%3]}</div><h3 data-t="wy${i}t">${E["wy"+i+"t"]}</h3><p data-t="wy${i}x">${E["wy"+i+"x"]}</p></div>`; });
+
+  // hours
+  const hoursHtml=E._hours.map((h,i)=>`<li><span class="d" data-t="hr${i}d">${h[0]}</span><span data-t="hr${i}v">${h[1]}</span></li>`).join("");
+
+  // faq
+  const faqHtml=E._faq.map((q,i)=>`\n    <details${i===0?" open":""}><summary data-t="fq${i}q">${q[0]}</summary><p data-t="fq${i}a">${q[1]}</p></details>`).join("");
+
+  // build LANGDATA (all keys per lang, incl arrays flattened)
+  const LD={};
+  LANGS.forEach(l=>{
+    const S=SS[l], m={};
+    Object.keys(S).forEach(k=>{ if(k[0]!=="_") m[k]=S[k]; });
+    S._hours.forEach((h,i)=>{m["hr"+i+"d"]=h[0];m["hr"+i+"v"]=h[1];});
+    S._faq.forEach((q,i)=>{m["fq"+i+"q"]=q[0];m["fq"+i+"a"]=q[1];});
+    LD[l]=m;
+  });
+
+  // schema (english facts)
+  const offs=d.services.map(s=>{const mm=String(s.price).match(/(\d[\d.,]*)/);return mm?`{"@type":"Offer","itemOffered":{"@type":"Service","name":"${jtxt(s.name.en||s.name.el||s.name.ru)}"},"price":"${mm[1].replace(/[.,]/g,'')}","priceCurrency":"EUR"}`:null;}).filter(Boolean);
+  const hoursSpec=[];const map={mon:"Monday",tue:"Tuesday",wed:"Wednesday",thu:"Thursday",fri:"Friday",sat:"Saturday",sun:"Sunday"};
+  ["mon","tue","wed","thu","fri","sat","sun"].forEach(k=>{if(!d.closed[k])hoursSpec.push(`{"@type":"OpeningHoursSpecification","dayOfWeek":"${map[k]}","opens":"${d.hours[k][0]}","closes":"${d.hours[k][1]}"}`);});
+  const faqEn=SS.en._faq;
+  const faqSchema=faqEn.length?`<script type="application/ld+json">\n{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[${faqEn.map(q=>`{"@type":"Question","name":"${jtxt(q[0])}","acceptedAnswer":{"@type":"Answer","text":"${jtxt(q[1])}"}}`).join(",")}]}\n<\/script>`:"";
+
+  const metaDesc=d.tr.en.lead||d.shared.name;
 
   return `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${esc(d.name)}${d.city?" — "+esc(d.city):""}</title>
-<meta name="description" content="${escA(d.lead||d.name)}">
-<meta property="og:title" content="${escA(d.name)}">
-<meta property="og:description" content="${escA(d.lead||d.name)}">
+<title>${esc(d.shared.name)}${d.tr.en.city?" — "+esc(d.tr.en.city):""}</title>
+<meta name="description" content="${esc(metaDesc)}">
+<meta property="og:title" content="${esc(d.shared.name)}">
+<meta property="og:description" content="${esc(metaDesc)}">
 <meta property="og:type" content="business.business">
+<meta property="og:locale" content="en">
+<meta property="og:locale:alternate" content="el">
+<meta property="og:locale:alternate" content="ru">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-<style>${CSS}</style>
+<style>${SITE_CSS}</style>
 </head>
 <body>
 <header class="nav"><div class="wrap">
-  <div class="brand">${esc(d.brand)}<span>.</span></div>
-  <nav>${navLinks}</nav>
+  <div class="brand">${esc(d.shared.brand||d.shared.name)}<span>.</span></div>
+  <nav>${nav}</nav>
 </div></header>
 
 <section class="hero"><div class="wrap">
-  ${d.kicker?`<p class="kicker">${esc(d.kicker)}</p>`:""}
-  <h1>${h1Html(d)}</h1>
-  ${d.lead?`<p class="lead">${esc(d.lead)}</p>`:""}
-  <div class="cta-row">${bookBtns(d)}</div>
+  ${d.tr.en.kicker?`<p class="kicker" data-t="kicker">${E.kicker}</p>`:""}
+  <h1 data-t="h1">${E.h1}</h1>
+  ${d.tr.en.lead?`<p class="lead" data-t="lead">${E.lead}</p>`:""}
+  <div class="cta-row">
+    ${(d.shared.book||d.shared.phone)?`<a class="btn btn-primary" href="${esc(bookHref)}" data-t="ctaPrimary">${E.ctaPrimary}</a>`:""}
+    ${E.ctaSecondary?`<a class="btn btn-ghost" href="${esc(d.shared.book&&d.shared.phone?telHref:waHref)}"${(d.shared.book&&d.shared.phone)?"":' target="_blank" rel="noopener"'} data-t="ctaSecondary">${E.ctaSecondary}</a>`:""}
+  </div>
 </div></section>
 
-${trust?`<section class="trust"><div class="wrap">${trust}</div></section>`:""}
+${trustCells?`<section class="trust"><div class="wrap">${trustCells}</div></section>`:""}
 
 ${d.services.length?`<section class="block wrap" id="services">
-  <p class="eyebrow">What we do</p>
-  <h2 class="h2">Our services.</h2>
-  ${d.svcnote?`<p class="sub">${esc(d.svcnote)}</p>`:""}
-  ${servicesHtml(d)}
+  <p class="eyebrow" data-t="eyWhat">${E.eyWhat}</p>
+  <h2 class="h2" data-t="h2S">${E.h2S}</h2>
+  ${d.tr.en.svcnote?`<p class="sub" data-t="svcnote">${E.svcnote}</p>`:""}
+  ${svcHtml}
 </section>`:""}
 
 ${d.why.length?`<section class="block wrap" id="why">
-  <p class="eyebrow">Why us</p>
-  <h2 class="h2">What you can count on.</h2>
-  <div class="why">${whyHtml(d)}</div>
+  <p class="eyebrow" data-t="eyWhy">${E.eyWhy}</p>
+  <h2 class="h2" data-t="h2W">${E.h2W}</h2>
+  <div class="why">${whyHtml}</div>
 </section>`:""}
 
-${d.addr?`<section class="block visit" id="visit"><div class="wrap grid">
+${d.shared.addr?`<section class="block visit" id="visit"><div class="wrap grid">
   <div>
-    <p class="eyebrow">Visit us</p>
-    <h2 class="h2">Find us${d.city?" in "+esc(d.city):""}.</h2>
+    <p class="eyebrow" data-t="eyV">${E.eyV}</p>
+    <h2 class="h2" data-t="h2V">${E.h2V}</h2>
     <dl class="info">
-      <dt>ADDRESS</dt><dd><a href="${escA(mapHref)}" target="_blank" rel="noopener">${esc(d.addr)}</a></dd>
-      ${(d.phone||d.wa)?`<dt>PHONE</dt><dd>${d.phone?`<a href="tel:${escA(d.phone.replace(/\\s/g,''))}">${esc(d.phone)}</a>`:""}${d.phone&&d.wa?" · ":""}${d.wa?`<a href="https://wa.me/${escA(d.wa)}" target="_blank" rel="noopener">WhatsApp</a>`:""}</dd>`:""}
-      ${d.ig?`<dt>SOCIAL</dt><dd><a href="https://instagram.com/${escA(d.ig)}" target="_blank" rel="noopener">@${esc(d.ig)}</a></dd>`:""}
+      <dt data-t="dtA">${E.dtA}</dt><dd><a href="${esc(maps)}" target="_blank" rel="noopener">${esc(d.shared.addr)}</a></dd>
+      ${(d.shared.phone||d.shared.wa)?`<dt data-t="dtP">${E.dtP}</dt><dd>${d.shared.phone?`<a href="${esc(telHref)}">${esc(d.shared.phone)}</a>`:""}${d.shared.phone&&d.shared.wa?" · ":""}${d.shared.wa?`<a href="${esc(waHref)}" target="_blank" rel="noopener">WhatsApp</a>`:""}</dd>`:""}
+      ${d.shared.ig?`<dt data-t="dtSoc">${E.dtSoc}</dt><dd><a href="https://instagram.com/${esc(d.shared.ig)}" target="_blank" rel="noopener">@${esc(d.shared.ig)}</a></dd>`:""}
     </dl>
-    <ul class="hours">${hoursRowsVisible(d)}</ul>
+    <ul class="hours">${hoursHtml}</ul>
   </div>
-  <a class="mapcard" href="${escA(mapHref)}" target="_blank" rel="noopener">
-    <div class="mapcard-inner"><div class="pin">◉</div><div class="mapcard-text">
-      <strong>${esc(d.street||d.addr)}</strong>
-      <span>${esc([d.zip,d.locality||d.city,d.country].filter(Boolean).join(" "))}</span>
-      <span class="go">Open in Google Maps →</span>
-    </div></div>
-  </a>
+  <a class="mapcard" href="${esc(maps)}" target="_blank" rel="noopener"><div class="mapcard-inner"><div class="pin">◉</div><div class="mapcard-text">
+    <strong>${esc(d.shared.street||d.shared.addr)}</strong>
+    <span>${esc([d.shared.zip,d.shared.locality||d.tr.en.city,d.shared.country].filter(Boolean).join(" "))}</span>
+    <span class="go" data-t="mapGo">${E.mapGo}</span>
+  </div></div></a>
 </div></section>`:""}
 
 <section class="block wrap" id="faq">
-  <p class="eyebrow">Questions</p>
-  <h2 class="h2">Good to know.</h2>
-  <div class="faq" style="margin-top:40px">${faqHtml(d)}</div>
+  <p class="eyebrow" data-t="eyF">${E.eyF}</p>
+  <h2 class="h2" data-t="h2F">${E.h2F}</h2>
+  <div class="faq" style="margin-top:40px">${faqHtml}</div>
 </section>
 
 <section class="final"><div class="wrap">
-  <h2>${d.book?"Book your visit.":"Get in touch."}</h2>
-  ${d.lead?`<p>${esc(d.city?"In "+d.city+". ":"")}We'd love to help.</p>`:""}
-  <div class="cta-row" style="justify-content:center">${bookBtns(d)}</div>
+  <h2 data-t="finalH">${E.finalH}</h2>
+  <p data-t="finalP">${E.finalP}</p>
+  <div class="cta-row" style="justify-content:center">
+    ${(d.shared.book||d.shared.phone)?`<a class="btn btn-primary" href="${esc(bookHref)}" data-t="ctaPrimary">${E.ctaPrimary}</a>`:""}
+  </div>
 </div></section>
 
 <footer><div class="wrap">
-  <div><strong style="font-family:'Archivo',system-ui,sans-serif;letter-spacing:.1em;color:var(--text)">${esc(d.name.toUpperCase())}</strong>${d.addr?"<br>"+esc(d.addr):""}${d.year?" · Since "+esc(d.year):""}</div>
-  <div>${d.phone?`<a href="tel:${escA(d.phone.replace(/\\s/g,''))}">${esc(d.phone)}</a>`:""}${d.ig?` · <a href="https://instagram.com/${escA(d.ig)}" target="_blank" rel="noopener">Instagram</a>`:""}</div>
+  <div><strong style="font-family:'Archivo',system-ui,sans-serif;letter-spacing:.1em;color:var(--text)">${esc((d.shared.name||"").toUpperCase())}</strong>${d.shared.addr?"<br>"+esc(d.shared.addr):""}${d.shared.year?" · "+esc(UI.en.since+" "+d.shared.year):""}</div>
+  <div>${d.shared.phone?`<a href="${esc(telHref)}">${esc(d.shared.phone)}</a>`:""}${d.shared.ig?` · <a href="https://instagram.com/${esc(d.shared.ig)}" target="_blank" rel="noopener">Instagram</a>`:""}</div>
 </div></footer>
 
 <script type="application/ld+json">
 {
-  "@context":"https://schema.org",
-  "@type":"LocalBusiness",
-  "name":"${jtxt(d.name)}",
-  "description":"${jtxt(d.lead||d.name)}",
-  ${d.phone?`"telephone":"${jtxt(d.phone)}",`:""}
-  ${d.year?`"foundingDate":"${jtxt(d.year)}",`:""}
-  "priceRange":"€€",
-  "address":{"@type":"PostalAddress","streetAddress":"${jtxt(d.street)}","addressLocality":"${jtxt(d.locality||d.city)}","postalCode":"${jtxt(d.zip)}","addressRegion":"${jtxt(d.city)}","addressCountry":"${jtxt(d.country)}"}${d.city?`,\n  "areaServed":{"@type":"City","name":"${jtxt(d.city)}"}`:""}${d.ig?`,\n  "sameAs":["https://instagram.com/${jtxt(d.ig)}"]`:""},
-  "openingHoursSpecification":[\n    ${hoursSchema(d)}\n  ]${offersSchema(d)}
+  "@context":"https://schema.org","@type":"LocalBusiness",
+  "name":"${jtxt(d.shared.name)}","description":"${jtxt(metaDesc)}",
+  ${d.shared.phone?`"telephone":"${jtxt(d.shared.phone)}",`:""}${d.shared.year?`"foundingDate":"${jtxt(d.shared.year)}",`:""}"priceRange":"€€",
+  "address":{"@type":"PostalAddress","streetAddress":"${jtxt(d.shared.street)}","addressLocality":"${jtxt(d.shared.locality||d.tr.en.city)}","postalCode":"${jtxt(d.shared.zip)}","addressRegion":"${jtxt(d.tr.en.city)}","addressCountry":"${jtxt(d.shared.country)}"}${d.tr.en.city?`,\n  "areaServed":{"@type":"City","name":"${jtxt(d.tr.en.city)}"}`:""}${d.shared.ig?`,\n  "sameAs":["https://instagram.com/${jtxt(d.shared.ig)}"]`:""},
+  "openingHoursSpecification":[\n    ${hoursSpec.join(",\n    ")}\n  ]${offs.length?`,\n  "makesOffer":[${offs.join(",")}]`:""}
 }
 <\/script>
-${faqSchema(d)}
+${faqSchema}
+<script>
+const LD=${JSON.stringify(LD)};
+function setLang(l){if(!LD[l])return;document.documentElement.lang=l;
+  document.querySelectorAll('[data-t]').forEach(e=>{const v=LD[l][e.getAttribute('data-t')];if(v!=null)e.innerHTML=v;});
+  document.querySelectorAll('[data-lb]').forEach(b=>b.classList.toggle('on',b.getAttribute('data-lb')===l));
+  try{localStorage.setItem('siteLang',l)}catch(e){}}
+(function(){let l='en';try{l=localStorage.getItem('siteLang')||navigator.language.slice(0,2)}catch(e){}if(!LD[l])l='en';setLang(l);})();
+<\/script>
 </body>
 </html>`;
 }
 
 function buildLlms(d){
-  let s="# "+d.name+"\n\n";
-  if(d.lead) s+="> "+d.lead+"\n\n";
-  s+="## Business facts\n";
-  s+="- Name: "+d.name+"\n";
-  if(d.addr) s+="- Location: "+d.addr+"\n";
-  if(d.phone) s+="- Phone: "+d.phone+"\n";
-  if(d.wa) s+="- WhatsApp: +"+d.wa+"\n";
-  if(d.ig) s+="- Instagram: https://instagram.com/"+d.ig+"\n";
-  if(d.year) s+="- Founded: "+d.year+"\n";
-  if(d.book) s+="- Booking: "+d.book+"\n";
-  const hv=DAYS.filter(([k])=>!d.closed[k]).map(([k,n])=>n.slice(0,3)+" "+d.hours[k][0]+"–"+d.hours[k][1]).join(", ");
-  s+="- Hours: "+hv+"\n";
-  if(d.services.length){
-    s+="\n## Services and prices\n";
-    d.services.forEach(x=>{ s+="- "+x.name+(x.price?" — "+x.price:"")+(x.desc?" ("+x.desc+")":"")+"\n"; });
-  }
-  s+="\n## Notes for assistants\nThese facts are published by the business itself and kept current.";
-  if(d.book||d.phone) s+=" For bookings, direct users to "+(d.book||d.phone)+".";
-  s+="\n";
-  return s;
+  const t=d.tr.en;let s="# "+(d.shared.name||"")+"\n\n";
+  if(t.lead) s+="> "+t.lead+"\n\n";
+  s+="## Business facts\n- Name: "+d.shared.name+"\n";
+  if(d.shared.addr)s+="- Location: "+d.shared.addr+"\n";
+  if(d.shared.phone)s+="- Phone: "+d.shared.phone+"\n";
+  if(d.shared.wa)s+="- WhatsApp: +"+d.shared.wa+"\n";
+  if(d.shared.ig)s+="- Instagram: https://instagram.com/"+d.shared.ig+"\n";
+  if(d.shared.year)s+="- Founded: "+d.shared.year+"\n";
+  if(d.shared.book)s+="- Booking: "+d.shared.book+"\n";
+  const hv=["mon","tue","wed","thu","fri","sat","sun"].filter(k=>!d.closed[k]).map(k=>DAYNAMES.en[k].slice(0,3)+" "+d.hours[k][0]+"–"+d.hours[k][1]).join(", ");
+  s+="- Hours: "+hv+"\n- Languages: English, Greek (Ελληνικά), Russian (Русский)\n";
+  if(d.services.length){s+="\n## Services and prices\n";d.services.forEach(x=>{s+="- "+(x.name.en||"")+(x.price?" — "+x.price:"")+(x.desc.en?" ("+x.desc.en+")":"")+"\n";});}
+  s+="\n## Notes for assistants\nFacts are published by the business and kept current. The site is available in English, Greek and Russian.";
+  if(d.shared.book||d.shared.phone)s+=" For bookings, direct users to "+(d.shared.book||d.shared.phone)+".";
+  return s+"\n";
 }
 
-/* ---------- SITE CSS (same system as Deluxe site) ---------- */
-const SITE_CSS = `
+/* ================= SITE CSS ================= */
+const SITE_CSS=`
 :root{--ink:#0E1417;--panel:#161E22;--panel-2:#1D262B;--line:#2A353B;--champagne:#C8A96A;--aqua:#6FB7C4;--text:#EAEFF0;--muted:#93A1A6;--muted-2:#6E7C81;--maxw:1140px}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;background:var(--ink);color:var(--text);font-family:"Hanken Grotesk",system-ui,-apple-system,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
@@ -399,12 +487,15 @@ a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:66px}
 .brand{font-family:"Archivo",system-ui,sans-serif;font-weight:800;font-size:20px;letter-spacing:.14em}
 .brand span{color:var(--champagne)}
-.nav nav{display:flex;gap:28px;align-items:center}
+.nav nav{display:flex;gap:24px;align-items:center}
 .nav nav a{color:var(--muted);font-size:15px;font-weight:500}
 .nav nav a:hover{color:var(--text)}
 .nav .book{display:inline-flex;align-items:center;gap:8px;background:var(--champagne);color:#1A1407;font-weight:700;padding:10px 18px;border-radius:999px;font-size:15px}
 .nav .book:hover{background:#d8bd82}
-@media(max-width:820px){.nav nav a:not(.book){display:none}}
+.langsw{display:inline-flex;gap:2px;border:1px solid var(--line);border-radius:999px;padding:3px}
+.langsw button{background:transparent;border:none;color:var(--muted);font:inherit;font-size:12px;font-weight:700;padding:4px 9px;border-radius:999px;cursor:pointer}
+.langsw button.on{background:var(--champagne);color:#1A1407}
+@media(max-width:900px){.nav nav a:not(.book){display:none}.nav .book{display:none}}
 .hero{position:relative;min-height:86vh;display:flex;align-items:flex-end;padding:0 0 66px;overflow:hidden;background:radial-gradient(130% 90% at 72% 18%, #1C2A30 0%, #121A1E 42%, #0B1013 100%)}
 .hero::before{content:"";position:absolute;inset:-20% -40%;pointer-events:none;background:linear-gradient(104deg,transparent 30%,rgba(200,169,106,0) 42%,rgba(227,207,160,.22) 50%,rgba(111,183,196,.10) 56%,transparent 66%);transform:translateX(-30%);animation:rake 2.6s cubic-bezier(.22,.61,.36,1) .25s both}
 .hero::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;background:radial-gradient(circle at 18% 72%,rgba(255,255,255,.07) 0 2px,transparent 3px),radial-gradient(circle at 28% 84%,rgba(255,255,255,.05) 0 3px,transparent 4px),radial-gradient(circle at 63% 66%,rgba(111,183,196,.10) 0 2px,transparent 3px),radial-gradient(circle at 80% 78%,rgba(255,255,255,.06) 0 2px,transparent 3px)}
@@ -412,9 +503,9 @@ a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
 .hero .wrap{position:relative;z-index:2;width:100%}
 .hero .kicker{color:var(--aqua);font-weight:600;font-size:15px;margin:0 0 20px;display:flex;align-items:center;gap:10px}
 .hero .kicker::before{content:"";width:30px;height:1px;background:var(--aqua);display:inline-block}
-.hero h1{font-weight:800;font-size:clamp(44px,8vw,104px);max-width:14ch}
+.hero h1{font-weight:800;font-size:clamp(40px,7.5vw,100px);max-width:15ch}
 .hero h1 em{font-style:normal;color:var(--champagne)}
-.hero p.lead{color:var(--muted);font-size:clamp(17px,2.2vw,21px);max-width:52ch;margin:22px 0 34px;line-height:1.5}
+.hero p.lead{color:var(--muted);font-size:clamp(17px,2.2vw,21px);max-width:54ch;margin:22px 0 34px;line-height:1.5}
 .cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
 .btn{display:inline-flex;align-items:center;gap:9px;font-weight:700;padding:15px 26px;border-radius:999px;font-size:16px;transition:.18s}
 .btn-primary{background:var(--champagne);color:#1A1407}
@@ -424,7 +515,7 @@ a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
 .trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel)}
 .trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:1px}
 .trust .cell{padding:26px 8px}
-.trust .n{font-family:"Archivo",system-ui,sans-serif;font-weight:700;font-size:26px;color:var(--text)}
+.trust .n{font-family:"Archivo",system-ui,sans-serif;font-weight:700;font-size:24px;color:var(--text)}
 .trust .l{color:var(--muted);font-size:14px;margin-top:4px}
 @media(max-width:720px){.trust .wrap{grid-template-columns:repeat(2,1fr)}.trust .cell{padding:20px 6px}}
 section.block{padding:92px 0}
@@ -435,7 +526,7 @@ section.block{padding:92px 0}
 .svc-group h3{font-size:15px;font-weight:700;color:var(--champagne);letter-spacing:.06em;padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:6px;font-family:"Archivo",system-ui,sans-serif}
 .svc{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:20px 0;border-bottom:1px solid var(--line)}
 .svc .name{font-family:"Archivo",system-ui,sans-serif;font-weight:600;font-size:20px}
-.svc .desc{color:var(--muted);font-size:15px;margin-top:4px;max-width:46ch}
+.svc .desc{color:var(--muted);font-size:15px;margin-top:4px;max-width:48ch}
 .svc .price{font-family:"Archivo",system-ui,sans-serif;font-weight:700;font-size:20px;white-space:nowrap;color:var(--text)}
 .why{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:54px}
 .why .item h3{font-size:21px;font-weight:700;margin-bottom:10px}
@@ -477,106 +568,101 @@ footer a{color:var(--muted)}footer a:hover{color:var(--text)}
 @media(prefers-reduced-motion:reduce){.hero::before{animation:none;opacity:.5;transform:translateX(10%)}html{scroll-behavior:auto}}
 `;
 
-/* ---------- form rendering: hours, services, why ---------- */
+/* ================= FORM RENDER ================= */
 function renderHours(){
-  const box=document.getElementById("hours");
-  box.innerHTML="";
-  DAYS.forEach(([k,n])=>{
+  const box=g("hours");box.innerHTML="";
+  [["mon","Пн"],["tue","Вт"],["wed","Ср"],["thu","Чт"],["fri","Пт"],["sat","Сб"],["sun","Вс"]].forEach(([k,n])=>{
     const row=document.createElement("div");row.className="hr-row";
-    row.innerHTML=`<span>${n.slice(0,3)}</span>
-      <input value="${state.hours[k][0]}" data-k="${k}" data-i="0" ${state.closed[k]?"disabled":""}>
-      <input value="${state.hours[k][1]}" data-k="${k}" data-i="1" ${state.closed[k]?"disabled":""}>
-      <button class="del" title="вкл/выкл день" data-closed="${k}">${state.closed[k]?"✕":"•"}</button>`;
+    row.innerHTML=`<span>${n}</span><input value="${state.hours[k][0]}" data-k="${k}" data-i="0" ${state.closed[k]?"disabled":""}><input value="${state.hours[k][1]}" data-k="${k}" data-i="1" ${state.closed[k]?"disabled":""}><button class="del" data-closed="${k}">${state.closed[k]?"✕":"•"}</button>`;
     box.appendChild(row);
   });
   box.querySelectorAll("input").forEach(inp=>inp.addEventListener("input",e=>{state.hours[e.target.dataset.k][+e.target.dataset.i]=e.target.value;render();}));
   box.querySelectorAll("[data-closed]").forEach(b=>b.addEventListener("click",e=>{const k=e.target.dataset.closed;state.closed[k]=!state.closed[k];renderHours();render();}));
 }
 function renderSvcs(){
-  const box=document.getElementById("svcs");box.innerHTML="";
+  const box=g("svcs");box.innerHTML="";const l=state.lang;
   state.services.forEach((s,i)=>{
     const row=document.createElement("div");row.className="svc-row";
-    row.innerHTML=`<input placeholder="Название услуги" value="${escA(s.name)}" data-i="${i}" data-f="name">
-      <input placeholder="from €100" value="${escA(s.price)}" data-i="${i}" data-f="price">
+    row.innerHTML=`<input placeholder="Название (${l})" value="${esc(s.name[l]||'')}" data-i="${i}" data-f="name">
+      <input placeholder="from €100" value="${esc(s.price||'')}" data-i="${i}" data-f="price">
       <button class="del" data-del="${i}">×</button>
-      <textarea placeholder="Короткое описание (необязательно)" data-i="${i}" data-f="desc">${esc(s.desc)}</textarea>
-      <input placeholder="Группа (напр. DETAILING)" value="${escA(s.group||'')}" data-i="${i}" data-f="group" style="grid-column:1 / -1">`;
+      <textarea placeholder="Описание (${l})" data-i="${i}" data-f="desc">${esc(s.desc[l]||'')}</textarea>
+      <input placeholder="Группа (${l}), напр. DETAILING" value="${esc(s.group[l]||'')}" data-i="${i}" data-f="group" style="grid-column:1 / -1">`;
     box.appendChild(row);
   });
-  box.querySelectorAll("[data-f]").forEach(inp=>inp.addEventListener("input",e=>{state.services[+e.target.dataset.i][e.target.dataset.f]=e.target.value;render();}));
+  box.querySelectorAll("[data-f]").forEach(inp=>inp.addEventListener("input",e=>{
+    const i=+e.target.dataset.i,f=e.target.dataset.f;
+    if(f==="price")state.services[i].price=e.target.value; else state.services[i][f][l]=e.target.value;
+    render();
+  }));
   box.querySelectorAll("[data-del]").forEach(b=>b.addEventListener("click",e=>{state.services.splice(+e.target.dataset.del,1);renderSvcs();render();}));
 }
 function renderWhy(){
-  const box=document.getElementById("why");box.innerHTML="";
-  while(state.why.length<3) state.why.push({title:"",text:""});
+  const box=g("why");box.innerHTML="";const l=state.lang;
+  while(state.why.length<3)state.why.push({title:{en:"",el:"",ru:""},text:{en:"",el:"",ru:""}});
   state.why.slice(0,3).forEach((w,i)=>{
     const row=document.createElement("div");row.className="svc-row";row.style.gridTemplateColumns="1fr";
-    row.innerHTML=`<input placeholder="Заголовок пункта ${i+1}" value="${escA(w.title)}" data-wi="${i}" data-wf="title">
-      <textarea placeholder="Текст пункта ${i+1}" data-wi="${i}" data-wf="text">${esc(w.text)}</textarea>`;
+    row.innerHTML=`<input placeholder="Заголовок ${i+1} (${l})" value="${esc(w.title[l]||'')}" data-wi="${i}" data-wf="title">
+      <textarea placeholder="Текст ${i+1} (${l})" data-wi="${i}" data-wf="text">${esc(w.text[l]||'')}</textarea>`;
     box.appendChild(row);
   });
-  box.querySelectorAll("[data-wf]").forEach(inp=>inp.addEventListener("input",e=>{state.why[+e.target.dataset.wi][e.target.dataset.wf]=e.target.value;render();}));
+  box.querySelectorAll("[data-wf]").forEach(inp=>inp.addEventListener("input",e=>{state.why[+e.target.dataset.wi][e.target.dataset.wf][l]=e.target.value;render();}));
 }
 
-/* ---------- live preview ---------- */
 let t=null;
-function render(){
-  clearTimeout(t);
-  t=setTimeout(()=>{
-    const d=data();
-    document.getElementById("pv").srcdoc=buildSite(d);
-    document.getElementById("pvStatus").textContent="обновлено "+new Date().toLocaleTimeString();
-  },180);
-}
+function render(){clearTimeout(t);t=setTimeout(()=>{pull();g("pv").srcdoc=buildSite(state);g("pvStatus").textContent="обновлено "+new Date().toLocaleTimeString();},200);}
 
-/* ---------- downloads ---------- */
-function dl(name,content,type){
-  const b=new Blob([content],{type:type||"text/plain;charset=utf-8"});
-  const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1500);
-}
-document.getElementById("dlHtml").onclick=()=>dl("index.html",buildSite(data()),"text/html;charset=utf-8");
-document.getElementById("dlLlms").onclick=()=>dl("llms.txt",buildLlms(data()));
-document.getElementById("dlBoth").onclick=()=>{dl("index.html",buildSite(data()),"text/html;charset=utf-8");setTimeout(()=>dl("llms.txt",buildLlms(data())),400);};
+/* lang tabs */
+document.querySelectorAll("#langtabs button").forEach(b=>b.addEventListener("click",()=>{
+  pull(); state.lang=b.dataset.l;
+  document.querySelectorAll("#langtabs button").forEach(x=>x.classList.toggle("on",x===b));
+  loadLangFields(); render();
+}));
 
-/* ---------- Deluxe example ---------- */
+/* downloads */
+function dl(name,content,type){const bl=new Blob([content],{type:type||"text/plain;charset=utf-8"});const a=document.createElement("a");a.href=URL.createObjectURL(bl);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1500);}
+g("dlHtml").onclick=()=>{pull();dl("index.html",buildSite(state),"text/html;charset=utf-8");};
+g("dlLlms").onclick=()=>{pull();dl("llms.txt",buildLlms(state));};
+g("addSvc").onclick=()=>{state.services.push({price:"",name:{en:"",el:"",ru:""},desc:{en:"",el:"",ru:""},group:{en:"SERVICES",el:"ΥΠΗΡΕΣΙΕΣ",ru:"УСЛУГИ"}});renderSvcs();render();};
+
+/* segmented */
+g("segDesk").onclick=()=>{g("pvWrap").classList.remove("mob");g("segDesk").classList.add("on");g("segMob").classList.remove("on");};
+g("segMob").onclick=()=>{g("pvWrap").classList.add("mob");g("segMob").classList.add("on");g("segDesk").classList.remove("on");};
+
+/* ===== Deluxe trilingual example ===== */
 function loadDeluxe(){
-  const set=(id,v)=>document.getElementById(id).value=v;
-  set("f_name","Deluxe Car Wash & SPA");set("f_brand","DELUXE");
-  set("f_kicker","Car detailing & spa · Strovolos, Nicosia");set("f_year","2021");
-  set("f_h1","The deep, lasting gloss your car came with.");set("f_accentword","gloss");
-  set("f_lead","Deluxe Car Wash & SPA has restored and protected cars in Nicosia since 2021 — hand detailing, interior spa treatment, and certified ceramic coating. Book online in two minutes; pay at the wash.");
-  set("f_addr","Strovolou 196, Strovolos 2048, Nicosia, Cyprus");
-  set("f_street","Strovolou 196");set("f_locality","Strovolos");set("f_zip","2048");set("f_city","Nicosia");set("f_country","CY");
-  set("f_phone","+357 22 08 08 00");set("f_wa","35797424020");set("f_ig","deluxecarwash.cy");set("f_book","https://deluxecarwash.github.io/");
-  set("f_svcnote","Prices shown start from the Small vehicle size; Large and X-Large are quoted at booking.");
+  state.shared={name:"Deluxe Car Wash & SPA",brand:"DELUXE",year:"2021",addr:"Strovolou 196, Strovolos 2048, Nicosia, Cyprus",street:"Strovolou 196",locality:"Strovolos",zip:"2048",country:"CY",phone:"+357 22 08 08 00",wa:"35797424020",ig:"deluxecarwash.cy",book:"https://deluxecarwash.github.io/"};
+  state.tr={
+    en:{city:"Nicosia",kicker:"Car detailing & spa · Strovolos, Nicosia",h1:"The deep, lasting gloss your car came with.",accent:"gloss",lead:"Deluxe Car Wash & SPA has restored and protected cars in Nicosia since 2021 — hand detailing, interior spa treatment, and certified ceramic coating. Book online in two minutes; pay at the wash.",svcnote:"Prices shown start from the Small vehicle size; Large and X-Large are quoted at booking."},
+    el:{city:"Λευκωσία",kicker:"Detailing & spa αυτοκινήτου · Στρόβολος, Λευκωσία",h1:"Η βαθιά, διαρκής λάμψη που είχε το αυτοκίνητό σας.",accent:"λάμψη",lead:"Το Deluxe Car Wash & SPA περιποιείται και προστατεύει αυτοκίνητα στη Λευκωσία από το 2021 — detailing στο χέρι, spa εσωτερικού και πιστοποιημένη κεραμική επίστρωση. Κλείστε ραντεβού online σε δύο λεπτά· πληρωμή στο πλυντήριο.",svcnote:"Οι τιμές ξεκινούν από το μέγεθος Small· Large και X-Large υπολογίζονται κατά την κράτηση."},
+    ru:{city:"Никосия",kicker:"Детейлинг и спа для авто · Строволос, Никосия",h1:"Глубокий, стойкий блеск вашего автомобиля.",accent:"блеск",lead:"Deluxe Car Wash & SPA восстанавливает и защищает автомобили в Никосии с 2021 года — ручной детейлинг, спа-уход за салоном и сертифицированное керамическое покрытие. Запишитесь онлайн за две минуты; оплата на мойке.",svcnote:"Цены указаны от размера Small; Large и X-Large рассчитываются при записи."}
+  };
+  const S=(en,el,ru)=>({en,el,ru});
   state.services=[
-    {group:"DETAILING & SPA",name:"Signature Detail",desc:"Full exterior & interior hand detail.",price:"from €160"},
-    {group:"DETAILING & SPA",name:"Interior Spa",desc:"Deep interior clean, steam, odour treatment.",price:"from €100"},
-    {group:"DETAILING & SPA",name:"Leather Care",desc:"Clean, condition and protect leather.",price:"from €110"},
-    {group:"DETAILING & SPA",name:"Paint Polish & Correction",desc:"Machine polish, swirl removal.",price:"from €120"},
-    {group:"CERAMIC COATING",name:"Ceramic Coating — 1 year",desc:"Entry protection, hydrophobic beading.",price:"from €400"},
-    {group:"CERAMIC COATING",name:"Ceramic Coating — 3 years",desc:"Longer-lasting gloss and protection.",price:"from €600"},
-    {group:"CERAMIC COATING",name:"Ceramic Coating — 5 years",desc:"Our longest-lasting coating.",price:"from €800"}
+    {price:"from €160",group:S("DETAILING & SPA","DETAILING & SPA","ДЕТЕЙЛИНГ И СПА"),name:S("Signature Detail","Signature Detail","Signature-детейлинг"),desc:S("Full exterior & interior hand detail.","Πλήρες detailing εσωτερικού & εξωτερικού στο χέρι.","Полный ручной детейлинг снаружи и внутри.")},
+    {price:"from €100",group:S("DETAILING & SPA","DETAILING & SPA","ДЕТЕЙЛИНГ И СПА"),name:S("Interior Spa","Spa Εσωτερικού","Спа для салона"),desc:S("Deep interior clean, steam, odour treatment.","Βαθύς καθαρισμός εσωτερικού, ατμός, εξουδετέρωση οσμών.","Глубокая чистка салона, пар, устранение запахов.")},
+    {price:"from €110",group:S("DETAILING & SPA","DETAILING & SPA","ДЕТЕЙЛИНГ И СПА"),name:S("Leather Care","Περιποίηση Δέρματος","Уход за кожей"),desc:S("Clean, condition and protect leather.","Καθαρισμός, θρέψη και προστασία δέρματος.","Чистка, кондиционирование и защита кожи.")},
+    {price:"from €120",group:S("DETAILING & SPA","DETAILING & SPA","ДЕТЕЙЛИНГ И СПА"),name:S("Paint Polish & Correction","Γυάλισμα & Διόρθωση Βαφής","Полировка и коррекция ЛКП"),desc:S("Machine polish, swirl removal.","Μηχανικό γυάλισμα, αφαίρεση γρατζουνιών.","Машинная полировка, удаление разводов.")},
+    {price:"from €400",group:S("CERAMIC COATING","ΚΕΡΑΜΙΚΗ ΕΠΙΣΤΡΩΣΗ","КЕРАМИКА"),name:S("Ceramic Coating — 1 year","Κεραμική Επίστρωση — 1 έτος","Керамика — 1 год"),desc:S("Entry protection, hydrophobic beading.","Βασική προστασία, υδρόφοβη δράση.","Базовая защита, гидрофобный эффект.")},
+    {price:"from €600",group:S("CERAMIC COATING","ΚΕΡΑΜΙΚΗ ΕΠΙΣΤΡΩΣΗ","КЕРАМИКА"),name:S("Ceramic Coating — 3 years","Κεραμική Επίστρωση — 3 έτη","Керамика — 3 года"),desc:S("Longer-lasting gloss and protection.","Μεγαλύτερη διάρκεια λάμψης και προστασίας.","Более стойкий блеск и защита.")},
+    {price:"from €800",group:S("CERAMIC COATING","ΚΕΡΑΜΙΚΗ ΕΠΙΣΤΡΩΣΗ","КЕРАМИКА"),name:S("Ceramic Coating — 5 years","Κεραμική Επίστρωση — 5 έτη","Керамика — 5 лет"),desc:S("Our longest-lasting coating.","Η πιο ανθεκτική μας επίστρωση.","Наше самое долговечное покрытие.")}
   ];
   state.why=[
-    {title:"Certified ceramic coating",text:"Proper paint prep and professional-grade coatings — protection measured in years, not a quick wax."},
-    {title:"Interior treated like a spa",text:"Steam, deep extraction and conditioning. Your cabin leaves clean, fresh and cared for."},
-    {title:"Book in two minutes",text:"Choose a service and a time online, get a reminder, and pay at the wash."}
+    {title:S("Certified ceramic coating","Πιστοποιημένη κεραμική επίστρωση","Сертифицированная керамика"),text:S("Proper paint prep and professional-grade coatings — protection measured in years, not a quick wax.","Σωστή προετοιμασία βαφής και επαγγελματικές επιστρώσεις — προστασία για χρόνια, όχι ένα γρήγορο κέρωμα.","Правильная подготовка ЛКП и профессиональные составы — защита на годы, а не быстрый воск.")},
+    {title:S("Interior treated like a spa","Εσωτερικό σαν spa","Салон как в спа"),text:S("Steam, deep extraction and conditioning. Your cabin leaves clean, fresh and cared for.","Ατμός, βαθύς καθαρισμός και περιποίηση. Η καμπίνα φεύγει καθαρή και φρέσκια.","Пар, глубокая химчистка и уход. Салон уезжает чистым и свежим.")},
+    {title:S("Book in two minutes","Κράτηση σε δύο λεπτά","Запись за две минуты"),text:S("Choose a service and a time online, get a reminder, and pay at the wash.","Διάλεξε υπηρεσία και ώρα online, πάρε υπενθύμιση και πλήρωσε στο πλυντήριο.","Выбери услугу и время онлайн, получи напоминание и оплати на мойке.")}
   ];
   state.hours={mon:["07:30","18:00"],tue:["07:30","18:00"],wed:["07:30","18:00"],thu:["07:30","18:00"],fri:["07:30","18:00"],sat:["07:30","17:00"],sun:["07:30","14:30"]};state.closed={};
-  renderHours();renderSvcs();renderWhy();render();
+  // fill shared inputs
+  const s=state.shared;g("f_name").value=s.name;g("f_brand").value=s.brand;g("f_year").value=s.year;g("f_addr").value=s.addr;g("f_street").value=s.street;g("f_locality").value=s.locality;g("f_zip").value=s.zip;g("f_country").value=s.country;g("f_phone").value=s.phone;g("f_wa").value=s.wa;g("f_ig").value=s.ig;g("f_book").value=s.book;
+  loadLangFields();render();
 }
-document.getElementById("loadDeluxe").onclick=loadDeluxe;
+g("loadDeluxe").onclick=loadDeluxe;
 
-/* ---------- segmented preview ---------- */
-document.getElementById("segDesk").onclick=()=>{document.getElementById("pvWrap").classList.remove("mob");document.getElementById("segDesk").classList.add("on");document.getElementById("segMob").classList.remove("on");};
-document.getElementById("segMob").onclick=()=>{document.getElementById("pvWrap").classList.add("mob");document.getElementById("segMob").classList.add("on");document.getElementById("segDesk").classList.remove("on");};
-
-/* ---------- init ---------- */
+/* init */
+state.services=[{price:"",name:{en:"",el:"",ru:""},desc:{en:"",el:"",ru:""},group:{en:"SERVICES",el:"ΥΠΗΡΕΣΙΕΣ",ru:"УСЛУГИ"}}];
 document.querySelectorAll(".panelL input,.panelL textarea").forEach(el=>el.addEventListener("input",render));
-state.services=[{group:"SERVICES",name:"",price:"",desc:"",group:"SERVICES"}];
-renderHours();renderSvcs();renderWhy();
-loadDeluxe();
+renderHours();loadDeluxe();
 </script>
 </body>
 </html>

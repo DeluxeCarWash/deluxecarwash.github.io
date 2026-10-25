@@ -3,120 +3,74 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Deluxe Car Wash &amp; SPA — Detailing &amp; Ceramic Coating in Nicosia</title>
-<meta name="description" content="Deluxe Car Wash &amp; SPA in Strovolos, Nicosia. Professional car detailing, interior spa and certified ceramic coating since 2021. Book online in two minutes; pay at the wash.">
-<link rel="canonical" href="https://deluxecarwash.github.io/">
-<meta property="og:title" content="Deluxe Car Wash &amp; SPA — Detailing &amp; Ceramic Coating in Nicosia">
-<meta property="og:description" content="Professional car detailing, interior spa and certified ceramic coating in Strovolos, Nicosia. Since 2021.">
+<title>Deluxe Car Wash &amp; SPA — Nicosia</title>
+<meta name="description" content="Deluxe Car Wash &amp; SPA has restored and protected cars in Nicosia since 2021 — hand detailing, interior spa treatment, and certified ceramic coating. Book online in two minutes; pay at the wash.">
+<meta property="og:title" content="Deluxe Car Wash &amp; SPA">
+<meta property="og:description" content="Deluxe Car Wash &amp; SPA has restored and protected cars in Nicosia since 2021 — hand detailing, interior spa treatment, and certified ceramic coating. Book online in two minutes; pay at the wash.">
 <meta property="og:type" content="business.business">
 <meta property="og:locale" content="en">
 <meta property="og:locale:alternate" content="el">
 <meta property="og:locale:alternate" content="ru">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-
 <style>
-:root{
-  --ink:#0E1417;          /* wet graphite, blue-black */
-  --panel:#161E22;
-  --panel-2:#1D262B;
-  --line:#2A353B;
-  --champagne:#C8A96A;    /* warm chrome / premium accent */
-  --champagne-soft:#E4CFA0;
-  --aqua:#6FB7C4;         /* water bead / spa calm */
-  --text:#EAEFF0;
-  --muted:#93A1A6;
-  --muted-2:#6E7C81;
-  --maxw:1140px;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;background:var(--ink);color:var(--text);
-  font-family:"Hanken Grotesk",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-}
+:root{--ink:#0E1417;--panel:#161E22;--panel-2:#1D262B;--line:#2A353B;--champagne:#C8A96A;--aqua:#6FB7C4;--text:#EAEFF0;--muted:#93A1A6;--muted-2:#6E7C81;--maxw:1140px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--text);font-family:"Hanken Grotesk",system-ui,-apple-system,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 h1,h2,h3{font-family:"Archivo",system-ui,sans-serif;line-height:1.04;margin:0;letter-spacing:-0.01em}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}img{max-width:100%;display:block}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-
-/* ---------- top bar ---------- */
 .nav{position:sticky;top:0;z-index:40;background:rgba(14,20,23,.72);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:66px}
-.brand{font-family:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;font-weight:800;font-size:20px;letter-spacing:.14em}
+.brand{font-family:"Archivo",system-ui,sans-serif;font-weight:800;font-size:20px;letter-spacing:.14em}
 .brand span{color:var(--champagne)}
-.nav nav{display:flex;gap:28px;align-items:center}
+.nav nav{display:flex;gap:24px;align-items:center}
 .nav nav a{color:var(--muted);font-size:15px;font-weight:500}
 .nav nav a:hover{color:var(--text)}
-.nav .book{display:inline-flex;align-items:center;gap:8px;background:var(--champagne);color:#1A1407;font-weight:700;
-  padding:10px 18px;border-radius:999px;font-size:15px}
+.nav .book{display:inline-flex;align-items:center;gap:8px;background:var(--champagne);color:#1A1407;font-weight:700;padding:10px 18px;border-radius:999px;font-size:15px}
 .nav .book:hover{background:#d8bd82}
-@media(max-width:820px){.nav nav a:not(.book){display:none}}
-
-/* ---------- hero ---------- */
-.hero{position:relative;min-height:86vh;display:flex;align-items:flex-end;padding:0 0 66px;overflow:hidden;
-  background:radial-gradient(130% 90% at 72% 18%, #1C2A30 0%, #121A1E 42%, #0B1013 100%)}
-/* light rake that sweeps once on load */
-.hero::before{content:"";position:absolute;inset:-20% -40%;pointer-events:none;
-  background:linear-gradient(104deg,transparent 30%,rgba(200,169,106,.00) 42%,rgba(227,207,160,.22) 50%,rgba(111,183,196,.10) 56%,transparent 66%);
-  transform:translateX(-30%);animation:rake 2.6s cubic-bezier(.22,.61,.36,1) .25s both}
-/* beading specks */
-.hero::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
-  background:radial-gradient(circle at 18% 72%,rgba(255,255,255,.07) 0 2px,transparent 3px),
-             radial-gradient(circle at 28% 84%,rgba(255,255,255,.05) 0 3px,transparent 4px),
-             radial-gradient(circle at 63% 66%,rgba(111,183,196,.10) 0 2px,transparent 3px),
-             radial-gradient(circle at 80% 78%,rgba(255,255,255,.06) 0 2px,transparent 3px),
-             radial-gradient(circle at 48% 90%,rgba(255,255,255,.04) 0 4px,transparent 5px)}
+.langsw{display:inline-flex;gap:2px;border:1px solid var(--line);border-radius:999px;padding:3px}
+.langsw button{background:transparent;border:none;color:var(--muted);font:inherit;font-size:12px;font-weight:700;padding:4px 9px;border-radius:999px;cursor:pointer}
+.langsw button.on{background:var(--champagne);color:#1A1407}
+@media(max-width:900px){.nav nav a:not(.book){display:none}.nav .book{display:none}}
+.hero{position:relative;min-height:86vh;display:flex;align-items:flex-end;padding:0 0 66px;overflow:hidden;background:radial-gradient(130% 90% at 72% 18%, #1C2A30 0%, #121A1E 42%, #0B1013 100%)}
+.hero::before{content:"";position:absolute;inset:-20% -40%;pointer-events:none;background:linear-gradient(104deg,transparent 30%,rgba(200,169,106,0) 42%,rgba(227,207,160,.22) 50%,rgba(111,183,196,.10) 56%,transparent 66%);transform:translateX(-30%);animation:rake 2.6s cubic-bezier(.22,.61,.36,1) .25s both}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;background:radial-gradient(circle at 18% 72%,rgba(255,255,255,.07) 0 2px,transparent 3px),radial-gradient(circle at 28% 84%,rgba(255,255,255,.05) 0 3px,transparent 4px),radial-gradient(circle at 63% 66%,rgba(111,183,196,.10) 0 2px,transparent 3px),radial-gradient(circle at 80% 78%,rgba(255,255,255,.06) 0 2px,transparent 3px)}
 @keyframes rake{0%{transform:translateX(-55%)}100%{transform:translateX(42%)}}
 .hero .wrap{position:relative;z-index:2;width:100%}
 .hero .kicker{color:var(--aqua);font-weight:600;font-size:15px;margin:0 0 20px;display:flex;align-items:center;gap:10px}
 .hero .kicker::before{content:"";width:30px;height:1px;background:var(--aqua);display:inline-block}
-.hero h1{font-weight:800;font-size:clamp(44px,8vw,104px);max-width:12ch}
+.hero h1{font-weight:800;font-size:clamp(40px,7.5vw,100px);max-width:15ch}
 .hero h1 em{font-style:normal;color:var(--champagne)}
-.hero p.lead{color:var(--muted);font-size:clamp(17px,2.2vw,21px);max-width:52ch;margin:22px 0 34px;line-height:1.5}
+.hero p.lead{color:var(--muted);font-size:clamp(17px,2.2vw,21px);max-width:54ch;margin:22px 0 34px;line-height:1.5}
 .cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
 .btn{display:inline-flex;align-items:center;gap:9px;font-weight:700;padding:15px 26px;border-radius:999px;font-size:16px;transition:.18s}
 .btn-primary{background:var(--champagne);color:#1A1407}
 .btn-primary:hover{background:#d8bd82;transform:translateY(-1px)}
 .btn-ghost{border:1px solid var(--line);color:var(--text)}
 .btn-ghost:hover{border-color:var(--champagne);color:var(--champagne)}
-
-/* ---------- trust strip ---------- */
 .trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--panel)}
 .trust .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:1px}
 .trust .cell{padding:26px 8px}
-.trust .n{font-family:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;font-weight:700;font-size:26px;color:var(--text)}
+.trust .n{font-family:"Archivo",system-ui,sans-serif;font-weight:700;font-size:24px;color:var(--text)}
 .trust .l{color:var(--muted);font-size:14px;margin-top:4px}
 @media(max-width:720px){.trust .wrap{grid-template-columns:repeat(2,1fr)}.trust .cell{padding:20px 6px}}
-
-/* ---------- sections ---------- */
 section.block{padding:92px 0}
 .eyebrow{color:var(--aqua);font-weight:600;font-size:14px;margin:0 0 14px}
 .h2{font-size:clamp(30px,4.4vw,48px);font-weight:700;max-width:18ch}
 .sub{color:var(--muted);max-width:58ch;margin:18px 0 0;font-size:18px}
-
-/* services */
 .svc-group{margin-top:52px}
-.svc-group h3{font-size:15px;font-weight:700;color:var(--champagne);letter-spacing:.06em;padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:6px}
+.svc-group h3{font-size:15px;font-weight:700;color:var(--champagne);letter-spacing:.06em;padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:6px;font-family:"Archivo",system-ui,sans-serif}
 .svc{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:20px 0;border-bottom:1px solid var(--line)}
-.svc .name{font-family:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;font-weight:600;font-size:20px}
-.svc .desc{color:var(--muted);font-size:15px;margin-top:4px;max-width:46ch}
-.svc .price{font-family:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;font-weight:700;font-size:20px;white-space:nowrap;color:var(--text)}
-.svc .price small{display:block;color:var(--muted-2);font-size:12px;font-weight:500;text-align:right;letter-spacing:.02em}
-.svc-note{color:var(--muted-2);font-size:14px;margin-top:20px}
-
-/* why — not identical cards: a feature list with hairline numbering only where sequential */
+.svc .name{font-family:"Archivo",system-ui,sans-serif;font-weight:600;font-size:20px}
+.svc .desc{color:var(--muted);font-size:15px;margin-top:4px;max-width:48ch}
+.svc .price{font-family:"Archivo",system-ui,sans-serif;font-weight:700;font-size:20px;white-space:nowrap;color:var(--text)}
 .why{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:54px}
 .why .item h3{font-size:21px;font-weight:700;margin-bottom:10px}
 .why .item p{color:var(--muted);font-size:16px;margin:0}
 .why .mark{width:38px;height:38px;border-radius:50%;border:1px solid var(--champagne);display:flex;align-items:center;justify-content:center;color:var(--champagne);margin-bottom:18px;font-size:18px}
 @media(max-width:820px){.why{grid-template-columns:1fr;gap:34px}}
-
-/* visit */
 .visit{background:var(--panel);border-top:1px solid var(--line)}
 .visit .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
 @media(max-width:820px){.visit .grid{grid-template-columns:1fr;gap:34px}}
@@ -127,276 +81,152 @@ section.block{padding:92px 0}
 .hours{list-style:none;padding:0;margin:0;border-top:1px solid var(--line)}
 .hours li{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--line);font-size:16px}
 .hours .d{color:var(--muted)}
-.mapcard{display:block;border:1px solid var(--line);border-radius:16px;overflow:hidden;min-height:320px;
-  background:
-    radial-gradient(circle at 70% 30%,rgba(111,183,196,.14),transparent 45%),
-    linear-gradient(135deg,#1A242A,#121A1E);
-  position:relative;transition:.2s}
+.mapcard{display:block;border:1px solid var(--line);border-radius:16px;overflow:hidden;min-height:320px;background:radial-gradient(circle at 70% 30%,rgba(111,183,196,.14),transparent 45%),linear-gradient(135deg,#1A242A,#121A1E);position:relative;transition:.2s}
 .mapcard:hover{border-color:var(--champagne)}
-.mapcard::before{content:"";position:absolute;inset:0;opacity:.35;
-  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
-  background-size:38px 38px;mask-image:radial-gradient(circle at 60% 45%,#000 30%,transparent 72%)}
+.mapcard::before{content:"";position:absolute;inset:0;opacity:.35;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:38px 38px;-webkit-mask-image:radial-gradient(circle at 60% 45%,#000 30%,transparent 72%);mask-image:radial-gradient(circle at 60% 45%,#000 30%,transparent 72%)}
 .mapcard-inner{position:absolute;left:28px;bottom:28px;display:flex;align-items:flex-end;gap:16px}
 .mapcard .pin{font-size:30px;color:var(--champagne);line-height:1}
 .mapcard-text{display:flex;flex-direction:column;gap:3px}
 .mapcard-text strong{font-family:"Archivo",system-ui,sans-serif;font-size:18px}
 .mapcard-text span{color:var(--muted);font-size:15px}
 .mapcard-text .go{color:var(--aqua);font-weight:600;margin-top:8px}
-
-/* faq */
 .faq details{border-bottom:1px solid var(--line);padding:20px 0}
-.faq summary{font-family:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;font-weight:600;font-size:19px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary{font-family:"Archivo",system-ui,sans-serif;font-weight:600;font-size:19px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
 .faq summary::-webkit-details-marker{display:none}
 .faq summary::after{content:"+";color:var(--champagne);font-size:24px;line-height:1}
 .faq details[open] summary::after{content:"–"}
 .faq p{color:var(--muted);margin:14px 0 0;max-width:68ch}
-
-/* final cta */
 .final{text-align:center;padding:100px 0;background:radial-gradient(120% 120% at 50% 0%,#1C2A30 0%,#0E1417 55%)}
 .final h2{font-size:clamp(30px,5vw,54px);font-weight:800;max-width:16ch;margin:0 auto}
 .final p{color:var(--muted);max-width:46ch;margin:18px auto 32px;font-size:18px}
-
-/* footer */
 footer{border-top:1px solid var(--line);padding:46px 0;color:var(--muted-2);font-size:14px}
 footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center}
 footer a{color:var(--muted)}footer a:hover{color:var(--text)}
-
 :focus-visible{outline:2px solid var(--aqua);outline-offset:3px;border-radius:4px}
 @media(prefers-reduced-motion:reduce){.hero::before{animation:none;opacity:.5;transform:translateX(10%)}html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
+<header class="nav"><div class="wrap">
+  <div class="brand">DELUXE<span>.</span></div>
+  <nav><a href="#services" data-t="navS">Services</a>
+      <a href="#why" data-t="navW">Why us</a>
+      <a href="#visit" data-t="navV">Visit</a>
+      <a href="#faq" data-t="navF">FAQ</a>
+      <a class="book" href="https://deluxecarwash.github.io/" data-t="navBtn">Book a time</a>
+      <span class="langsw"><button data-lb="en" class="on" onclick="setLang('en')">EN</button><button data-lb="el" onclick="setLang('el')">EL</button><button data-lb="ru" onclick="setLang('ru')">RU</button></span></nav>
+</div></header>
 
-<header class="nav">
-  <div class="wrap">
-    <div class="brand">DELUXE<span>.</span></div>
-    <nav>
-      <a href="#services">Services</a>
-      <a href="#why">Why Deluxe</a>
-      <a href="#visit">Visit</a>
-      <a href="#faq">FAQ</a>
-      <a class="book" href="https://deluxecarwash.github.io/">Book a time</a>
-    </nav>
+<section class="hero"><div class="wrap">
+  <p class="kicker" data-t="kicker">Car detailing &amp; spa · Strovolos, Nicosia</p>
+  <h1 data-t="h1">The deep, lasting <em>gloss</em> your car came with.</h1>
+  <p class="lead" data-t="lead">Deluxe Car Wash &amp; SPA has restored and protected cars in Nicosia since 2021 — hand detailing, interior spa treatment, and certified ceramic coating. Book online in two minutes; pay at the wash.</p>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="https://deluxecarwash.github.io/" data-t="ctaPrimary">Book a time →</a>
+    <a class="btn btn-ghost" href="tel:+35722080800" data-t="ctaSecondary">Call +357 22 08 08 00</a>
   </div>
-</header>
+</div></section>
 
-<!-- ============ HERO ============ -->
-<section class="hero">
-  <div class="wrap">
-    <p class="kicker">Car detailing &amp; spa · Strovolos, Nicosia</p>
-    <h1>The deep, lasting <em>gloss</em> your car came with.</h1>
-    <p class="lead">Deluxe Car Wash &amp; SPA has restored and protected cars in Nicosia since 2021 — hand detailing, interior spa treatment, and certified ceramic coating. Book online in two minutes; pay at the wash.</p>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="https://deluxecarwash.github.io/">Book a time →</a>
-      <a class="btn btn-ghost" href="tel:+35722080800">Call +357 22 08 08 00</a>
-    </div>
-  </div>
-</section>
+<section class="trust"><div class="wrap"><div class="cell"><div class="n" data-t="tSince">Since 2021</div><div class="l" data-t="tServing">Serving Nicosia</div></div><div class="cell"><div class="n">7</div><div class="l" data-t="tSvcL">Services</div></div><div class="cell"><div class="n" data-t="tLocal">Local</div><div class="l" data-t="tLocalL">Nicosia</div></div><div class="cell"><div class="n" data-t="tEasy">Easy</div><div class="l" data-t="tEasyL">Book or call ahead</div></div></div></section>
 
-<!-- ============ TRUST ============ -->
-<section class="trust">
-  <div class="wrap">
-    <div class="cell"><div class="n">Since 2021</div><div class="l">Serving Nicosia drivers</div></div>
-    <div class="cell"><div class="n">7</div><div class="l">Detailing &amp; coating services</div></div>
-    <div class="cell"><div class="n">Up to 5 yr</div><div class="l">Ceramic coating protection</div></div>
-    <div class="cell"><div class="n">2 min</div><div class="l">Online booking, pay on site</div></div>
-  </div>
-</section>
-
-<!-- ============ SERVICES ============ -->
 <section class="block wrap" id="services">
-  <p class="eyebrow">What we do</p>
-  <h2 class="h2">Detailing, interior spa, and ceramic protection.</h2>
-  <p class="sub">Transparent pricing, no packages you don't need. Prices shown start from the Small vehicle size; Large and X-Large are quoted at booking.</p>
-
-  <div class="svc-group">
-    <h3>DETAILING &amp; SPA</h3>
-    <div class="svc">
-      <div><div class="name">Signature Detail</div><div class="desc">Full exterior &amp; interior hand detail — wash, decontamination, interior deep-clean and dress.</div></div>
-      <div class="price">from €160<small>Small · Lg/XL quoted</small></div>
+  <p class="eyebrow" data-t="eyWhat">What we do</p>
+  <h2 class="h2" data-t="h2S">Our services.</h2>
+  <p class="sub" data-t="svcnote">Prices shown start from the Small vehicle size; Large and X-Large are quoted at booking.</p>
+  
+    <div class="svc-group"><h3 data-t="sv0g">DETAILING &amp; SPA</h3>
+      <div class="svc"><div><div class="name" data-t="sv0n">Signature Detail</div><div class="desc" data-t="sv0d">Full exterior &amp; interior hand detail.</div></div><div class="price">from €160</div></div>
+      <div class="svc"><div><div class="name" data-t="sv1n">Interior Spa</div><div class="desc" data-t="sv1d">Deep interior clean, steam, odour treatment.</div></div><div class="price">from €100</div></div>
+      <div class="svc"><div><div class="name" data-t="sv2n">Leather Care</div><div class="desc" data-t="sv2d">Clean, condition and protect leather.</div></div><div class="price">from €110</div></div>
+      <div class="svc"><div><div class="name" data-t="sv3n">Paint Polish &amp; Correction</div><div class="desc" data-t="sv3d">Machine polish, swirl removal.</div></div><div class="price">from €120</div></div>
     </div>
-    <div class="svc">
-      <div><div class="name">Interior Spa</div><div class="desc">Deep interior clean — seats, carpets, panels, steam and odour treatment.</div></div>
-      <div class="price">from €100<small>Small · Lg/XL quoted</small></div>
+    <div class="svc-group"><h3 data-t="sv4g">CERAMIC COATING</h3>
+      <div class="svc"><div><div class="name" data-t="sv4n">Ceramic Coating — 1 year</div><div class="desc" data-t="sv4d">Entry protection, hydrophobic beading.</div></div><div class="price">from €400</div></div>
+      <div class="svc"><div><div class="name" data-t="sv5n">Ceramic Coating — 3 years</div><div class="desc" data-t="sv5d">Longer-lasting gloss and protection.</div></div><div class="price">from €600</div></div>
+      <div class="svc"><div><div class="name" data-t="sv6n">Ceramic Coating — 5 years</div><div class="desc" data-t="sv6d">Our longest-lasting coating.</div></div><div class="price">from €800</div></div>
     </div>
-    <div class="svc">
-      <div><div class="name">Leather Care</div><div class="desc">Clean, condition and protect leather seats and trim.</div></div>
-      <div class="price">from €110<small>Small · Lg/XL quoted</small></div>
-    </div>
-    <div class="svc">
-      <div><div class="name">Paint Polish &amp; Correction</div><div class="desc">Machine polish to remove swirls and restore gloss before coating.</div></div>
-      <div class="price">from €120<small>Small · Lg/XL quoted</small></div>
-    </div>
-  </div>
-
-  <div class="svc-group">
-    <h3>CERAMIC COATING</h3>
-    <div class="svc">
-      <div><div class="name">Ceramic Coating — 1 year</div><div class="desc">Entry protection with hydrophobic beading and easier washing.</div></div>
-      <div class="price">from €400<small>Small · Lg/XL quoted</small></div>
-    </div>
-    <div class="svc">
-      <div><div class="name">Ceramic Coating — 3 years</div><div class="desc">Longer-lasting gloss and protection against contaminants and UV.</div></div>
-      <div class="price">from €600<small>Small · Lg/XL quoted</small></div>
-    </div>
-    <div class="svc">
-      <div><div class="name">Ceramic Coating — 5 years</div><div class="desc">Our longest-lasting coating — maximum durability and depth of shine.</div></div>
-      <div class="price">from €800<small>Small · Lg/XL quoted</small></div>
-    </div>
-    <p class="svc-note">Add-ons: glass ceramic coating from €50, leather-seat ceramic from €80.</p>
-  </div>
 </section>
 
-<!-- ============ WHY ============ -->
 <section class="block wrap" id="why">
-  <p class="eyebrow">Why Deluxe</p>
-  <h2 class="h2">Done properly, by people who do only this.</h2>
+  <p class="eyebrow" data-t="eyWhy">Why us</p>
+  <h2 class="h2" data-t="h2W">What you can count on.</h2>
   <div class="why">
-    <div class="item">
-      <div class="mark">◆</div>
-      <h3>Certified ceramic coating</h3>
-      <p>Proper paint preparation and professional-grade coatings — protection measured in years, not a quick wax.</p>
-    </div>
-    <div class="item">
-      <div class="mark">❖</div>
-      <h3>Interior treated like a spa</h3>
-      <p>Steam, deep extraction and conditioning. Your cabin leaves clean, fresh and cared for — not just vacuumed.</p>
-    </div>
-    <div class="item">
-      <div class="mark">✦</div>
-      <h3>Book in two minutes</h3>
-      <p>Choose a service and a time online, get a reminder, and pay at the wash. No phone tag, no waiting.</p>
-    </div>
-  </div>
+      <div class="item"><div class="mark">◆</div><h3 data-t="wy0t">Certified ceramic coating</h3><p data-t="wy0x">Proper paint prep and professional-grade coatings — protection measured in years, not a quick wax.</p></div>
+      <div class="item"><div class="mark">❖</div><h3 data-t="wy1t">Interior treated like a spa</h3><p data-t="wy1x">Steam, deep extraction and conditioning. Your cabin leaves clean, fresh and cared for.</p></div>
+      <div class="item"><div class="mark">✦</div><h3 data-t="wy2t">Book in two minutes</h3><p data-t="wy2x">Choose a service and a time online, get a reminder, and pay at the wash.</p></div></div>
 </section>
 
-<!-- ============ VISIT ============ -->
-<section class="block visit" id="visit">
-  <div class="wrap grid">
-    <div>
-      <p class="eyebrow">Visit us</p>
-      <h2 class="h2">In Strovolos, central Nicosia.</h2>
-      <dl class="info">
-        <dt>ADDRESS</dt>
-        <dd><a href="https://www.google.com/maps/dir/?api=1&destination=Deluxe+Car+Wash+%26+SPA+Strovolou+196+Strovolos+2048+Nicosia" target="_blank" rel="noopener">Strovolou 196, Strovolos 2048, Nicosia, Cyprus</a></dd>
-        <dt>PHONE</dt>
-        <dd><a href="tel:+35722080800">+357 22 08 08 00</a> · <a href="https://wa.me/35797424020" target="_blank" rel="noopener">WhatsApp</a></dd>
-        <dt>SOCIAL</dt>
-        <dd><a href="https://instagram.com/deluxecarwash.cy" target="_blank" rel="noopener">@deluxecarwash.cy</a></dd>
-      </dl>
-      <ul class="hours">
-        <li><span class="d">Monday – Friday</span><span>07:30 – 18:00</span></li>
-        <li><span class="d">Saturday</span><span>07:30 – 17:00</span></li>
-        <li><span class="d">Sunday</span><span>07:30 – 14:30</span></li>
-      </ul>
-    </div>
-    <a class="mapcard" href="https://www.google.com/maps/dir/?api=1&destination=Deluxe+Car+Wash+%26+SPA+Strovolou+196+Strovolos+2048+Nicosia" target="_blank" rel="noopener">
-      <div class="mapcard-inner">
-        <div class="pin">◉</div>
-        <div class="mapcard-text">
-          <strong>Strovolou 196, Strovolos</strong>
-          <span>2048 Nicosia, Cyprus</span>
-          <span class="go">Open in Google Maps →</span>
-        </div>
-      </div>
-    </a>
+<section class="block visit" id="visit"><div class="wrap grid">
+  <div>
+    <p class="eyebrow" data-t="eyV">Visit us</p>
+    <h2 class="h2" data-t="h2V">Find us in Nicosia.</h2>
+    <dl class="info">
+      <dt data-t="dtA">ADDRESS</dt><dd><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Deluxe%20Car%20Wash%20%26%20SPA%20Strovolou%20196%2C%20Strovolos%202048%2C%20Nicosia%2C%20Cyprus" target="_blank" rel="noopener">Strovolou 196, Strovolos 2048, Nicosia, Cyprus</a></dd>
+      <dt data-t="dtP">PHONE</dt><dd><a href="tel:+35722080800">+357 22 08 08 00</a> · <a href="https://wa.me/35797424020" target="_blank" rel="noopener">WhatsApp</a></dd>
+      <dt data-t="dtSoc">SOCIAL</dt><dd><a href="https://instagram.com/deluxecarwash.cy" target="_blank" rel="noopener">@deluxecarwash.cy</a></dd>
+    </dl>
+    <ul class="hours"><li><span class="d" data-t="hr0d">Monday – Friday</span><span data-t="hr0v">07:30 – 18:00</span></li><li><span class="d" data-t="hr1d">Saturday</span><span data-t="hr1v">07:30 – 17:00</span></li><li><span class="d" data-t="hr2d">Sunday</span><span data-t="hr2v">07:30 – 14:30</span></li></ul>
   </div>
-</section>
+  <a class="mapcard" href="https://www.google.com/maps/dir/?api=1&amp;destination=Deluxe%20Car%20Wash%20%26%20SPA%20Strovolou%20196%2C%20Strovolos%202048%2C%20Nicosia%2C%20Cyprus" target="_blank" rel="noopener"><div class="mapcard-inner"><div class="pin">◉</div><div class="mapcard-text">
+    <strong>Strovolou 196</strong>
+    <span>2048 Strovolos CY</span>
+    <span class="go" data-t="mapGo">Open in Google Maps →</span>
+  </div></div></a>
+</div></section>
 
-<!-- ============ FAQ ============ -->
 <section class="block wrap" id="faq">
-  <p class="eyebrow">Questions</p>
-  <h2 class="h2">Good to know before you book.</h2>
+  <p class="eyebrow" data-t="eyF">Questions</p>
+  <h2 class="h2" data-t="h2F">Good to know.</h2>
   <div class="faq" style="margin-top:40px">
-    <details open>
-      <summary>Where is Deluxe Car Wash &amp; SPA?</summary>
-      <p>We are at Strovolou 196, Strovolos 2048, in central Nicosia, Cyprus. Call +357 22 08 08 00 or message us on WhatsApp at +357 97 424020.</p>
-    </details>
-    <details>
-      <summary>How much does ceramic coating cost in Nicosia?</summary>
-      <p>At Deluxe, ceramic coating starts from €400 for 1-year protection, €600 for 3-year and €800 for 5-year, for a Small vehicle. Larger vehicles are quoted at booking. Glass and leather-seat ceramic add-ons start from €50 and €80.</p>
-    </details>
-    <details>
-      <summary>Do I need an appointment?</summary>
-      <p>Booking online takes about two minutes and guarantees your slot. Walk-ins are welcome when there is space, but detailing and coating work is best booked ahead.</p>
-    </details>
-    <details>
-      <summary>How do I pay?</summary>
-      <p>You book your service and time online, then pay at the wash when the work is done.</p>
-    </details>
-    <details>
-      <summary>What is the difference between a wash and detailing?</summary>
-      <p>A wash cleans the surface. Detailing restores and protects: paint decontamination and polishing, deep interior cleaning, and optional ceramic coating that keeps the car cleaner and glossier for years.</p>
-    </details>
-  </div>
+    <details open><summary data-t="fq0q">Where is Deluxe Car Wash &amp; SPA?</summary><p data-t="fq0a">We are at Strovolou 196, Strovolos 2048, Nicosia, Cyprus. Call +357 22 08 08 00 or message us on WhatsApp.</p></details>
+    <details><summary data-t="fq1q">How much do your services cost?</summary><p data-t="fq1a">Prices start from from €160 for Signature Detail. See the full list above; larger jobs are quoted on request.</p></details>
+    <details><summary data-t="fq2q">Do I need an appointment?</summary><p data-t="fq2a">Booking online takes about two minutes and guarantees your slot. Walk-ins are welcome when there is space.</p></details>
+    <details><summary data-t="fq3q">How can I reach you?</summary><p data-t="fq3a">Call +357 22 08 08 00 or WhatsApp +35797424020.</p></details></div>
 </section>
 
-<!-- ============ FINAL CTA ============ -->
-<section class="final">
-  <div class="wrap">
-    <h2>Give your car the Deluxe treatment.</h2>
-    <p>Pick a service and a time online. It takes two minutes, and you pay at the wash.</p>
-    <a class="btn btn-primary" href="https://deluxecarwash.github.io/">Book a time →</a>
+<section class="final"><div class="wrap">
+  <h2 data-t="finalH">Book your visit.</h2>
+  <p data-t="finalP">We'd love to help.</p>
+  <div class="cta-row" style="justify-content:center">
+    <a class="btn btn-primary" href="https://deluxecarwash.github.io/" data-t="ctaPrimary">Book a time →</a>
   </div>
-</section>
+</div></section>
 
-<footer>
-  <div class="wrap">
-    <div><strong style="font-family:'Archivo',system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:.12em;color:var(--text)">DELUXE CAR WASH &amp; SPA</strong><br>Strovolou 196, Strovolos 2048, Nicosia, Cyprus · Since 2021</div>
-    <div><a href="tel:+35722080800">+357 22 08 08 00</a> · <a href="https://instagram.com/deluxecarwash.cy" target="_blank" rel="noopener">Instagram</a> · <a href="https://deluxecarwash.github.io/">Book online</a></div>
-  </div>
-</footer>
+<footer><div class="wrap">
+  <div><strong style="font-family:'Archivo',system-ui,sans-serif;letter-spacing:.1em;color:var(--text)">DELUXE CAR WASH &amp; SPA</strong><br>Strovolou 196, Strovolos 2048, Nicosia, Cyprus · Since 2021</div>
+  <div><a href="tel:+35722080800">+357 22 08 08 00</a> · <a href="https://instagram.com/deluxecarwash.cy" target="_blank" rel="noopener">Instagram</a></div>
+</div></footer>
 
-<!-- ============ STRUCTURED DATA FOR AI / SEARCH ============ -->
 <script type="application/ld+json">
 {
-  "@context":"https://schema.org",
-  "@type":"AutoWash",
-  "name":"Deluxe Car Wash & SPA",
-  "description":"Professional car detailing, interior spa and certified ceramic coating in Strovolos, Nicosia, Cyprus. Operating since 2021. Book online and pay at the wash.",
-  "url":"https://deluxecarwash.github.io/",
-  "telephone":"+357-22-080800",
-  "foundingDate":"2021",
-  "priceRange":"€€",
-  "image":"https://deluxecarwash.github.io/site/og.jpg",
-  "address":{
-    "@type":"PostalAddress",
-    "streetAddress":"Strovolou 196",
-    "addressLocality":"Strovolos",
-    "postalCode":"2048",
-    "addressRegion":"Nicosia",
-    "addressCountry":"CY"
-  },
+  "@context":"https://schema.org","@type":"LocalBusiness",
+  "name":"Deluxe Car Wash & SPA","description":"Deluxe Car Wash & SPA has restored and protected cars in Nicosia since 2021 — hand detailing, interior spa treatment, and certified ceramic coating. Book online in two minutes; pay at the wash.",
+  "telephone":"+357 22 08 08 00","foundingDate":"2021","priceRange":"€€",
+  "address":{"@type":"PostalAddress","streetAddress":"Strovolou 196","addressLocality":"Strovolos","postalCode":"2048","addressRegion":"Nicosia","addressCountry":"CY"},
   "areaServed":{"@type":"City","name":"Nicosia"},
   "sameAs":["https://instagram.com/deluxecarwash.cy"],
   "openingHoursSpecification":[
-    {"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"07:30","closes":"18:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Monday","opens":"07:30","closes":"18:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Tuesday","opens":"07:30","closes":"18:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Wednesday","opens":"07:30","closes":"18:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Thursday","opens":"07:30","closes":"18:00"},
+    {"@type":"OpeningHoursSpecification","dayOfWeek":"Friday","opens":"07:30","closes":"18:00"},
     {"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"07:30","closes":"17:00"},
     {"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"07:30","closes":"14:30"}
   ],
-  "makesOffer":[
-    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Signature Detail"},"price":"160","priceCurrency":"EUR"},
-    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Interior Spa"},"price":"100","priceCurrency":"EUR"},
-    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Leather Care"},"price":"110","priceCurrency":"EUR"},
-    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Paint Polish & Correction"},"price":"120","priceCurrency":"EUR"},
-    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Ceramic Coating 1 year"},"price":"400","priceCurrency":"EUR"},
-    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Ceramic Coating 3 years"},"price":"600","priceCurrency":"EUR"},
-    {"@type":"Offer","itemOffered":{"@type":"Service","name":"Ceramic Coating 5 years"},"price":"800","priceCurrency":"EUR"}
-  ]
+  "makesOffer":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Signature Detail"},"price":"160","priceCurrency":"EUR"},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Interior Spa"},"price":"100","priceCurrency":"EUR"},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Leather Care"},"price":"110","priceCurrency":"EUR"},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Paint Polish & Correction"},"price":"120","priceCurrency":"EUR"},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Ceramic Coating — 1 year"},"price":"400","priceCurrency":"EUR"},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Ceramic Coating — 3 years"},"price":"600","priceCurrency":"EUR"},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Ceramic Coating — 5 years"},"price":"800","priceCurrency":"EUR"}]
 }
 </script>
 <script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"FAQPage",
-  "mainEntity":[
-    {"@type":"Question","name":"Where is Deluxe Car Wash & SPA?","acceptedAnswer":{"@type":"Answer","text":"At Strovolou 196, Strovolos 2048, in central Nicosia, Cyprus. Phone +357 22 08 08 00 or WhatsApp +357 97 424020."}},
-    {"@type":"Question","name":"How much does ceramic coating cost in Nicosia?","acceptedAnswer":{"@type":"Answer","text":"Ceramic coating at Deluxe starts from €400 for 1-year, €600 for 3-year and €800 for 5-year protection for a Small vehicle. Larger vehicles are quoted at booking."}},
-    {"@type":"Question","name":"Do I need an appointment?","acceptedAnswer":{"@type":"Answer","text":"Booking online takes about two minutes and guarantees your slot. Walk-ins are welcome when there is space."}},
-    {"@type":"Question","name":"How do I pay?","acceptedAnswer":{"@type":"Answer","text":"You book your service and time online, then pay at the wash when the work is done."}}
-  ]
-}
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Where is Deluxe Car Wash &amp; SPA?","acceptedAnswer":{"@type":"Answer","text":"We are at Strovolou 196, Strovolos 2048, Nicosia, Cyprus. Call +357 22 08 08 00 or message us on WhatsApp."}},{"@type":"Question","name":"How much do your services cost?","acceptedAnswer":{"@type":"Answer","text":"Prices start from from €160 for Signature Detail. See the full list above; larger jobs are quoted on request."}},{"@type":"Question","name":"Do I need an appointment?","acceptedAnswer":{"@type":"Answer","text":"Booking online takes about two minutes and guarantees your slot. Walk-ins are welcome when there is space."}},{"@type":"Question","name":"How can I reach you?","acceptedAnswer":{"@type":"Answer","text":"Call +357 22 08 08 00 or WhatsApp +35797424020."}}]}
 </script>
-
+<script>
+const LD={"en":{"kicker":"Car detailing &amp; spa · Strovolos, Nicosia","h1":"The deep, lasting <em>gloss</em> your car came with.","lead":"Deluxe Car Wash &amp; SPA has restored and protected cars in Nicosia since 2021 — hand detailing, interior spa treatment, and certified ceramic coating. Book online in two minutes; pay at the wash.","navS":"Services","navW":"Why us","navV":"Visit","navF":"FAQ","navBtn":"Book a time","ctaPrimary":"Book a time →","ctaSecondary":"Call +357 22 08 08 00","eyWhat":"What we do","h2S":"Our services.","svcnote":"Prices shown start from the Small vehicle size; Large and X-Large are quoted at booking.","eyWhy":"Why us","h2W":"What you can count on.","eyV":"Visit us","h2V":"Find us in Nicosia.","dtA":"ADDRESS","dtP":"PHONE","dtSoc":"SOCIAL","mapGo":"Open in Google Maps →","eyF":"Questions","h2F":"Good to know.","finalH":"Book your visit.","finalP":"We'd love to help.","tSince":"Since 2021","tServing":"Serving Nicosia","tSvcL":"Services","tLocal":"Local","tLocalL":"Nicosia","tEasy":"Easy","tEasyL":"Book or call ahead","sv0n":"Signature Detail","sv0d":"Full exterior &amp; interior hand detail.","sv0g":"DETAILING &amp; SPA","sv1n":"Interior Spa","sv1d":"Deep interior clean, steam, odour treatment.","sv1g":"DETAILING &amp; SPA","sv2n":"Leather Care","sv2d":"Clean, condition and protect leather.","sv2g":"DETAILING &amp; SPA","sv3n":"Paint Polish &amp; Correction","sv3d":"Machine polish, swirl removal.","sv3g":"DETAILING &amp; SPA","sv4n":"Ceramic Coating — 1 year","sv4d":"Entry protection, hydrophobic beading.","sv4g":"CERAMIC COATING","sv5n":"Ceramic Coating — 3 years","sv5d":"Longer-lasting gloss and protection.","sv5g":"CERAMIC COATING","sv6n":"Ceramic Coating — 5 years","sv6d":"Our longest-lasting coating.","sv6g":"CERAMIC COATING","wy0t":"Certified ceramic coating","wy0x":"Proper paint prep and professional-grade coatings — protection measured in years, not a quick wax.","wy1t":"Interior treated like a spa","wy1x":"Steam, deep extraction and conditioning. Your cabin leaves clean, fresh and cared for.","wy2t":"Book in two minutes","wy2x":"Choose a service and a time online, get a reminder, and pay at the wash.","hr0d":"Monday – Friday","hr0v":"07:30 – 18:00","hr1d":"Saturday","hr1v":"07:30 – 17:00","hr2d":"Sunday","hr2v":"07:30 – 14:30","fq0q":"Where is Deluxe Car Wash &amp; SPA?","fq0a":"We are at Strovolou 196, Strovolos 2048, Nicosia, Cyprus. Call +357 22 08 08 00 or message us on WhatsApp.","fq1q":"How much do your services cost?","fq1a":"Prices start from from €160 for Signature Detail. See the full list above; larger jobs are quoted on request.","fq2q":"Do I need an appointment?","fq2a":"Booking online takes about two minutes and guarantees your slot. Walk-ins are welcome when there is space.","fq3q":"How can I reach you?","fq3a":"Call +357 22 08 08 00 or WhatsApp +35797424020."},"el":{"kicker":"Detailing &amp; spa αυτοκινήτου · Στρόβολος, Λευκωσία","h1":"Η βαθιά, διαρκής <em>λάμψη</em> που είχε το αυτοκίνητό σας.","lead":"Το Deluxe Car Wash &amp; SPA περιποιείται και προστατεύει αυτοκίνητα στη Λευκωσία από το 2021 — detailing στο χέρι, spa εσωτερικού και πιστοποιημένη κεραμική επίστρωση. Κλείστε ραντεβού online σε δύο λεπτά· πληρωμή στο πλυντήριο.","navS":"Υπηρεσίες","navW":"Γιατί εμείς","navV":"Επισκεφθείτε","navF":"FAQ","navBtn":"Κράτηση","ctaPrimary":"Κράτηση →","ctaSecondary":"Καλέστε +357 22 08 08 00","eyWhat":"Τι κάνουμε","h2S":"Οι υπηρεσίες μας.","svcnote":"Οι τιμές ξεκινούν από το μέγεθος Small· Large και X-Large υπολογίζονται κατά την κράτηση.","eyWhy":"Γιατί εμείς","h2W":"Σε τι μπορείτε να βασιστείτε.","eyV":"Επισκεφθείτε μας","h2V":"Βρείτε μας στη Λευκωσία.","dtA":"ΔΙΕΥΘΥΝΣΗ","dtP":"ΤΗΛΕΦΩΝΟ","dtSoc":"SOCIAL","mapGo":"Άνοιγμα στο Google Maps →","eyF":"Ερωτήσεις","h2F":"Καλό να ξέρετε.","finalH":"Κλείστε το ραντεβού σας.","finalP":"Θα χαρούμε να βοηθήσουμε.","tSince":"Από το 2021","tServing":"Εξυπηρετούμε Λευκωσία","tSvcL":"Υπηρεσίες","tLocal":"Τοπικά","tLocalL":"Λευκωσία","tEasy":"Εύκολα","tEasyL":"Κράτηση ή κλήση","sv0n":"Signature Detail","sv0d":"Πλήρες detailing εσωτερικού &amp; εξωτερικού στο χέρι.","sv0g":"DETAILING &amp; SPA","sv1n":"Spa Εσωτερικού","sv1d":"Βαθύς καθαρισμός εσωτερικού, ατμός, εξουδετέρωση οσμών.","sv1g":"DETAILING &amp; SPA","sv2n":"Περιποίηση Δέρματος","sv2d":"Καθαρισμός, θρέψη και προστασία δέρματος.","sv2g":"DETAILING &amp; SPA","sv3n":"Γυάλισμα &amp; Διόρθωση Βαφής","sv3d":"Μηχανικό γυάλισμα, αφαίρεση γρατζουνιών.","sv3g":"DETAILING &amp; SPA","sv4n":"Κεραμική Επίστρωση — 1 έτος","sv4d":"Βασική προστασία, υδρόφοβη δράση.","sv4g":"ΚΕΡΑΜΙΚΗ ΕΠΙΣΤΡΩΣΗ","sv5n":"Κεραμική Επίστρωση — 3 έτη","sv5d":"Μεγαλύτερη διάρκεια λάμψης και προστασίας.","sv5g":"ΚΕΡΑΜΙΚΗ ΕΠΙΣΤΡΩΣΗ","sv6n":"Κεραμική Επίστρωση — 5 έτη","sv6d":"Η πιο ανθεκτική μας επίστρωση.","sv6g":"ΚΕΡΑΜΙΚΗ ΕΠΙΣΤΡΩΣΗ","wy0t":"Πιστοποιημένη κεραμική επίστρωση","wy0x":"Σωστή προετοιμασία βαφής και επαγγελματικές επιστρώσεις — προστασία για χρόνια, όχι ένα γρήγορο κέρωμα.","wy1t":"Εσωτερικό σαν spa","wy1x":"Ατμός, βαθύς καθαρισμός και περιποίηση. Η καμπίνα φεύγει καθαρή και φρέσκια.","wy2t":"Κράτηση σε δύο λεπτά","wy2x":"Διάλεξε υπηρεσία και ώρα online, πάρε υπενθύμιση και πλήρωσε στο πλυντήριο.","hr0d":"Δευτέρα – Παρασκευή","hr0v":"07:30 – 18:00","hr1d":"Σάββατο","hr1v":"07:30 – 17:00","hr2d":"Κυριακή","hr2v":"07:30 – 14:30","fq0q":"Πού βρίσκεται το Deluxe Car Wash &amp; SPA;","fq0a":"Βρισκόμαστε στη διεύθυνση Strovolou 196, Strovolos 2048, Nicosia, Cyprus. Καλέστε +357 22 08 08 00 ή στείλτε μήνυμα στο WhatsApp.","fq1q":"Πόσο κοστίζουν οι υπηρεσίες σας;","fq1a":"Οι τιμές ξεκινούν από from €160 για Signature Detail. Δείτε την πλήρη λίστα παραπάνω· οι μεγαλύτερες εργασίες υπολογίζονται κατόπιν αιτήματος.","fq2q":"Χρειάζομαι ραντεβού;","fq2a":"Η online κράτηση διαρκεί περίπου δύο λεπτά και εξασφαλίζει τη θέση σας. Οι επισκέψεις χωρίς ραντεβού είναι ευπρόσδεκτες όταν υπάρχει χώρος.","fq3q":"Πώς μπορώ να επικοινωνήσω;","fq3a":"Καλέστε +357 22 08 08 00 ή WhatsApp +35797424020."},"ru":{"kicker":"Детейлинг и спа для авто · Строволос, Никосия","h1":"Глубокий, стойкий <em>блеск</em> вашего автомобиля.","lead":"Deluxe Car Wash &amp; SPA восстанавливает и защищает автомобили в Никосии с 2021 года — ручной детейлинг, спа-уход за салоном и сертифицированное керамическое покрытие. Запишитесь онлайн за две минуты; оплата на мойке.","navS":"Услуги","navW":"Почему мы","navV":"Контакты","navF":"Вопросы","navBtn":"Записаться","ctaPrimary":"Записаться →","ctaSecondary":"Позвонить +357 22 08 08 00","eyWhat":"Что мы делаем","h2S":"Наши услуги.","svcnote":"Цены указаны от размера Small; Large и X-Large рассчитываются при записи.","eyWhy":"Почему мы","h2W":"На что можно рассчитывать.","eyV":"Как нас найти","h2V":"Найдите нас в Никосия.","dtA":"АДРЕС","dtP":"ТЕЛЕФОН","dtSoc":"СОЦСЕТИ","mapGo":"Открыть в Google Maps →","eyF":"Вопросы","h2F":"Полезно знать.","finalH":"Запишитесь на визит.","finalP":"Будем рады помочь.","tSince":"С 2021","tServing":"Работаем в Никосия","tSvcL":"Услуги","tLocal":"Рядом","tLocalL":"Никосия","tEasy":"Удобно","tEasyL":"Запись или звонок","sv0n":"Signature-детейлинг","sv0d":"Полный ручной детейлинг снаружи и внутри.","sv0g":"ДЕТЕЙЛИНГ И СПА","sv1n":"Спа для салона","sv1d":"Глубокая чистка салона, пар, устранение запахов.","sv1g":"ДЕТЕЙЛИНГ И СПА","sv2n":"Уход за кожей","sv2d":"Чистка, кондиционирование и защита кожи.","sv2g":"ДЕТЕЙЛИНГ И СПА","sv3n":"Полировка и коррекция ЛКП","sv3d":"Машинная полировка, удаление разводов.","sv3g":"ДЕТЕЙЛИНГ И СПА","sv4n":"Керамика — 1 год","sv4d":"Базовая защита, гидрофобный эффект.","sv4g":"КЕРАМИКА","sv5n":"Керамика — 3 года","sv5d":"Более стойкий блеск и защита.","sv5g":"КЕРАМИКА","sv6n":"Керамика — 5 лет","sv6d":"Наше самое долговечное покрытие.","sv6g":"КЕРАМИКА","wy0t":"Сертифицированная керамика","wy0x":"Правильная подготовка ЛКП и профессиональные составы — защита на годы, а не быстрый воск.","wy1t":"Салон как в спа","wy1x":"Пар, глубокая химчистка и уход. Салон уезжает чистым и свежим.","wy2t":"Запись за две минуты","wy2x":"Выбери услугу и время онлайн, получи напоминание и оплати на мойке.","hr0d":"Понедельник – Пятница","hr0v":"07:30 – 18:00","hr1d":"Суббота","hr1v":"07:30 – 17:00","hr2d":"Воскресенье","hr2v":"07:30 – 14:30","fq0q":"Где находится Deluxe Car Wash &amp; SPA?","fq0a":"Мы находимся по адресу Strovolou 196, Strovolos 2048, Nicosia, Cyprus. Звоните +357 22 08 08 00 или напишите в WhatsApp.","fq1q":"Сколько стоят ваши услуги?","fq1a":"Цены начинаются от from €160 за Signature-детейлинг. Полный список выше; крупные работы рассчитываются по запросу.","fq2q":"Нужна ли запись?","fq2a":"Онлайн-запись занимает около двух минут и гарантирует ваше время. Без записи — когда есть свободное место.","fq3q":"Как с вами связаться?","fq3a":"Звоните +357 22 08 08 00 или WhatsApp +35797424020."}};
+function setLang(l){if(!LD[l])return;document.documentElement.lang=l;
+  document.querySelectorAll('[data-t]').forEach(e=>{const v=LD[l][e.getAttribute('data-t')];if(v!=null)e.innerHTML=v;});
+  document.querySelectorAll('[data-lb]').forEach(b=>b.classList.toggle('on',b.getAttribute('data-lb')===l));
+  try{localStorage.setItem('siteLang',l)}catch(e){}}
+(function(){let l='en';try{l=localStorage.getItem('siteLang')||navigator.language.slice(0,2)}catch(e){}if(!LD[l])l='en';setLang(l);})();
+</script>
 </body>
 </html>
